@@ -5,16 +5,40 @@
 			"path": "."
 		},
 		{
-			"name": "warp-bubble-exotic-matter-density",
-			"path": "../warp-bubble-exotic-matter-density"
+			"name": "elemental-transmutator",
+			"path": "../elemental-transmutator"
+		},
+		{
+			"name": "energy",
+			"path": "../energy"
+		},
+		{
+			"name": "lorentz-violation-pipeline",
+			"path": "../lorentz-violation-pipeline"
 		},
 		{
 			"name": "lqg-anec-framework",
 			"path": "../lqg-anec-framework"
 		},
 		{
-			"name": "lorentz-violation-pipeline",
-			"path": "../lorentz-violation-pipeline"
+			"name": "unified-gut-polymerization",
+			"path": "../unified-gut-polymerization"
+		},
+		{
+			"name": "unified-lqg",
+			"path": "../unified-lqg"
+		},
+		{
+			"name": "unified-lqg-qft",
+			"path": "../unified-lqg-qft"
+		},
+		{
+			"name": "warp-bubble-einstein-equations",
+			"path": "../warp-bubble-einstein-equations"
+		},
+		{
+			"name": "warp-bubble-exotic-matter-density",
+			"path": "../warp-bubble-exotic-matter-density"
 		},
 		{
 			"name": "warp-bubble-optimizer",
@@ -23,18 +47,6 @@
 		{
 			"name": "warp-bubble-qft",
 			"path": "../warp-bubble-qft"
-		},
-		{
-			"name": "elemental-transmutator",
-			"path": "../elemental-transmutator"
-		},
-		{
-			"name": "unified-lqg",
-			"path": "../unified-lqg"
-		},
-		{
-			"name": "energy",
-			"path": "../energy"
 		}
 	],
 	"settings": {
