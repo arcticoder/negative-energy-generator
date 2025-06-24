@@ -6,7 +6,7 @@ using advanced theoretical physics principles.
 """
 
 from .theoretical.exotic_matter import ExoticMatterCalculator
-from .quantum.anec_violations import ANECViolationFramework
+from .quantum.anec_violations import WarpBubble
 from .optimization.energy_optimizer import EnergyOptimizer
 from .practical.lv_energy_engine_fixed import LorentzViolatingEngine
 
@@ -15,7 +15,7 @@ __author__ = "Negative Energy Research Team"
 
 __all__ = [
     "ExoticMatterCalculator",
-    "ANECViolationFramework", 
+    "WarpBubble", 
     "EnergyOptimizer",
     "LorentzViolatingEngine"
 ]
@@ -28,7 +28,7 @@ class NegativeEnergyGenerator:
     
     def __init__(self):
         self.exotic_matter = ExoticMatterCalculator()
-        self.anec_framework = ANECViolationFramework()
+        self.warp_bubble = WarpBubble()
         self.optimizer = EnergyOptimizer()
         self.engine = LorentzViolatingEngine()
     
