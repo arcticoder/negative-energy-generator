@@ -132,9 +132,93 @@ class RadiativeCorrections:
             logger.warning(f"Two-loop integration failed: {e}")
             return 0.0
     
+    def three_loop_monte_carlo(self, R: float, tau: float, n_samples: int = 10000) -> float:
+        """
+        Compute three-loop correction using Monte Carlo integration.
+        
+        T_00^(3) = (g³/(16π²)³) ∭ dp dq dk [p²q²k²/(ωₚωqωk)] δg̃(p)δg̃(q)δg̃(k)K₃(p,q,k)
+        
+        Args:
+            R: Warp bubble scale
+            tau: Warp bubble timescale
+            n_samples: Number of Monte Carlo samples
+            
+        Returns:
+            Three-loop correction estimate
+        """
+        np.random.seed(42)  # Reproducible results
+        
+        # Monte Carlo sampling bounds
+        max_momentum = min(self.cutoff, 8.0)
+        
+        total_sum = 0.0
+        valid_samples = 0
+        
+        for _ in range(n_samples):
+            # Sample three momenta uniformly
+            p = np.random.uniform(0, max_momentum)
+            q = np.random.uniform(0, max_momentum)  
+            k = np.random.uniform(0, max_momentum)
+            
+            # Dispersion relations
+            omega_p = self.dispersion_relation(p)
+            omega_q = self.dispersion_relation(q)
+            omega_k = self.dispersion_relation(k)
+            
+            if omega_p < 1e-10 or omega_q < 1e-10 or omega_k < 1e-10:
+                continue
+                
+            # Fourier transforms
+            delta_g_p = self.fourier_transform_perturbation(R, tau, p)
+            delta_g_q = self.fourier_transform_perturbation(R, tau, q)
+            delta_g_k = self.fourier_transform_perturbation(R, tau, k)
+            
+            # Three-loop kernel (simplified)
+            kernel_3 = self.three_loop_kernel(p, q, k)
+            
+            # Integrand
+            integrand = (p**2 * q**2 * k**2 / (omega_p * omega_q * omega_k)) * \
+                       delta_g_p * delta_g_q * delta_g_k * kernel_3
+            
+            total_sum += integrand
+            valid_samples += 1
+        
+        if valid_samples == 0:
+            return 0.0
+            
+        # Monte Carlo estimate
+        volume = max_momentum**3  # Integration volume
+        mc_estimate = volume * total_sum / valid_samples
+        
+        # Prefactor
+        prefactor = self.g**3 / (16 * np.pi**2)**3
+        
+        return prefactor * mc_estimate
+    
+    def three_loop_kernel(self, p: float, q: float, k: float) -> float:
+        """
+        Three-loop kernel function K₃(p,q,k) for triangular diagram.
+        
+        Simplified form with energy conservation and vertex factors.
+        """
+        omega_p = self.dispersion_relation(p)
+        omega_q = self.dispersion_relation(q)
+        omega_k = self.dispersion_relation(k)
+        
+        # Energy conservation factor (simplified)
+        energy_factor = 1.0 / (omega_p + omega_q + omega_k + 1e-10)
+        
+        # Momentum conservation factor (approximate)
+        momentum_factor = np.exp(-(p - q - k)**2)
+        
+        # Vertex correction factor
+        vertex_factor = 1.0 + 0.1 * (p * q * k) / (omega_p * omega_q * omega_k)
+        
+        return energy_factor * momentum_factor * vertex_factor
+    
     def polymer_enhanced_corrections(self, R: float, tau: float, mu: float) -> Dict[str, float]:
         """
-        Compute polymer-enhanced radiative corrections.
+        Compute polymer-enhanced radiative corrections including 3-loop Monte Carlo.
         
         In LQG, the polymer scale μ modifies the loop structure,
         potentially enhancing negative contributions.
@@ -142,19 +226,23 @@ class RadiativeCorrections:
         # Base loop corrections
         one_loop = self.one_loop_correction(R, tau)
         two_loop = self.two_loop_correction(R, tau)
+        three_loop = self.three_loop_monte_carlo(R, tau)
         
         # Polymer enhancement factors
         if mu > 0:
             # Polymer modification enhances loop effects
             polymer_factor_1 = 1.0 + mu**2 * R**2  # Linear enhancement
             polymer_factor_2 = 1.0 + mu**4 * R**4  # Quadratic enhancement for 2-loop
+            polymer_factor_3 = 1.0 + mu**6 * R**6  # Cubic enhancement for 3-loop
         else:
             polymer_factor_1 = 1.0
             polymer_factor_2 = 1.0
+            polymer_factor_3 = 1.0
         
         # Enhanced corrections
         enhanced_one_loop = one_loop * polymer_factor_1
         enhanced_two_loop = two_loop * polymer_factor_2
+        enhanced_three_loop = three_loop * polymer_factor_3
         
         # Additional polymer-specific loop corrections
         polymer_specific = -mu**3 * R * tau * np.exp(-(R/tau)**2)  # Can be negative
@@ -162,10 +250,12 @@ class RadiativeCorrections:
         return {
             'one_loop_bare': one_loop,
             'two_loop_bare': two_loop,
+            'three_loop_bare': three_loop,
             'one_loop_enhanced': enhanced_one_loop,
             'two_loop_enhanced': enhanced_two_loop,
+            'three_loop_enhanced': enhanced_three_loop,
             'polymer_specific': polymer_specific,
-            'total_correction': enhanced_one_loop + enhanced_two_loop + polymer_specific
+            'total_correction': enhanced_one_loop + enhanced_two_loop + enhanced_three_loop + polymer_specific
         }
     
     def corrected_stress_energy(self, T_00_tree: np.ndarray, R: float, tau: float, mu: float, 
@@ -190,10 +280,11 @@ class RadiativeCorrections:
         # Apply loop expansion
         correction_1loop = hbar * corrections['one_loop_enhanced']
         correction_2loop = hbar**2 * corrections['two_loop_enhanced'] 
+        correction_3loop = hbar**3 * corrections['three_loop_enhanced']
         correction_polymer = hbar * corrections['polymer_specific']
         
         # Total correction (uniform spatial distribution assumption)
-        total_correction = correction_1loop + correction_2loop + correction_polymer
+        total_correction = correction_1loop + correction_2loop + correction_3loop + correction_polymer
         
         # Apply to tree-level tensor
         T_00_corrected = T_00_tree + total_correction
@@ -202,6 +293,7 @@ class RadiativeCorrections:
             'tree_level': np.mean(T_00_tree),
             'one_loop': correction_1loop,
             'two_loop': correction_2loop,
+            'three_loop': correction_3loop,
             'polymer_specific': correction_polymer,
             'total_correction': total_correction,
             'corrected_mean': np.mean(T_00_corrected)
