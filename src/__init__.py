@@ -7,7 +7,7 @@ using advanced theoretical physics principles.
 
 from .theoretical.exotic_matter import ExoticMatterCalculator
 from .quantum.anec_violations import WarpBubble
-from .optimization.energy_optimizer import EnergyOptimizer
+from .optimization.energy_optimizer import WarpBubble as WarpBubbleOptimizer
 from .practical.lv_energy_engine_fixed import LorentzViolatingEngine
 
 __version__ = "0.1.0"
@@ -29,7 +29,7 @@ class NegativeEnergyGenerator:
     def __init__(self):
         self.exotic_matter = ExoticMatterCalculator()
         self.warp_bubble = WarpBubble()
-        self.optimizer = EnergyOptimizer()
+        self.optimizer = WarpBubbleOptimizer()  # Use the available WarpBubble class
         self.engine = LorentzViolatingEngine()
     
     def calculate_requirements(self, target_energy_density):

@@ -96,11 +96,12 @@ class LVEnergyEngine:
         mu_enhancement = max(1.0, self.config.mu_lv / mu_bound)
         alpha_enhancement = max(1.0, self.config.alpha_lv / alpha_bound)
         beta_enhancement = max(1.0, self.config.beta_lv / beta_bound)
-          # Combined enhancement (geometric mean for stability)
+        # Combined enhancement (geometric mean for stability)
         total_enhancement = (mu_enhancement * alpha_enhancement * beta_enhancement)**(1/3)
         
         return total_enhancement
-      def execute_single_cycle(self) -> Dict[str, float]:
+    
+    def execute_single_cycle(self) -> Dict[str, float]:
         """Execute a single energy conversion cycle."""
         # Reset ledger for new cycle
         if self.current_cycle > 0:  # Don't reset on first cycle

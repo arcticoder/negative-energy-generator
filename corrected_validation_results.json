@@ -1,0 +1,73 @@
+{
+  "modules_status": {
+    "quantum_interest": true,
+    "radiative_corrections": true,
+    "warp_bubble_sim": true,
+    "polymer_field": false,
+    "comprehensive_anec": false
+  },
+  "theory_functional": true,
+  "anec_negative": false,
+  "anec_magnitude": false,
+  "best_anec": 0,
+  "best_params": null,
+  "violation_rate": null,
+  "overall_success": false,
+  "detailed_results": [
+    {
+      "params": [
+        0.05,
+        1.5,
+        0.8
+      ],
+      "tree_anec": 0.0,
+      "corrected_anec": 0.00019091308416335794,
+      "one_loop": 0.00018955035193682156,
+      "two_loop": 1.3627322265363829e-06
+    },
+    {
+      "params": [
+        0.095,
+        2.3,
+        1.2
+      ],
+      "tree_anec": 0.0,
+      "corrected_anec": 3.5336931280170346e-05,
+      "one_loop": 3.4953458365693704e-05,
+      "two_loop": 3.834729144766404e-07
+    },
+    {
+      "params": [
+        0.15,
+        3.0,
+        1.8
+      ],
+      "tree_anec": 0.0,
+      "corrected_anec": 1.0723485024610865e-05,
+      "one_loop": 1.056713960450259e-05,
+      "two_loop": 1.5634542010827397e-07
+    },
+    {
+      "params": [
+        0.08,
+        2.0,
+        1.0
+      ],
+      "tree_anec": 0.0,
+      "corrected_anec": 6.392456803177672e-05,
+      "one_loop": 6.33257397764611e-05,
+      "two_loop": 5.988282553156223e-07
+    },
+    {
+      "params": [
+        0.12,
+        2.8,
+        1.5
+      ],
+      "tree_anec": 0.0,
+      "corrected_anec": 1.5759161893816352e-05,
+      "one_loop": 1.5550270503147864e-05,
+      "two_loop": 2.0889139066848669e-07
+    }
+  ]
+}
