@@ -254,22 +254,16 @@ def demonstrate_phase2_prototypes():
     print("=" * 48)
     
     try:
-        from prototype.combined_prototype import UnifiedVacuumGenerator
+        from prototype.combined_prototype import UnifiedVacuumGenerator, combined_prototype_demonstration
         
         print("🔗 Initializing unified vacuum generator...")
         
-        # Create integrated system
-        generator = UnifiedVacuumGenerator()
+        # Run full demonstration
+        demo_results = combined_prototype_demonstration()
         
-        # Add all components
-        print("➕ Adding Casimir array component...")
-        print("➕ Adding dynamic cavity component...")
-        print("➕ Adding squeezed vacuum component...")
-        print("➕ Adding metamaterial enhancement...")
-        
-        # Calculate combined performance
-        combined_energy = generator.calculate_total_energy()
-        combined_power = generator.estimate_power_output()
+        generator = demo_results['generator']
+        combined_energy = demo_results['total_energy']
+        combined_power = demo_results['total_power']
         
         print()
         print(f"⚡ Combined energy: {combined_energy:.3e} J/m²")
