@@ -1,0 +1,56 @@
+{
+  "validation_info": {
+    "timestamp": "2025-06-24T07:51:22.676439",
+    "scripts_run": 5,
+    "scripts_successful": 0,
+    "scripts_failed": 5,
+    "failed_scripts": [
+      "test_mathematical_enhancements.py",
+      "demonstrate_breakthrough.py",
+      "krasnikov_ansatz.py",
+      "quantum_scale_bridging.py",
+      "hardware_readiness_assessment.py"
+    ]
+  },
+  "key_metrics": {},
+  "assessment": {
+    "validation_success": false,
+    "theoretical_success": false,
+    "hardware_ready": false,
+    "targets_achieved": false,
+    "overall_status": "DEVELOPMENT_REQUIRED",
+    "decision": "CONTINUE THEORETICAL DEVELOPMENT"
+  },
+  "script_results": {
+    "test_mathematical_enhancements.py": {
+      "success": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\test_mathematical_enhancements.py\", line 695, in <module>\n    run_all_tests()\n    ~~~~~~~~~~~~~^^\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\test_mathematical_enhancements.py\", line 614, in run_all_tests\n    print(\"\\U0001f9ea MATHEMATICAL ENHANCEMENT TEST SUITE\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f9ea' in position 0: character maps to <undefined>\n",
+      "returncode": 1
+    },
+    "demonstrate_breakthrough.py": {
+      "success": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\demonstrate_breakthrough.py\", line 644, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\demonstrate_breakthrough.py\", line 270, in main\n    print(\"\\U0001f680 MATHEMATICAL BREAKTHROUGH DEMONSTRATION\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n",
+      "returncode": 1
+    },
+    "krasnikov_ansatz.py": {
+      "success": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\krasnikov_ansatz.py\", line 474, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\krasnikov_ansatz.py\", line 462, in main\n    results = run_next_generation_refinement()\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\krasnikov_ansatz.py\", line 301, in run_next_generation_refinement\n    print(\"\\U0001f30c NEXT-GENERATION THEORETICAL REFINEMENT PIPELINE\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f30c' in position 0: character maps to <undefined>\n",
+      "returncode": 1
+    },
+    "quantum_scale_bridging.py": {
+      "success": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\quantum_scale_bridging.py\", line 428, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\quantum_scale_bridging.py\", line 409, in main\n    results = quantum_scale_bridging_optimization()\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\quantum_scale_bridging.py\", line 234, in quantum_scale_bridging_optimization\n    print(\"\\U0001f30a QUANTUM TUNNELING ENHANCED SCALE BRIDGING\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f30a' in position 0: character maps to <undefined>\n",
+      "returncode": 1
+    },
+    "hardware_readiness_assessment.py": {
+      "success": false,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\hardware_readiness_assessment.py\", line 508, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\sherri3\\Code\\asciimath\\negative-energy-generator\\hardware_readiness_assessment.py\", line 401, in main\n    print(\"\\U0001f680 HARDWARE PROTOTYPING READINESS ASSESSMENT\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Program Files\\Python313\\Lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f680' in position 0: character maps to <undefined>\n",
+      "returncode": 1
+    }
+  }
+}
