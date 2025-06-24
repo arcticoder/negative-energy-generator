@@ -1,0 +1,69 @@
+{
+	"folders": [
+		{
+			"name": "negative-energy-generator",
+			"path": "."
+		},
+		{
+			"name": "warp-bubble-exotic-matter-density",
+			"path": "../warp-bubble-exotic-matter-density"
+		},
+		{
+			"name": "lqg-anec-framework",
+			"path": "../lqg-anec-framework"
+		},
+		{
+			"name": "lorentz-violation-pipeline",
+			"path": "../lorentz-violation-pipeline"
+		},
+		{
+			"name": "warp-bubble-optimizer",
+			"path": "../warp-bubble-optimizer"
+		},
+		{
+			"name": "warp-bubble-qft",
+			"path": "../warp-bubble-qft"
+		},
+		{
+			"name": "elemental-transmutator",
+			"path": "../elemental-transmutator"
+		},
+		{
+			"name": "unified-lqg",
+			"path": "../unified-lqg"
+		},
+		{
+			"name": "energy",
+			"path": "../energy"
+		}
+	],
+	"settings": {
+		"python.defaultInterpreterPath": "python",
+		"files.associations": {
+			"*.tex": "latex",
+			"*.md": "markdown"
+		},
+		"latex-workshop.latex.tools": [
+			{
+				"name": "pdflatex",
+				"command": "pdflatex",
+				"args": [
+					"-synctex=1",
+					"-interaction=nonstopmode",
+					"-file-line-error",
+					"%DOCFILE%"
+				]
+			}
+		]
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-python.python",
+			"ms-python.flake8",
+			"ms-python.black-formatter",
+			"james-yu.latex-workshop",
+			"yzhang.markdown-all-in-one",
+			"ms-vscode.vscode-json"
+		]
+	}
+}
