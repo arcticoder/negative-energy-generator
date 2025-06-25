@@ -17,11 +17,33 @@ def test_core_modules():
     print("🔧 Testing Core Prototype Modules...")
     
     try:
-        from src.prototype import ExoticMatterSimulator
-        simulator = ExoticMatterSimulator(grid_size=50, domain_size=1.0)
-        simulator.set_field_ansatz(alpha=0.5, beta=0.3, gamma=0.2)
-        T00_field = simulator.compute_stress_energy_tensor()
-        total_energy = simulator.compute_total_energy(T00_field)
+        from src.prototype import ExoticMatterSimulator, default_kernel_builder, default_variation_generator
+        import numpy as np
+        
+        # Create proper grid and parameters
+        n_grid = 10
+        x = np.linspace(-0.5, 0.5, n_grid)
+        grid = np.array([
+            np.tile(np.repeat(x, n_grid), n_grid), 
+            np.tile(np.repeat(x, n_grid), n_grid), 
+            np.tile(x, n_grid**2)
+        ])
+        g_metric = np.eye(3)
+        
+        def test_kernel(grid):
+            return default_kernel_builder(grid, coupling_strength=0.05, decay_length=0.3)
+        
+        def test_variation(i):
+            return default_variation_generator(grid, i)
+        
+        # Create simulator with proper interface
+        simulator = ExoticMatterSimulator(test_kernel, g_metric, grid)
+        rho = simulator.T00(test_variation)
+        
+        dV = (1.0 / n_grid)**3
+        analysis = simulator.energy_analysis(rho, dV)
+        total_energy = analysis['total_energy']
+        
         print(f"   ✅ ExoticMatterSimulator: Energy = {total_energy:.3e}")
     except Exception as e:
         print(f"   ❌ ExoticMatterSimulator: {e}")
@@ -29,8 +51,8 @@ def test_core_modules():
     
     try:
         from src.prototype import casimir_plate_specs
-        specs = casimir_plate_specs(length=1e-3, width=1e-3, gap=100e-9)
-        print(f"   ✅ FabricationSpec: Force = {specs['expected_casimir_force']:.2e} N")
+        specs = casimir_plate_specs([100], 1.0)  # 100nm gap, 1 cm² area
+        print(f"   ✅ FabricationSpec: Force = {specs[0]['casimir_force_N']:.2e} N")
     except Exception as e:
         print(f"   ❌ FabricationSpec: {e}")
         return False
@@ -87,26 +109,26 @@ def test_ml_modules():
     
     # Test Bayesian Optimization
     try:
-        from src.ml import BayesianAnsatzOptimizer
+        from src.ml.bo_ansatz_opt import ExoticMatterBayesianOptimizer
         
         def mock_objective(params):
             return -(params[0]**2 + params[1]**2)  # Simple quadratic
         
-        optimizer = BayesianAnsatzOptimizer([(-2, 2), (-2, 2)])
-        result = optimizer.optimize(mock_objective, n_calls=10)
+        optimizer = ExoticMatterBayesianOptimizer(mock_objective, [(-2, 2), (-2, 2)])
+        result = optimizer.optimize(n_calls=10)
         print(f"   ✅ BayesianOptimization: Best = {result.fun:.3f} at {result.x}")
     except Exception as e:
         print(f"   ❌ BayesianOptimization: {e}")
     
     # Test Genetic Algorithm
     try:
-        from src.ml import GeneticAnsatzOptimizer
+        from src.ml.genetic_ansatz import GeneticAnsatzOptimizer
         
         def fitness_function(individual):
             return (-sum(x**2 for x in individual),)
         
-        optimizer = GeneticAnsatzOptimizer(n_parameters=3, bounds=[(-2, 2)] * 3)
-        result = optimizer.evolve(fitness_function, n_generations=10)
+        optimizer = GeneticAnsatzOptimizer(lambda x: fitness_function(x)[0], genome_length=3)
+        result = optimizer.optimize(n_generations=10)
         print(f"   ✅ GeneticAlgorithm: Best fitness = {result['best_fitness']:.3f}")
     except Exception as e:
         print(f"   ❌ GeneticAlgorithm: {e}")

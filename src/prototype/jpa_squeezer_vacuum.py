@@ -19,7 +19,7 @@ Key Features:
 
 import numpy as np
 import warnings
-from typing import Dict, List, Tuple, Optional, Union, Callable, Complex
+from typing import Dict, List, Tuple, Optional, Union, Callable
 import json
 from datetime import datetime
 from pathlib import Path
@@ -46,16 +46,16 @@ class SqueezingParameters:
     """Parameters describing a squeezed quantum state."""
     squeezing_strength: float      # r - squeezing parameter
     squeezing_angle: float         # φ - squeezing angle
-    displacement: Complex          # α - coherent displacement
+    displacement: complex          # α - coherent displacement
     frequency: float               # ω - mode frequency
     
     @property
-    def mu(self) -> Complex:
+    def mu(self) -> complex:
         """Parametric amplifier gain coefficient μ."""
         return np.cosh(self.squeezing_strength)
     
     @property
-    def nu(self) -> Complex:
+    def nu(self) -> complex:
         """Parametric amplifier gain coefficient ν."""
         return np.sinh(self.squeezing_strength) * np.exp(1j * self.squeezing_angle)
     

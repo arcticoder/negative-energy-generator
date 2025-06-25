@@ -22,6 +22,8 @@ All modules are designed to be independently testable, well-documented,
 and ready for deployment in experimental settings.
 """
 
+import numpy as np
+
 # Core prototype modules
 try:
     from .exotic_matter_simulator import ExoticMatterSimulator, default_kernel_builder, default_variation_generator
@@ -29,8 +31,7 @@ try:
         casimir_plate_specs, 
         metamaterial_slab_specs, 
         multi_layer_casimir_specs,
-        optimize_gap_sequence,
-        enhanced_casimir_model
+        optimize_gap_sequence
     )
     from .measurement_pipeline import (
         casimir_force_model,
@@ -38,7 +39,8 @@ try:
         analyze_time_series,
         frequency_shift_analysis,
         real_time_data_processor,
-        experimental_design_optimizer
+        experimental_design_optimizer,
+        enhanced_casimir_model
     )
     
     CORE_MODULES_AVAILABLE = True
@@ -131,10 +133,23 @@ def create_combined_system():
     
     print("🚀 Initializing Complete Negative Energy Prototype System")
     
+    # Create proper grid and kernel for ExoticMatterSimulator
+    n_grid = 15
+    x = np.linspace(-1.0, 1.0, n_grid)
+    grid = np.array([
+        np.tile(np.repeat(x, n_grid), n_grid), 
+        np.tile(np.repeat(x, n_grid), n_grid), 
+        np.tile(x, n_grid**2)
+    ])
+    g_metric = np.eye(3)
+    
+    def system_kernel(grid):
+        return default_kernel_builder(grid, coupling_strength=0.1, decay_length=0.5)
+    
     # Core modules
     system = {
         'core': {
-            'simulator': ExoticMatterSimulator(grid_size=100, domain_size=2.0),
+            'simulator': ExoticMatterSimulator(system_kernel, g_metric, grid),
             'fabrication': None,  # FabricationSpec is function-based
             'measurement': None   # MeasurementPipeline is function-based
         },
@@ -168,92 +183,3 @@ def create_combined_system():
     print(f"   • Integration ready: {system['capabilities']['integration_ready']}")
     
     return system
-            np.tile(np.repeat(x, n_grid), n_grid), 
-            np.tile(x, n_grid**2)
-        ])
-        
-        g_metric = np.eye(3)
-        
-        def test_kernel(grid):
-            return default_kernel_builder(grid, coupling_strength=0.05, decay_length=0.3)
-        
-        def test_variation(i):
-            return default_variation_generator(grid, i)
-        
-        simulator = ExoticMatterSimulator(test_kernel, g_metric, grid)
-        rho = simulator.T00(test_variation)
-        
-        dV = (1.0 / n_grid)**3
-        analysis = simulator.energy_analysis(rho, dV)
-        
-        print(f"   ✓ Total Energy: {analysis['total_energy']:.2e} J")
-        print(f"   ✓ Negative Energy: {analysis['negative_energy']:.2e} J")
-        print(f"   ✓ Negative Fraction: {analysis['negative_fraction']:.1%}")
-        
-        # 2. Fabrication Specifications
-        print("\n2. FABRICATION: Test-bed Specifications")
-        print("   - Generating Casimir array specs...")
-        
-        gaps = [20, 50, 100]  # nm
-        area = 0.1  # cm²
-        specs = casimir_plate_specs(gaps, area, material="silicon", coating="gold")
-        
-        total_casimir_energy = sum(spec['total_energy_J'] for spec in specs)
-        print(f"   ✓ {len(specs)} Casimir layers designed")
-        print(f"   ✓ Total Casimir Energy: {total_casimir_energy:.2e} J")
-        
-        # Add metamaterial enhancement
-        meta_spec = metamaterial_slab_specs(50, 5, -3.0, area_cm2=area)
-        print(f"   ✓ Metamaterial Enhancement: {meta_spec['enhancement_factor']:.1f}x")
-        print(f"   ✓ Enhanced Energy: {meta_spec['total_enhanced_energy_J']:.2e} J")
-        
-        # 3. Measurement Pipeline  
-        print("\n3. MEASUREMENT: Data Analysis Pipeline")
-        print("   - Setting up real-time processing...")
-        
-        # Simulate measurement data
-        test_gaps = np.array([20, 30, 50, 80, 120]) * 1e-9  # nm to m
-        test_area = area * 1e-4  # cm² to m²
-        true_forces = casimir_force_model(test_gaps, test_area)
-        noisy_forces = true_forces * (1 + 0.03 * np.random.randn(len(true_forces)))
-        
-        fit_result = fit_casimir_force(test_gaps, noisy_forces)
-        
-        if fit_result['success']:
-            fitted_area = fit_result['parameters']['A_eff']
-            relative_error = abs(fitted_area - test_area) / test_area
-            print(f"   ✓ Force fitting successful")
-            print(f"   ✓ Area measurement error: {relative_error:.1%}")
-            print(f"   ✓ Fit R²: {fit_result['r_squared']:.3f}")
-        
-        # Experimental design optimization
-        design = experimental_design_optimizer(
-            target_precision=0.02,  # 2% precision target
-            available_area_cm2=area
-        )
-        
-        print(f"   ✓ Optimal gap: {design['optimal_gap_nm']:.1f} nm")
-        print(f"   ✓ Expected precision: {design['estimated_precision']:.1%}")
-        
-        print("\n🚀 COMPLETE PROTOTYPE STACK OPERATIONAL")
-        print("   → Ready for build → measure → validate → iterate")
-        
-        return True
-        
-    except Exception as e:
-        print(f"\n❌ Demo failed: {e}")
-        return False
-
-# Auto-run demo if module is imported
-if __name__ == "__main__":
-    status = get_prototype_status()
-    print("Prototype Stack Status:")
-    for module, info in status['modules'].items():
-        status_symbol = "✓" if info['available'] else "✗"
-        print(f"  {status_symbol} {module}: {info['description']}")
-    
-    if all(info['available'] for info in status['modules'].values()):
-        print("\n" + "="*50)
-        demo_complete_stack()
-    else:
-        print("\nSome modules not available - check imports")
