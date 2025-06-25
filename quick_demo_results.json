@@ -1,0 +1,22 @@
+{
+  "timestamp": "2025-06-24T19:45:15.953019",
+  "simulation": {
+    "grid_points": 512,
+    "total_energy_J": -5.64931496006679e-18,
+    "negative_energy_J": -5.64931496006679e-18,
+    "negative_fraction": 1.0
+  },
+  "fabrication": {
+    "casimir_energy_J": -0.02889124298006304,
+    "metamaterial_enhancement": 0.674199862463242,
+    "optimization_error_percent": 17335010199.30337,
+    "layer_count": 4
+  },
+  "measurement": {
+    "fit_r_squared": 0.9999887215433391,
+    "area_error_percent": 1.2645841231766435,
+    "optimal_gap_nm": 10.0,
+    "precision_percent": 405.38099302689557
+  },
+  "overall_status": "READY FOR DEPLOYMENT"
+}

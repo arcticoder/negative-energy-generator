@@ -7,3 +7,9 @@ jupyter>=1.0.0
 pytest>=6.0.0
 black>=21.0.0
 flake8>=3.9.0
+
+# Additional dependencies for prototype package
+scikit-learn>=1.0.0  # For advanced fitting and validation
+h5py>=3.0.0          # For large dataset handling
+tqdm>=4.60.0         # For progress bars in long simulations
+seaborn>=0.11.0      # For advanced visualizations
