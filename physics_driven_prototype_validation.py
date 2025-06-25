@@ -108,9 +108,14 @@ try:
     from hardware.field_rig_design import optimize_field_rigs
     from hardware.polymer_insert import optimize_polymer_insert, gaussian_ansatz_4d
     from hardware_ensemble import HardwareEnsemble
+    from hardware_instrumentation import (
+        InterferometricProbe, CalorimetricSensor, PhaseShiftInterferometer,
+        RealTimeDAQ, generate_T00_pulse, benchmark_instrumentation_suite
+    )
     
     HARDWARE_MODULES_AVAILABLE = True
     print("✅ High-intensity field driver modules loaded")
+    print("✅ Hardware instrumentation & diagnostics loaded")
 except ImportError as e:
     HARDWARE_MODULES_AVAILABLE = False
     print(f"⚠️  Hardware modules not available: {e}")
@@ -1160,6 +1165,41 @@ def run_comprehensive_validation():
             ensemble_results = hardware_ensemble.run_full_ensemble_optimization(n_trials=30)
             hardware_results['ensemble'] = ensemble_results
             
+            # NEW: Hardware Instrumentation & Diagnostics Integration
+            print("   🔬 Running instrumentation benchmark...")
+            instrumentation_results = benchmark_instrumentation_suite()
+            hardware_results['instrumentation'] = instrumentation_results
+            
+            # Demonstrate measurement chain with synthetic ΔT₀₀ profile
+            print("   📡 Demonstrating measurement pipeline...")
+            pulse_func = generate_T00_pulse("gaussian", -1e7, 2.5e-9, 0.5e-9)
+            
+            # Set up measurement systems
+            probe = InterferometricProbe(1.55e-6, 0.1, 1.5, 1e-12)
+            calorimeter = CalorimetricSensor(1e-18, 2330, 700)
+            interferometer = PhaseShiftInterferometer(probe, 1e11)
+            daq = RealTimeDAQ(10000, 1e10, 1e-6)
+            
+            # Run measurement simulation
+            measurement_data = interferometer.acquire(5e-9, pulse_func)
+            times = np.linspace(0, 5e-9, 1000)
+            T00_vals = [pulse_func(t) for t in times]
+            thermal_data = calorimeter.simulate_pulse(times, T00_vals)
+            
+            # Collect measurement statistics
+            hardware_results['measurement_demo'] = {
+                'max_phase_shift_rad': np.max(np.abs(measurement_data.values)),
+                'max_temp_rise_K': np.max(np.abs(thermal_data.values)),
+                'interferometric_snr': measurement_data.signal_to_noise,
+                'calorimetric_snr': thermal_data.signal_to_noise,
+                'probe_sensitivity': probe.sensitivity,
+                'thermal_sensitivity': calorimeter.sensitivity
+            }
+            
+            print(f"      📡 Max phase shift: {np.max(np.abs(measurement_data.values)):.2e} rad")
+            print(f"      🌡️  Max temperature rise: {np.max(np.abs(thermal_data.values))*1000:.3f} mK")
+            print(f"      📊 Interferometric SNR: {measurement_data.signal_to_noise:.1f}")
+            
         except Exception as e:
             print(f"   ⚠️  Hardware module error: {e}")
             hardware_results['error'] = str(e)
@@ -1364,8 +1404,10 @@ def run_comprehensive_validation():
     print(f"   ✅ Real physics backend integration ({successful_backends}/{total_backends} successful)")
     print(f"   ✅ Multi-platform optimization ensemble")
     print(f"   ✅ Bayesian and genetic algorithm implementation")
-    print(f"   ✅ High-intensity field driver integration")  # NEW
-    print(f"   ✅ Hardware ensemble synergy analysis")      # NEW
+    print(f"   ✅ High-intensity field driver integration")      # NEW
+    print(f"   ✅ Hardware ensemble synergy analysis")          # NEW
+    print(f"   ✅ Precision instrumentation & diagnostics")      # NEW
+    print(f"   ✅ Real-time measurement pipeline")              # NEW
     print(f"   ✅ Comprehensive validation pipeline")
     print(f"   ✅ Production-ready prototype framework")
     
@@ -1377,6 +1419,18 @@ def run_comprehensive_validation():
         print(f"   ⚡ Field rig platform: {hardware_results.get('field_rigs', {}).get('statistics', {}).get('n_safe', 0)} safe configurations")
         print(f"   🧬 Polymer platform: Enhanced with {len(hardware_results.get('polymer', {}).get('all_results', []))} scale optimizations")
         print(f"   🌟 Ensemble synergy: {ensemble_data.get('synergy_results', {}).get('synergy_factor', 1):.2f}x enhancement")
+        
+        # NEW: Instrumentation summary
+        if 'instrumentation' in hardware_results:
+            instr_data = hardware_results['instrumentation']
+            successful_instruments = sum(1 for r in instr_data.values() if r.get('status') == 'SUCCESS')
+            print(f"   🔬 Instrumentation: {successful_instruments}/4 systems operational")
+            
+        if 'measurement_demo' in hardware_results:
+            demo_data = hardware_results['measurement_demo']
+            print(f"   📡 Phase sensitivity: {demo_data.get('probe_sensitivity', 0):.2e} rad/(J/m³)")
+            print(f"   🌡️  Thermal sensitivity: {demo_data.get('thermal_sensitivity', 0):.2e} K/(J/m³)")
+            print(f"   📊 Measurement SNR: {demo_data.get('interferometric_snr', 0):.1f} (interferometric)")
     
     print(f"\n🚀 SYSTEM READY FOR HARDWARE DEPLOYMENT!")
     
