@@ -807,7 +807,7 @@ def simulate_jpa_squeezed_vacuum(signal_freq: float, pump_power: float, temperat
         Dictionary with JPA performance metrics
     """
     # Physical constants and parameters
-    mode_volume = 1e-15  # Waveguide mode volume (m³)
+    mode_volume = 1e-18  # Femtoliter cavity volume (1 fL = 1e-18 m³)
     
     # JPA characteristics
     plasma_freq = np.sqrt(8 * josephson_energy * charging_energy)
@@ -969,8 +969,16 @@ def simulate_photonic_metamaterial_energy(lattice_const: float, filling_fraction
     freq_ratio = freq_max / freq_min if freq_min > 0 else 1
     bandwidth_factor = np.log(freq_ratio) / np.log(10)  # Logarithmic bandwidth enhancement
     
-    # Multi-layer amplification
-    layer_factor = np.sqrt(n_layers)  # Coherent enhancement
+    # Multi-layer amplification with saturation (N≥10 improved model)
+    if n_layers >= 10:
+        # Use improved stacking model: Σ(k=1 to N) η·k^(-β)
+        eta = 0.95  # Per-layer efficiency
+        beta = 0.5  # Saturation exponent
+        k_values = np.arange(1, n_layers + 1)
+        layer_factor = np.sum(eta * k_values**(-beta))
+    else:
+        # Original coherent enhancement for N<10
+        layer_factor = np.sqrt(n_layers)
     
     # Total enhancement
     total_enhancement = geometric_factor * gap_enhancement * bandwidth_factor * layer_factor
