@@ -904,7 +904,7 @@ def parameter_sweep_jpa() -> Dict:
     print(f"   • Negative energy: {best_result['total_energy']:.2e} J")
     print(f"   • Quantum efficiency: {best_result['quantum_efficiency']:.1%}")
     print(f"   • Gain: {best_result['gain_dB']:.1f} dB")
-    print(f"   • Bandwidth: {best_result['bandwidth']/1e6:.1f} MHz")
+    print(f"   • Bandwidth: {best_result['bandwidth'] / 1e6:.1f} MHz")
     
     return {
         'pump_powers': pump_powers,
@@ -1149,8 +1149,12 @@ def run_comprehensive_validation():
         print(f"   • {platform.upper():12}: {data['energy']:.2e} J "
               f"(weight: {data['weight']:.1%}, improvement: {data['improvement_factor']:.1f}x)")
     
+    # Roadmap assessment
+    print("\n5️⃣  DEVELOPMENT ROADMAP ASSESSMENT")
+    roadmap_results = run_roadmap_assessment()
+    
     # Real physics integration test
-    print("\n5️⃣  REAL PHYSICS BACKEND INTEGRATION TEST")
+    print("\n6️⃣  REAL PHYSICS BACKEND INTEGRATION TEST")
     integration_results = {}
     
     # Test FDTD
@@ -1255,6 +1259,7 @@ def run_comprehensive_validation():
         'dce_results': dce_results,
         'jpa_results': jpa_results,
         'metamaterial_results': metamaterial_results,
+        'roadmap_results': roadmap_results,
         'ensemble_energy': total_negative_energy,
         'improvement_factor': total_improvement,
         'platform_contributions': platform_contributions,
@@ -1262,6 +1267,103 @@ def run_comprehensive_validation():
         'backend_success_rate': backend_success_rate,
         'technology_readiness': readiness_levels
     }
+
+# ============================================================================
+# Section 7: Roadmap Assessment Integration
+# ============================================================================
+
+def run_roadmap_assessment() -> Dict:
+    """
+    Run comprehensive roadmap assessment for development planning.
+    
+    Returns:
+        Dictionary with roadmap analysis results
+    """
+    print("\n📋 DEVELOPMENT ROADMAP ASSESSMENT")
+    print("=" * 50)
+    
+    try:
+        # Import roadmap assessment (if available)
+        import sys
+        import os
+        sys.path.append(os.path.join(os.path.dirname(__file__), 'src', 'analysis'))
+        from roadmap_assessment import RoadmapAssessment
+        
+        assessor = RoadmapAssessment()
+        
+        # Quick analysis of key development stages
+        print("🔬 Analyzing critical development stages...")
+        
+        # Stage 1: Static Casimir baseline
+        casimir_5nm = assessor.static_casimir_analysis(5.0, 1e-4)
+        print(f"   Static Casimir (5nm): {casimir_5nm['total_energy']:.2e} J")
+        
+        # Stage 3: Squeezed vacuum potential
+        squeezed_15db = assessor.squeezed_vacuum_analysis(15.0)
+        print(f"   Squeezed Vacuum (15dB): {squeezed_15db['effective_energy']:.2e} J")
+        
+        # Stage 4: Metamaterial enhancement
+        meta_10x = assessor.metamaterial_enhancement_analysis(
+            casimir_5nm['total_energy'], 10
+        )
+        print(f"   Metamaterial (10x): {meta_10x['enhanced_energy']:.2e} J")
+        
+        # Strategic assessment
+        print("\n📊 Strategic Analysis:")
+        print(f"   • Best energy density: Squeezed vacuum ({squeezed_15db['effective_density']:.2e} J/m³)")
+        print(f"   • Best total energy: Metamaterial ({meta_10x['enhanced_energy']:.2e} J)")
+        print(f"   • Highest TRL: Static Casimir (TRL {casimir_5nm['trl_current']})")
+        
+        # Technology readiness comparison
+        trl_summary = {
+            'static_casimir': casimir_5nm['trl_current'],
+            'squeezed_vacuum': squeezed_15db['trl_current'],
+            'metamaterial': meta_10x['trl_current']
+        }
+        
+        avg_trl = np.mean(list(trl_summary.values()))
+        print(f"   • Average TRL: {avg_trl:.1f}")
+        
+        # Integration with our existing platforms
+        print("\n🔗 Integration with Current Platforms:")
+        dce_integration = abs(casimir_5nm['total_energy'] / (-1e-15))
+        jpa_integration = abs(squeezed_15db['effective_energy'] / (-1e-15))
+        meta_integration = abs(meta_10x['enhanced_energy'] / (-1e-15))
+        
+        print(f"   • DCE Platform Integration: {dce_integration:.1f}x baseline")
+        print(f"   • JPA Platform Integration: {jpa_integration:.1f}x baseline") 
+        print(f"   • Metamaterial Integration: {meta_integration:.1f}x baseline")
+        
+        return {
+            'static_casimir': casimir_5nm,
+            'squeezed_vacuum': squeezed_15db,
+            'metamaterial': meta_10x,
+            'trl_summary': trl_summary,
+            'integration_factors': {
+                'dce': dce_integration,
+                'jpa': jpa_integration,
+                'metamaterial': meta_integration
+            },
+            'strategic_recommendation': 'Hybrid metamaterial + squeezed vacuum approach',
+            'roadmap_available': True
+        }
+        
+    except ImportError:
+        print("   ⚠️  Roadmap assessment module not available")
+        print("   📝 Run: python src/analysis/roadmap_assessment.py")
+        
+        # Simplified assessment using our existing functions
+        casimir_approx = compute_casimir_energy_shift_fdtd(1e-6, [], resolution=16)
+        squeezed_approx = simulate_jpa_squeezed_vacuum(6e9, 0.15, 0.01)
+        meta_approx = simulate_photonic_metamaterial_energy(250e-9, 0.35, 10)
+        
+        return {
+            'casimir_energy_density': casimir_approx,
+            'squeezed_energy': squeezed_approx['total_energy'],
+            'metamaterial_energy': meta_approx['total_energy'],
+            'strategic_recommendation': 'Focus on validated simulation modules first',
+            'roadmap_available': False
+        }
 
 if __name__ == "__main__":
     # Run the comprehensive validation
