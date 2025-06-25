@@ -19,7 +19,7 @@ Uses FEniCS for finite element analysis.
 """
 
 import numpy as np
-from typing import Dict, Tuple, Optional, Callable, List
+from typing import Dict, Tuple, Optional, Callable, List, Any
 import warnings
 
 # Real FEniCS implementation for mechanical FEM simulation
@@ -30,9 +30,12 @@ try:
         DirichletBC, Constant, inner, grad, dx, solve
     )
     FENICS_AVAILABLE = True
+    FunctionType = Function
 except ImportError:
     print("⚠️  FEniCS not available. Install with: pip install fenics")
     FENICS_AVAILABLE = False
+    # Mock Function type for fallback
+    FunctionType = type(None)
 
 def solve_plate(E, nu, t, q_val, L, res=50):
     """
@@ -49,7 +52,7 @@ def solve_plate(E, nu, t, q_val, L, res=50):
         v = TestFunction(V)
         q = Constant(q_val)
         
-        # Weak form of D ∇⁴ w = q
+        # Weak form of D ∇⁴ w = q (simplified)
         a = D*inner(grad(grad(w)), grad(grad(v))) * dx
         Lf = q * v * dx
         bc = DirichletBC(V, Constant(0.0), "on_boundary")
@@ -66,7 +69,7 @@ def plate_deflection_fem(E: float,
                         t: float, 
                         q_val: float, 
                         L: float,
-                        mesh_resolution: int = 50) -> Function:
+                        mesh_resolution: int = 50) -> Optional[Any]:
     """
     Solve plate deflection using finite element method.
     
@@ -102,9 +105,9 @@ def plate_deflection_fem(E: float,
     w = TrialFunction(V)
     v = TestFunction(V)
     
-    # Biharmonic operator: ∇⁴w
-    # Approximate as: D∇²∇²w ≈ D∇⋅(∇∇²w)
-    a = D * inner(div(grad(grad(w))), div(grad(grad(v)))) * dx
+    # Simplified biharmonic formulation for quadratic elements
+    # Use: D∇²w ⋅ ∇²v (this is an approximation of the biharmonic)
+    a = D * inner(grad(grad(w)), grad(grad(v))) * dx
     
     # Load term
     L_form = q_val * v * dx

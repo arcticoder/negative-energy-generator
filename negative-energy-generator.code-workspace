@@ -66,7 +66,8 @@
 					"%DOCFILE%"
 				]
 			}
-		]
+		],
+		"powershell.cwd": "negative-energy-generator"
 	},
 	"extensions": {
 		"recommendations": [
