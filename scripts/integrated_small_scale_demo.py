@@ -538,6 +538,42 @@ Energy Statistics:
         plt.savefig(filename, dpi=300, bbox_inches='tight')
         print(f"   ✅ Visualization saved")
 
+    # API function for scale-up integration
+    def simulate_chamber(scenario="burst", duration=100e-9, volume_m3=1e-18):
+        """
+        Single chamber simulation API for scale-up studies.
+        
+        Args:
+            scenario: Disturbance scenario ('burst', 'continuous', 'step')
+            duration: Simulation duration (s)
+            volume_m3: Chamber volume (m³)
+        
+        Returns:
+            dict: Performance metrics for scaling calculations
+        """
+        demo = IntegratedSmallScaleDemonstrator()
+        
+        # Override target volume if specified
+        if volume_m3 != 1e-18:
+            demo.target_volume = volume_m3
+        
+        # Run simulation
+        results = demo.run_simulation(duration=duration, scenario=scenario)
+        metrics = demo.benchmark_performance(results)
+        
+        # Return standardized metrics for scaling
+        return {
+            'volume_m3': demo.target_volume,
+            'total_energy_J': metrics['anec_total'],  # Total energy in chamber
+            'anec_Js_per_m3': metrics['anec_density'],  # ANEC density
+            'dist_rejection_dB': metrics['disturbance_rejection_db'],
+            'rms_control_effort': metrics['control_effort_rms'],
+            'constraint_satisfaction': metrics['constraint_satisfaction'],
+            'target_achievement': metrics['target_achievement'],
+            'duration_s': duration,
+            'scenario': scenario
+        }
+
 def run_integrated_demo():
     """Main demonstration function"""
     print("🌟 INTEGRATED SMALL-SCALE DEMONSTRATOR")
