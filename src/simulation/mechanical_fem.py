@@ -22,117 +22,44 @@ import numpy as np
 from typing import Dict, Tuple, Optional, Callable, List
 import warnings
 
-# Mock FEniCS interface for demonstration (replace with real fenics import)
-class MockFEniCS:
-    """Mock FEniCS interface for demonstration purposes."""
+# Real FEniCS implementation for mechanical FEM simulation
+try:
+    from dolfin import (
+        RectangleMesh, Point, FunctionSpace,
+        TrialFunction, TestFunction, Function,
+        DirichletBC, Constant, inner, grad, dx, solve
+    )
+    FENICS_AVAILABLE = True
+except ImportError:
+    print("⚠️  FEniCS not available. Install with: pip install fenics")
+    FENICS_AVAILABLE = False
+
+def solve_plate(E, nu, t, q_val, L, res=50):
+    """
+    Real FEniCS implementation for plate deflection.
     
-    class Point:
-        def __init__(self, x, y, z=0):
-            self.coords = (x, y, z)
-    
-    class RectangleMesh:
-        def __init__(self, p1, p2, nx, ny):
-            self.p1 = p1
-            self.p2 = p2
-            self.nx = nx
-            self.ny = ny
-            self.coordinates = self._generate_coordinates()
+    Kirchhoff-Love plate theory:
+    D∇⁴w = q, where D = Et³/12(1-ν²)
+    """
+    if FENICS_AVAILABLE:
+        D = E * t**3 / (12*(1-nu**2))
+        mesh = RectangleMesh(Point(0,0), Point(L,L), res, res)
+        V = FunctionSpace(mesh, "Lagrange", 2)
+        w = TrialFunction(V)
+        v = TestFunction(V)
+        q = Constant(q_val)
         
-        def _generate_coordinates(self):
-            x = np.linspace(self.p1.coords[0], self.p2.coords[0], self.nx + 1)
-            y = np.linspace(self.p1.coords[1], self.p2.coords[1], self.ny + 1)
-            return np.meshgrid(x, y)
-    
-    class FunctionSpace:
-        def __init__(self, mesh, element_type, degree):
-            self.mesh = mesh
-            self.element_type = element_type
-            self.degree = degree
-    
-    class TrialFunction:
-        def __init__(self, V):
-            self.function_space = V
-    
-    class TestFunction:
-        def __init__(self, V):
-            self.function_space = V
-    
-    class Function:
-        def __init__(self, V):
-            self.function_space = V
-            self._data = None
-        
-        def vector(self):
-            return MockFEniCS.MockVector()
-    
-    class MockVector:
-        def get_local(self):
-            # Mock deflection data - realistic values for nanoscale plates
-            n_points = 100
-            x = np.linspace(0, 1, int(np.sqrt(n_points)))
-            y = np.linspace(0, 1, int(np.sqrt(n_points)))
-            X, Y = np.meshgrid(x, y)
-            
-            # Realistic plate deflection pattern (maximum at center)
-            w = 1e-9 * np.sin(np.pi * X) * np.sin(np.pi * Y)  # 1 nm max deflection
-            return w.flatten()
-    
-    class Constant:
-        def __init__(self, value):
-            self.value = value
-    
-    class DirichletBC:
-        def __init__(self, V, value, boundary):
-            self.function_space = V
-            self.value = value
-            self.boundary = boundary
-    
-    @staticmethod
-    def inner(u, v):
-        return MockExpression("inner")
-    
-    @staticmethod
-    def div(u):
-        return MockExpression("div")
-    
-    @staticmethod
-    def grad(u):
-        return MockExpression("grad")
-    
-    @staticmethod
-    def solve(a_form, L_form, u, bc):
-        """Mock solve - sets realistic deflection values."""
-        print("   🔧 Solving FEM system...")
-        print("   ✅ Convergence achieved")
-        return True
-
-class MockExpression:
-    """Mock FEniCS expression."""
-    def __init__(self, name):
-        self.name = name
-    
-    def __mul__(self, other):
-        return MockExpression(f"{self.name}*{other}")
-    
-    def __rmul__(self, other):
-        return self.__mul__(other)
-
-# Mock dx integration measure
-dx = MockExpression("dx")
-
-# Use mock FEniCS for demonstration (replace with: from fenics import *)
-Point = MockFEniCS.Point
-RectangleMesh = MockFEniCS.RectangleMesh
-FunctionSpace = MockFEniCS.FunctionSpace
-TrialFunction = MockFEniCS.TrialFunction
-TestFunction = MockFEniCS.TestFunction
-Function = MockFEniCS.Function
-Constant = MockFEniCS.Constant
-DirichletBC = MockFEniCS.DirichletBC
-inner = MockFEniCS.inner
-div = MockFEniCS.div
-grad = MockFEniCS.grad
-solve = MockFEniCS.solve
+        # Weak form of D ∇⁴ w = q
+        a = D*inner(grad(grad(w)), grad(grad(v))) * dx
+        Lf = q * v * dx
+        bc = DirichletBC(V, Constant(0.0), "on_boundary")
+        w_sol = Function(V)
+        solve(a == Lf, w_sol, bc)
+        return w_sol
+    else:
+        # Fallback mock implementation
+        print(f"   📐 Mock FEniCS: D={E*t**3/(12*(1-nu**2)):.2e}, q={q_val:.2e}")
+        return None
 
 def plate_deflection_fem(E: float, 
                         nu: float, 

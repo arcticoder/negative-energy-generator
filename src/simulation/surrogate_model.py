@@ -606,6 +606,56 @@ def multi_domain_optimization(objective_functions: Dict[str, Callable],
         'combined_optimum': result.f_opt
     }
 
+# Real PyTorch implementation for ML surrogate modeling
+def train_surrogate(X, Y, epochs=200, lr=1e-3):
+    """
+    Real PyTorch implementation for surrogate model training.
+    
+    Neural network approximation:
+    Ĵ(x;θ) ≈ J(x), minimize via gradients
+    """
+    if torch.cuda.is_available():
+        device = torch.device('cuda')
+        print("🚀 Using GPU acceleration for surrogate training")
+    else:
+        device = torch.device('cpu')
+    
+    # Convert to tensors
+    X_tensor = torch.FloatTensor(X).to(device)
+    Y_tensor = torch.FloatTensor(Y.reshape(-1, 1)).to(device)
+    
+    # Create model
+    model = SurrogateNN(X.shape[1]).to(device)
+    optimizer = optim.Adam(model.parameters(), lr=lr)
+    loss_fn = nn.MSELoss()
+    
+    # Training loop
+    for epoch in range(epochs):
+        optimizer.zero_grad()
+        loss = loss_fn(model(X_tensor), Y_tensor)
+        loss.backward()
+        optimizer.step()
+        
+        if (epoch + 1) % 50 == 0:
+            print(f"   • Epoch {epoch+1}: Loss = {loss.item():.6f}")
+    
+    return model
+
+class SurrogateNN(nn.Module):
+    """Neural network for physics surrogate modeling."""
+    def __init__(self, input_dim):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(input_dim, 64), nn.ReLU(),
+            nn.Linear(64, 64), nn.ReLU(),
+            nn.Linear(64, 1)
+        )
+    def forward(self, x):
+        return self.net(x)
+
+# Later: use torch.autograd on x.requires_grad_() to do gradient-based search,
+# or wrap 'model' in an skopt.Optimizer for Bayesian global search.
+
 # Demo functions
 def mock_electromagnetic_objective(x):
     """Mock electromagnetic FDTD objective (Casimir energy)."""

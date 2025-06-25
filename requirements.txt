@@ -11,18 +11,24 @@ torch>=1.9.0
 scikit-learn>=1.0.0
 joblib>=1.0.0
 
-# Simulation backends (replace mock implementations)
-# MEEP - for electromagnetic FDTD simulations
-# meeus>=1.18.0  # Uncomment when ready for real simulations
+# Simulation backends - REAL IMPLEMENTATIONS
+# Install these for production use with real physics calculations
 
-# QuTiP - for quantum circuit simulations  
-# qutip>=4.6.0  # Uncomment when ready for real simulations
+# MEEP - for electromagnetic FDTD simulations  
+meep>=1.18.0  # Real FDTD simulation backend
+
+# QuTiP - for quantum circuit simulations
+qutip>=4.6.0  # Real quantum dynamics backend
 
 # FEniCS - for mechanical FEM simulations
-# fenics>=2019.1.0  # Uncomment when ready for real simulations
+fenics>=2019.1.0  # Real FEM backend (install via conda)
 
 # MPB - for photonic band structure calculations
-# mpb>=1.11.0  # Uncomment when ready for real simulations
+# mpb>=1.11.0  # Install from source (complex dependency)
+
+# Advanced ML optimization
+scikit-optimize>=0.9.0  # Bayesian optimization
+deap>=1.3.0  # Genetic algorithms
 
 # Data handling and visualization
 matplotlib>=3.4.0

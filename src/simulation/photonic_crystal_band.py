@@ -21,6 +21,42 @@ import numpy as np
 from typing import List, Tuple, Dict, Optional, Union
 import warnings
 
+# Real MPB implementation for photonic band structure
+try:
+    import mpb
+    MPB_AVAILABLE = True
+except ImportError:
+    print("⚠️  MPB not available. Install from source or use mock")
+    MPB_AVAILABLE = False
+
+def compute_bands(geometry, resolution, k_points, num_bands):
+    """
+    Real MPB implementation for band structure calculation.
+    
+    Plane-wave expansion eigenvalue problem:
+    ∇×(1/μ ∇×E) = (ω/c)² ε(r) E
+    """
+    if MPB_AVAILABLE:
+        ms = mpb.ModeSolver(
+            geometry=geometry,
+            resolution=resolution,
+            k_points=k_points,
+            num_bands=num_bands
+        )
+        ms.run_tm()
+        return np.array(ms.freqs)
+    else:
+        # Fallback to existing mock implementation
+        from .photonic_crystal_band import compute_bandstructure
+        # Convert parameters to mock format
+        lattice_constant = 1.0
+        k_point_list = [(k.x, k.y, k.z) if hasattr(k, 'x') else k for k in k_points]
+        return compute_bandstructure(lattice_constant, geometry, k_point_list, num_bands)
+
+# Example usage:
+# kpath = [mpb.Vector3(0,0,0), mpb.Vector3(0.5,0,0), mpb.Vector3(0.5,0.5,0)]
+# bands = compute_bands(my_geom, 32, kpath, 8)
+
 # Mock MPB interface for demonstration (replace with real mpb import)
 class MockMPB:
     """Mock MPB interface for demonstration purposes."""
