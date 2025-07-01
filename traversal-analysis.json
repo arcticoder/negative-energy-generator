@@ -1,0 +1,86 @@
+{
+  "connectivity_analysis": {
+    "total_nodes": 4,
+    "total_edges": 6,
+    "density": 1.0,
+    "average_degree": 3.0
+  },
+  "critical_paths": [
+    {
+      "start": "casimir-tunable-permittivity-stacks",
+      "end": "negative-energy-generator",
+      "path": [
+        "casimir-tunable-permittivity-stacks",
+        "negative-energy-generator"
+      ],
+      "length": 1
+    },
+    {
+      "start": "negative-energy-generator",
+      "end": "casimir-tunable-permittivity-stacks",
+      "path": [
+        "negative-energy-generator",
+        "casimir-tunable-permittivity-stacks"
+      ],
+      "length": 1
+    }
+  ],
+  "hub_analysis": [
+    {
+      "node": "negative-energy-generator",
+      "degree": 3,
+      "weighted_degree": 9,
+      "type": "project",
+      "priority": 1,
+      "is_hub": true
+    },
+    {
+      "node": "lqg-anec-framework",
+      "degree": 3,
+      "weighted_degree": 8,
+      "type": "theoretical_framework",
+      "priority": 2,
+      "is_hub": true
+    },
+    {
+      "node": "unified-lqg-qft",
+      "degree": 3,
+      "weighted_degree": 8,
+      "type": "theoretical_framework",
+      "priority": 2,
+      "is_hub": true
+    },
+    {
+      "node": "casimir-tunable-permittivity-stacks",
+      "degree": 3,
+      "weighted_degree": 7,
+      "type": "project",
+      "priority": 1,
+      "is_hub": true
+    }
+  ],
+  "edge_node_identification": [
+    {
+      "node": "lqg-anec-framework",
+      "degree": 3,
+      "type": "theoretical_framework",
+      "edge_type": "theoretical_endpoint",
+      "connections": [
+        "casimir-tunable-permittivity-stacks",
+        "negative-energy-generator",
+        "unified-lqg-qft"
+      ]
+    },
+    {
+      "node": "unified-lqg-qft",
+      "degree": 3,
+      "type": "theoretical_framework",
+      "edge_type": "theoretical_endpoint",
+      "connections": [
+        "casimir-tunable-permittivity-stacks",
+        "negative-energy-generator",
+        "lqg-anec-framework"
+      ]
+    }
+  ]
+}
