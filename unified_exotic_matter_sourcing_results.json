@@ -1,0 +1,1216 @@
+{
+  "metamaterial_analysis": [
+    {
+      "phi_order_max": 6,
+      "phi_series_sum": 5.035990577374789,
+      "enhancement_metamaterial": 60431886928.49747,
+      "phi_terms": [
+        {
+          "order": 0,
+          "phi_n": 1.0,
+          "factorial_n": 1.0,
+          "term": 1.0,
+          "cumulative_sum": 1.0
+        },
+        {
+          "order": 1,
+          "phi_n": 1.618033988749895,
+          "factorial_n": 1.0,
+          "term": 1.618033988749895,
+          "cumulative_sum": 2.618033988749895
+        },
+        {
+          "order": 2,
+          "phi_n": 2.618033988749895,
+          "factorial_n": 2.0,
+          "term": 1.3090169943749475,
+          "cumulative_sum": 3.9270509831248424
+        },
+        {
+          "order": 3,
+          "phi_n": 4.23606797749979,
+          "factorial_n": 6.0,
+          "term": 0.7060113295832983,
+          "cumulative_sum": 4.633062312708141
+        },
+        {
+          "order": 4,
+          "phi_n": 6.854101966249686,
+          "factorial_n": 24.0,
+          "term": 0.28558758192707023,
+          "cumulative_sum": 4.9186498946352115
+        },
+        {
+          "order": 5,
+          "phi_n": 11.090169943749476,
+          "factorial_n": 120.0,
+          "term": 0.09241808286457896,
+          "cumulative_sum": 5.01106797749979
+        },
+        {
+          "order": 6,
+          "phi_n": 17.944271909999163,
+          "factorial_n": 720.0,
+          "term": 0.024922599874998837,
+          "cumulative_sum": 5.035990577374789
+        }
+      ],
+      "convergence_ratio": 0.2696723314583158,
+      "is_converged": false
+    },
+    {
+      "phi_order_max": 8,
+      "phi_series_sum": 5.042916526000626,
+      "enhancement_metamaterial": 60514998312.007515,
+      "phi_terms": [
+        {
+          "order": 0,
+          "phi_n": 1.0,
+          "factorial_n": 1.0,
+          "term": 1.0,
+          "cumulative_sum": 1.0
+        },
+        {
+          "order": 1,
+          "phi_n": 1.618033988749895,
+          "factorial_n": 1.0,
+          "term": 1.618033988749895,
+          "cumulative_sum": 2.618033988749895
+        },
+        {
+          "order": 2,
+          "phi_n": 2.618033988749895,
+          "factorial_n": 2.0,
+          "term": 1.3090169943749475,
+          "cumulative_sum": 3.9270509831248424
+        },
+        {
+          "order": 3,
+          "phi_n": 4.23606797749979,
+          "factorial_n": 6.0,
+          "term": 0.7060113295832983,
+          "cumulative_sum": 4.633062312708141
+        },
+        {
+          "order": 4,
+          "phi_n": 6.854101966249686,
+          "factorial_n": 24.0,
+          "term": 0.28558758192707023,
+          "cumulative_sum": 4.9186498946352115
+        },
+        {
+          "order": 5,
+          "phi_n": 11.090169943749476,
+          "factorial_n": 120.0,
+          "term": 0.09241808286457896,
+          "cumulative_sum": 5.01106797749979
+        },
+        {
+          "order": 6,
+          "phi_n": 17.944271909999163,
+          "factorial_n": 720.0,
+          "term": 0.024922599874998837,
+          "cumulative_sum": 5.035990577374789
+        },
+        {
+          "order": 7,
+          "phi_n": 29.03444185374864,
+          "factorial_n": 5040.0,
+          "term": 0.005760801955108857,
+          "cumulative_sum": 5.041751379329898
+        },
+        {
+          "order": 8,
+          "phi_n": 46.978713763747805,
+          "factorial_n": 40320.0,
+          "term": 0.0011651466707278723,
+          "cumulative_sum": 5.042916526000626
+        }
+      ],
+      "convergence_ratio": 0.2022542485937369,
+      "is_converged": false
+    },
+    {
+      "phi_order_max": 10,
+      "phi_series_sum": 5.043159891142149,
+      "enhancement_metamaterial": 60517918693.70579,
+      "phi_terms": [
+        {
+          "order": 0,
+          "phi_n": 1.0,
+          "factorial_n": 1.0,
+          "term": 1.0,
+          "cumulative_sum": 1.0
+        },
+        {
+          "order": 1,
+          "phi_n": 1.618033988749895,
+          "factorial_n": 1.0,
+          "term": 1.618033988749895,
+          "cumulative_sum": 2.618033988749895
+        },
+        {
+          "order": 2,
+          "phi_n": 2.618033988749895,
+          "factorial_n": 2.0,
+          "term": 1.3090169943749475,
+          "cumulative_sum": 3.9270509831248424
+        },
+        {
+          "order": 3,
+          "phi_n": 4.23606797749979,
+          "factorial_n": 6.0,
+          "term": 0.7060113295832983,
+          "cumulative_sum": 4.633062312708141
+        },
+        {
+          "order": 4,
+          "phi_n": 6.854101966249686,
+          "factorial_n": 24.0,
+          "term": 0.28558758192707023,
+          "cumulative_sum": 4.9186498946352115
+        },
+        {
+          "order": 5,
+          "phi_n": 11.090169943749476,
+          "factorial_n": 120.0,
+          "term": 0.09241808286457896,
+          "cumulative_sum": 5.01106797749979
+        },
+        {
+          "order": 6,
+          "phi_n": 17.944271909999163,
+          "factorial_n": 720.0,
+          "term": 0.024922599874998837,
+          "cumulative_sum": 5.035990577374789
+        },
+        {
+          "order": 7,
+          "phi_n": 29.03444185374864,
+          "factorial_n": 5040.0,
+          "term": 0.005760801955108857,
+          "cumulative_sum": 5.041751379329898
+        },
+        {
+          "order": 8,
+          "phi_n": 46.978713763747805,
+          "factorial_n": 40320.0,
+          "term": 0.0011651466707278723,
+          "cumulative_sum": 5.042916526000626
+        },
+        {
+          "order": 9,
+          "phi_n": 76.01315561749645,
+          "factorial_n": 362880.0,
+          "term": 0.0002094718794573866,
+          "cumulative_sum": 5.043125997880083
+        },
+        {
+          "order": 10,
+          "phi_n": 122.99186938124426,
+          "factorial_n": 3628800.0,
+          "term": 3.389326206493724e-05,
+          "cumulative_sum": 5.043159891142149
+        }
+      ],
+      "convergence_ratio": 0.16180339887498946,
+      "is_converged": false
+    },
+    {
+      "phi_order_max": 12,
+      "phi_series_sum": 5.043165548862696,
+      "enhancement_metamaterial": 60517986586.35235,
+      "phi_terms": [
+        {
+          "order": 0,
+          "phi_n": 1.0,
+          "factorial_n": 1.0,
+          "term": 1.0,
+          "cumulative_sum": 1.0
+        },
+        {
+          "order": 1,
+          "phi_n": 1.618033988749895,
+          "factorial_n": 1.0,
+          "term": 1.618033988749895,
+          "cumulative_sum": 2.618033988749895
+        },
+        {
+          "order": 2,
+          "phi_n": 2.618033988749895,
+          "factorial_n": 2.0,
+          "term": 1.3090169943749475,
+          "cumulative_sum": 3.9270509831248424
+        },
+        {
+          "order": 3,
+          "phi_n": 4.23606797749979,
+          "factorial_n": 6.0,
+          "term": 0.7060113295832983,
+          "cumulative_sum": 4.633062312708141
+        },
+        {
+          "order": 4,
+          "phi_n": 6.854101966249686,
+          "factorial_n": 24.0,
+          "term": 0.28558758192707023,
+          "cumulative_sum": 4.9186498946352115
+        },
+        {
+          "order": 5,
+          "phi_n": 11.090169943749476,
+          "factorial_n": 120.0,
+          "term": 0.09241808286457896,
+          "cumulative_sum": 5.01106797749979
+        },
+        {
+          "order": 6,
+          "phi_n": 17.944271909999163,
+          "factorial_n": 720.0,
+          "term": 0.024922599874998837,
+          "cumulative_sum": 5.035990577374789
+        },
+        {
+          "order": 7,
+          "phi_n": 29.03444185374864,
+          "factorial_n": 5040.0,
+          "term": 0.005760801955108857,
+          "cumulative_sum": 5.041751379329898
+        },
+        {
+          "order": 8,
+          "phi_n": 46.978713763747805,
+          "factorial_n": 40320.0,
+          "term": 0.0011651466707278723,
+          "cumulative_sum": 5.042916526000626
+        },
+        {
+          "order": 9,
+          "phi_n": 76.01315561749645,
+          "factorial_n": 362880.0,
+          "term": 0.0002094718794573866,
+          "cumulative_sum": 5.043125997880083
+        },
+        {
+          "order": 10,
+          "phi_n": 122.99186938124426,
+          "factorial_n": 3628800.0,
+          "term": 3.389326206493724e-05,
+          "cumulative_sum": 5.043159891142149
+        },
+        {
+          "order": 11,
+          "phi_n": 199.0050249987407,
+          "factorial_n": 39916800.0,
+          "term": 4.985495455515991e-06,
+          "cumulative_sum": 5.043164876637604
+        },
+        {
+          "order": 12,
+          "phi_n": 321.996894379985,
+          "factorial_n": 479001600.0,
+          "term": 6.722250914819179e-07,
+          "cumulative_sum": 5.043165548862696
+        }
+      ],
+      "convergence_ratio": 0.1348361657291579,
+      "is_converged": false
+    },
+    {
+      "phi_order_max": 15,
+      "phi_series_sum": 5.043165643243522,
+      "enhancement_metamaterial": 60517987718.92226,
+      "phi_terms": [
+        {
+          "order": 0,
+          "phi_n": 1.0,
+          "factorial_n": 1.0,
+          "term": 1.0,
+          "cumulative_sum": 1.0
+        },
+        {
+          "order": 1,
+          "phi_n": 1.618033988749895,
+          "factorial_n": 1.0,
+          "term": 1.618033988749895,
+          "cumulative_sum": 2.618033988749895
+        },
+        {
+          "order": 2,
+          "phi_n": 2.618033988749895,
+          "factorial_n": 2.0,
+          "term": 1.3090169943749475,
+          "cumulative_sum": 3.9270509831248424
+        },
+        {
+          "order": 3,
+          "phi_n": 4.23606797749979,
+          "factorial_n": 6.0,
+          "term": 0.7060113295832983,
+          "cumulative_sum": 4.633062312708141
+        },
+        {
+          "order": 4,
+          "phi_n": 6.854101966249686,
+          "factorial_n": 24.0,
+          "term": 0.28558758192707023,
+          "cumulative_sum": 4.9186498946352115
+        },
+        {
+          "order": 5,
+          "phi_n": 11.090169943749476,
+          "factorial_n": 120.0,
+          "term": 0.09241808286457896,
+          "cumulative_sum": 5.01106797749979
+        },
+        {
+          "order": 6,
+          "phi_n": 17.944271909999163,
+          "factorial_n": 720.0,
+          "term": 0.024922599874998837,
+          "cumulative_sum": 5.035990577374789
+        },
+        {
+          "order": 7,
+          "phi_n": 29.03444185374864,
+          "factorial_n": 5040.0,
+          "term": 0.005760801955108857,
+          "cumulative_sum": 5.041751379329898
+        },
+        {
+          "order": 8,
+          "phi_n": 46.978713763747805,
+          "factorial_n": 40320.0,
+          "term": 0.0011651466707278723,
+          "cumulative_sum": 5.042916526000626
+        },
+        {
+          "order": 9,
+          "phi_n": 76.01315561749645,
+          "factorial_n": 362880.0,
+          "term": 0.0002094718794573866,
+          "cumulative_sum": 5.043125997880083
+        },
+        {
+          "order": 10,
+          "phi_n": 122.99186938124426,
+          "factorial_n": 3628800.0,
+          "term": 3.389326206493724e-05,
+          "cumulative_sum": 5.043159891142149
+        },
+        {
+          "order": 11,
+          "phi_n": 199.0050249987407,
+          "factorial_n": 39916800.0,
+          "term": 4.985495455515991e-06,
+          "cumulative_sum": 5.043164876637604
+        },
+        {
+          "order": 12,
+          "phi_n": 321.996894379985,
+          "factorial_n": 479001600.0,
+          "term": 6.722250914819179e-07,
+          "cumulative_sum": 5.043165548862696
+        },
+        {
+          "order": 13,
+          "phi_n": 521.0019193787257,
+          "factorial_n": 6227020800.0,
+          "term": 8.366792662371156e-08,
+          "cumulative_sum": 5.043165632530623
+        },
+        {
+          "order": 14,
+          "phi_n": 842.9988137587108,
+          "factorial_n": 87178291200.0,
+          "term": 9.669824931814111e-09,
+          "cumulative_sum": 5.043165642200448
+        },
+        {
+          "order": 15,
+          "phi_n": 1364.0007331374366,
+          "factorial_n": 1307674368000.0,
+          "term": 1.0430736936624246e-09,
+          "cumulative_sum": 5.043165643243522
+        }
+      ],
+      "convergence_ratio": 0.10786893258332633,
+      "is_converged": false
+    }
+  ],
+  "gauge_analysis": [
+    {
+      "field_strength": 0.1,
+      "alpha_gauge": 0.03,
+      "five_order_term": 3.0000000000000004e-07,
+      "polymer_correction": 1.0551819161757163,
+      "coherence_factor": 0.19789869908361465,
+      "enhancement_gauge": 4.511314107190848
+    },
+    {
+      "field_strength": 1.3250000000000002,
+      "alpha_gauge": 0.03,
+      "five_order_term": 0.12251821083984382,
+      "polymer_correction": 1.0000002640519468,
+      "coherence_factor": 0.8095716486678867,
+      "enhancement_gauge": 7.210560153468646
+    },
+    {
+      "field_strength": 2.5500000000000003,
+      "alpha_gauge": 0.03,
+      "five_order_term": 3.2346117281250013,
+      "polymer_correction": 1.0000000000012634,
+      "coherence_factor": 0.008188701014374068,
+      "enhancement_gauge": 15.83413120154819
+    },
+    {
+      "field_strength": 3.7750000000000004,
+      "alpha_gauge": 0.03,
+      "five_order_term": 22.99884543486329,
+      "polymer_correction": 1.0,
+      "coherence_factor": 2.047963021197448e-07,
+      "enhancement_gauge": 89.5636919272096
+    },
+    {
+      "field_strength": 5.0,
+      "alpha_gauge": 0.03,
+      "five_order_term": 93.75,
+      "polymer_correction": 1.0,
+      "coherence_factor": 1.2664165549094176e-14,
+      "enhancement_gauge": 353.6070000000001
+    }
+  ],
+  "casimir_analysis": [
+    {
+      "plate_separation": 1e-09,
+      "casimir_density_base": -1300125773.244365,
+      "material_factor": 1.0,
+      "enhancement_factor": 2.4,
+      "rho_exotic_casimir": -3120301855.7864757,
+      "finite_size_correction": 1.0,
+      "rho_exotic_corrected": -3120301855.7864757
+    },
+    {
+      "plate_separation": 1e-08,
+      "casimir_density_base": -130012.57732443654,
+      "material_factor": 1.0,
+      "enhancement_factor": 2.4,
+      "rho_exotic_casimir": -312030.1855786477,
+      "finite_size_correction": 1.0,
+      "rho_exotic_corrected": -312030.1855786477
+    },
+    {
+      "plate_separation": 1e-07,
+      "casimir_density_base": -13.001257732443657,
+      "material_factor": 1.0,
+      "enhancement_factor": 2.4,
+      "rho_exotic_casimir": -31.203018557864773,
+      "finite_size_correction": 1.0,
+      "rho_exotic_corrected": -31.203018557864773
+    },
+    {
+      "plate_separation": 1e-06,
+      "casimir_density_base": -0.0013001257732443657,
+      "material_factor": 1.0,
+      "enhancement_factor": 2.4,
+      "rho_exotic_casimir": -0.0031203018557864775,
+      "finite_size_correction": 1.0,
+      "rho_exotic_corrected": -0.0031203018557864775
+    }
+  ],
+  "polymer_analysis": [
+    {
+      "coherence_length_ratio": 100000.0,
+      "gamma_polymer": 0.15,
+      "delta_polymer": 0.5,
+      "enhancement_polymerized": 3.984704046644674e+20,
+      "quantum_correction": 2.151293546492023,
+      "enhancement_total": 8.572268100227337e+20
+    },
+    {
+      "coherence_length_ratio": 21544346.900318865,
+      "gamma_polymer": 0.15,
+      "delta_polymer": 0.5,
+      "enhancement_polymerized": 2.357559462062818e+302,
+      "quantum_correction": 2.688562406170556,
+      "enhancement_total": 6.338445740013771e+302
+    },
+    {
+      "coherence_length_ratio": 4641588833.612792,
+      "gamma_polymer": 0.15,
+      "delta_polymer": 0.5,
+      "enhancement_polymerized": Infinity,
+      "quantum_correction": 3.2258322565824553,
+      "enhancement_total": Infinity
+    },
+    {
+      "coherence_length_ratio": 1000000000000.0,
+      "gamma_polymer": 0.15,
+      "delta_polymer": 0.5,
+      "enhancement_polymerized": Infinity,
+      "quantum_correction": 3.7631021115929553,
+      "enhancement_total": Infinity
+    }
+  ],
+  "unified_analysis": {
+    "parameters": {
+      "plate_separation": 1e-06,
+      "field_strength": 1.0,
+      "coherence_length_ratio": 10000000000.0
+    },
+    "metamaterial_result": {
+      "phi_order_max": 12,
+      "phi_series_sum": 5.043165548862696,
+      "enhancement_metamaterial": 60517986586.35235,
+      "phi_terms": [
+        {
+          "order": 0,
+          "phi_n": 1.0,
+          "factorial_n": 1.0,
+          "term": 1.0,
+          "cumulative_sum": 1.0
+        },
+        {
+          "order": 1,
+          "phi_n": 1.618033988749895,
+          "factorial_n": 1.0,
+          "term": 1.618033988749895,
+          "cumulative_sum": 2.618033988749895
+        },
+        {
+          "order": 2,
+          "phi_n": 2.618033988749895,
+          "factorial_n": 2.0,
+          "term": 1.3090169943749475,
+          "cumulative_sum": 3.9270509831248424
+        },
+        {
+          "order": 3,
+          "phi_n": 4.23606797749979,
+          "factorial_n": 6.0,
+          "term": 0.7060113295832983,
+          "cumulative_sum": 4.633062312708141
+        },
+        {
+          "order": 4,
+          "phi_n": 6.854101966249686,
+          "factorial_n": 24.0,
+          "term": 0.28558758192707023,
+          "cumulative_sum": 4.9186498946352115
+        },
+        {
+          "order": 5,
+          "phi_n": 11.090169943749476,
+          "factorial_n": 120.0,
+          "term": 0.09241808286457896,
+          "cumulative_sum": 5.01106797749979
+        },
+        {
+          "order": 6,
+          "phi_n": 17.944271909999163,
+          "factorial_n": 720.0,
+          "term": 0.024922599874998837,
+          "cumulative_sum": 5.035990577374789
+        },
+        {
+          "order": 7,
+          "phi_n": 29.03444185374864,
+          "factorial_n": 5040.0,
+          "term": 0.005760801955108857,
+          "cumulative_sum": 5.041751379329898
+        },
+        {
+          "order": 8,
+          "phi_n": 46.978713763747805,
+          "factorial_n": 40320.0,
+          "term": 0.0011651466707278723,
+          "cumulative_sum": 5.042916526000626
+        },
+        {
+          "order": 9,
+          "phi_n": 76.01315561749645,
+          "factorial_n": 362880.0,
+          "term": 0.0002094718794573866,
+          "cumulative_sum": 5.043125997880083
+        },
+        {
+          "order": 10,
+          "phi_n": 122.99186938124426,
+          "factorial_n": 3628800.0,
+          "term": 3.389326206493724e-05,
+          "cumulative_sum": 5.043159891142149
+        },
+        {
+          "order": 11,
+          "phi_n": 199.0050249987407,
+          "factorial_n": 39916800.0,
+          "term": 4.985495455515991e-06,
+          "cumulative_sum": 5.043164876637604
+        },
+        {
+          "order": 12,
+          "phi_n": 321.996894379985,
+          "factorial_n": 479001600.0,
+          "term": 6.722250914819179e-07,
+          "cumulative_sum": 5.043165548862696
+        }
+      ],
+      "convergence_ratio": 0.1348361657291579,
+      "is_converged": false
+    },
+    "gauge_result": {
+      "field_strength": 1.0,
+      "alpha_gauge": 0.03,
+      "five_order_term": 0.03,
+      "polymer_correction": 1.0000068099894643,
+      "coherence_factor": 1.0,
+      "enhancement_gauge": 7.57598541488068
+    },
+    "casimir_result": {
+      "plate_separation": 1e-06,
+      "casimir_density_base": -0.0013001257732443657,
+      "material_factor": 1.0,
+      "enhancement_factor": 2.4,
+      "rho_exotic_casimir": -0.0031203018557864775,
+      "finite_size_correction": 1.0,
+      "rho_exotic_corrected": -0.0031203018557864775
+    },
+    "polymer_result": {
+      "coherence_length_ratio": 10000000000.0,
+      "gamma_polymer": 0.15,
+      "delta_polymer": 0.5,
+      "enhancement_polymerized": Infinity,
+      "quantum_correction": 3.3025850930040455,
+      "enhancement_total": Infinity
+    },
+    "sources": {
+      "casimir": {
+        "base_density": -0.0031203018557864775,
+        "enhancement": 60517986586.35235,
+        "contribution": -188834385.85385638
+      },
+      "gauge_fields": {
+        "base_density": -1e-50,
+        "enhancement": 7.57598541488068,
+        "contribution": -7.57598541488068e-50
+      },
+      "polymerized_fields": {
+        "base_density": -5e-48,
+        "enhancement": Infinity,
+        "contribution": -Infinity
+      }
+    },
+    "rho_exotic_unified": -Infinity,
+    "rho_exotic_final": -Infinity,
+    "enhancement_total": Infinity,
+    "precision_factor": 0.0,
+    "backreaction_coupling": 1.9443254780147017
+  },
+  "optimization_results": [
+    {
+      "target_density": -1e-45,
+      "optimal_parameters": {
+        "plate_separation": 1e-06,
+        "field_strength": 1.0,
+        "coherence_length_ratio": 10000000000.0
+      },
+      "achieved_density": -Infinity,
+      "optimization_error": NaN,
+      "optimization_success": false,
+      "optimal_sourcing_result": {
+        "parameters": {
+          "plate_separation": 1e-06,
+          "field_strength": 1.0,
+          "coherence_length_ratio": 10000000000.0
+        },
+        "metamaterial_result": {
+          "phi_order_max": 12,
+          "phi_series_sum": 5.043165548862696,
+          "enhancement_metamaterial": 60517986586.35235,
+          "phi_terms": [
+            {
+              "order": 0,
+              "phi_n": 1.0,
+              "factorial_n": 1.0,
+              "term": 1.0,
+              "cumulative_sum": 1.0
+            },
+            {
+              "order": 1,
+              "phi_n": 1.618033988749895,
+              "factorial_n": 1.0,
+              "term": 1.618033988749895,
+              "cumulative_sum": 2.618033988749895
+            },
+            {
+              "order": 2,
+              "phi_n": 2.618033988749895,
+              "factorial_n": 2.0,
+              "term": 1.3090169943749475,
+              "cumulative_sum": 3.9270509831248424
+            },
+            {
+              "order": 3,
+              "phi_n": 4.23606797749979,
+              "factorial_n": 6.0,
+              "term": 0.7060113295832983,
+              "cumulative_sum": 4.633062312708141
+            },
+            {
+              "order": 4,
+              "phi_n": 6.854101966249686,
+              "factorial_n": 24.0,
+              "term": 0.28558758192707023,
+              "cumulative_sum": 4.9186498946352115
+            },
+            {
+              "order": 5,
+              "phi_n": 11.090169943749476,
+              "factorial_n": 120.0,
+              "term": 0.09241808286457896,
+              "cumulative_sum": 5.01106797749979
+            },
+            {
+              "order": 6,
+              "phi_n": 17.944271909999163,
+              "factorial_n": 720.0,
+              "term": 0.024922599874998837,
+              "cumulative_sum": 5.035990577374789
+            },
+            {
+              "order": 7,
+              "phi_n": 29.03444185374864,
+              "factorial_n": 5040.0,
+              "term": 0.005760801955108857,
+              "cumulative_sum": 5.041751379329898
+            },
+            {
+              "order": 8,
+              "phi_n": 46.978713763747805,
+              "factorial_n": 40320.0,
+              "term": 0.0011651466707278723,
+              "cumulative_sum": 5.042916526000626
+            },
+            {
+              "order": 9,
+              "phi_n": 76.01315561749645,
+              "factorial_n": 362880.0,
+              "term": 0.0002094718794573866,
+              "cumulative_sum": 5.043125997880083
+            },
+            {
+              "order": 10,
+              "phi_n": 122.99186938124426,
+              "factorial_n": 3628800.0,
+              "term": 3.389326206493724e-05,
+              "cumulative_sum": 5.043159891142149
+            },
+            {
+              "order": 11,
+              "phi_n": 199.0050249987407,
+              "factorial_n": 39916800.0,
+              "term": 4.985495455515991e-06,
+              "cumulative_sum": 5.043164876637604
+            },
+            {
+              "order": 12,
+              "phi_n": 321.996894379985,
+              "factorial_n": 479001600.0,
+              "term": 6.722250914819179e-07,
+              "cumulative_sum": 5.043165548862696
+            }
+          ],
+          "convergence_ratio": 0.1348361657291579,
+          "is_converged": false
+        },
+        "gauge_result": {
+          "field_strength": 1.0,
+          "alpha_gauge": 0.03,
+          "five_order_term": 0.03,
+          "polymer_correction": 1.0000068099894643,
+          "coherence_factor": 1.0,
+          "enhancement_gauge": 7.57598541488068
+        },
+        "casimir_result": {
+          "plate_separation": 1e-06,
+          "casimir_density_base": -0.0013001257732443657,
+          "material_factor": 1.0,
+          "enhancement_factor": 2.4,
+          "rho_exotic_casimir": -0.0031203018557864775,
+          "finite_size_correction": 1.0,
+          "rho_exotic_corrected": -0.0031203018557864775
+        },
+        "polymer_result": {
+          "coherence_length_ratio": 10000000000.0,
+          "gamma_polymer": 0.15,
+          "delta_polymer": 0.5,
+          "enhancement_polymerized": Infinity,
+          "quantum_correction": 3.3025850930040455,
+          "enhancement_total": Infinity
+        },
+        "sources": {
+          "casimir": {
+            "base_density": -0.0031203018557864775,
+            "enhancement": 60517986586.35235,
+            "contribution": -188834385.85385638
+          },
+          "gauge_fields": {
+            "base_density": -1e-50,
+            "enhancement": 7.57598541488068,
+            "contribution": -7.57598541488068e-50
+          },
+          "polymerized_fields": {
+            "base_density": -5e-48,
+            "enhancement": Infinity,
+            "contribution": -Infinity
+          }
+        },
+        "rho_exotic_unified": -Infinity,
+        "rho_exotic_final": -Infinity,
+        "enhancement_total": Infinity,
+        "precision_factor": 0.0,
+        "backreaction_coupling": 1.9443254780147017
+      }
+    },
+    {
+      "target_density": -1e-40,
+      "optimal_parameters": {
+        "plate_separation": 1e-06,
+        "field_strength": 1.0,
+        "coherence_length_ratio": 10000000000.0
+      },
+      "achieved_density": -Infinity,
+      "optimization_error": NaN,
+      "optimization_success": false,
+      "optimal_sourcing_result": {
+        "parameters": {
+          "plate_separation": 1e-06,
+          "field_strength": 1.0,
+          "coherence_length_ratio": 10000000000.0
+        },
+        "metamaterial_result": {
+          "phi_order_max": 12,
+          "phi_series_sum": 5.043165548862696,
+          "enhancement_metamaterial": 60517986586.35235,
+          "phi_terms": [
+            {
+              "order": 0,
+              "phi_n": 1.0,
+              "factorial_n": 1.0,
+              "term": 1.0,
+              "cumulative_sum": 1.0
+            },
+            {
+              "order": 1,
+              "phi_n": 1.618033988749895,
+              "factorial_n": 1.0,
+              "term": 1.618033988749895,
+              "cumulative_sum": 2.618033988749895
+            },
+            {
+              "order": 2,
+              "phi_n": 2.618033988749895,
+              "factorial_n": 2.0,
+              "term": 1.3090169943749475,
+              "cumulative_sum": 3.9270509831248424
+            },
+            {
+              "order": 3,
+              "phi_n": 4.23606797749979,
+              "factorial_n": 6.0,
+              "term": 0.7060113295832983,
+              "cumulative_sum": 4.633062312708141
+            },
+            {
+              "order": 4,
+              "phi_n": 6.854101966249686,
+              "factorial_n": 24.0,
+              "term": 0.28558758192707023,
+              "cumulative_sum": 4.9186498946352115
+            },
+            {
+              "order": 5,
+              "phi_n": 11.090169943749476,
+              "factorial_n": 120.0,
+              "term": 0.09241808286457896,
+              "cumulative_sum": 5.01106797749979
+            },
+            {
+              "order": 6,
+              "phi_n": 17.944271909999163,
+              "factorial_n": 720.0,
+              "term": 0.024922599874998837,
+              "cumulative_sum": 5.035990577374789
+            },
+            {
+              "order": 7,
+              "phi_n": 29.03444185374864,
+              "factorial_n": 5040.0,
+              "term": 0.005760801955108857,
+              "cumulative_sum": 5.041751379329898
+            },
+            {
+              "order": 8,
+              "phi_n": 46.978713763747805,
+              "factorial_n": 40320.0,
+              "term": 0.0011651466707278723,
+              "cumulative_sum": 5.042916526000626
+            },
+            {
+              "order": 9,
+              "phi_n": 76.01315561749645,
+              "factorial_n": 362880.0,
+              "term": 0.0002094718794573866,
+              "cumulative_sum": 5.043125997880083
+            },
+            {
+              "order": 10,
+              "phi_n": 122.99186938124426,
+              "factorial_n": 3628800.0,
+              "term": 3.389326206493724e-05,
+              "cumulative_sum": 5.043159891142149
+            },
+            {
+              "order": 11,
+              "phi_n": 199.0050249987407,
+              "factorial_n": 39916800.0,
+              "term": 4.985495455515991e-06,
+              "cumulative_sum": 5.043164876637604
+            },
+            {
+              "order": 12,
+              "phi_n": 321.996894379985,
+              "factorial_n": 479001600.0,
+              "term": 6.722250914819179e-07,
+              "cumulative_sum": 5.043165548862696
+            }
+          ],
+          "convergence_ratio": 0.1348361657291579,
+          "is_converged": false
+        },
+        "gauge_result": {
+          "field_strength": 1.0,
+          "alpha_gauge": 0.03,
+          "five_order_term": 0.03,
+          "polymer_correction": 1.0000068099894643,
+          "coherence_factor": 1.0,
+          "enhancement_gauge": 7.57598541488068
+        },
+        "casimir_result": {
+          "plate_separation": 1e-06,
+          "casimir_density_base": -0.0013001257732443657,
+          "material_factor": 1.0,
+          "enhancement_factor": 2.4,
+          "rho_exotic_casimir": -0.0031203018557864775,
+          "finite_size_correction": 1.0,
+          "rho_exotic_corrected": -0.0031203018557864775
+        },
+        "polymer_result": {
+          "coherence_length_ratio": 10000000000.0,
+          "gamma_polymer": 0.15,
+          "delta_polymer": 0.5,
+          "enhancement_polymerized": Infinity,
+          "quantum_correction": 3.3025850930040455,
+          "enhancement_total": Infinity
+        },
+        "sources": {
+          "casimir": {
+            "base_density": -0.0031203018557864775,
+            "enhancement": 60517986586.35235,
+            "contribution": -188834385.85385638
+          },
+          "gauge_fields": {
+            "base_density": -1e-50,
+            "enhancement": 7.57598541488068,
+            "contribution": -7.57598541488068e-50
+          },
+          "polymerized_fields": {
+            "base_density": -5e-48,
+            "enhancement": Infinity,
+            "contribution": -Infinity
+          }
+        },
+        "rho_exotic_unified": -Infinity,
+        "rho_exotic_final": -Infinity,
+        "enhancement_total": Infinity,
+        "precision_factor": 0.0,
+        "backreaction_coupling": 1.9443254780147017
+      }
+    },
+    {
+      "target_density": -1e-35,
+      "optimal_parameters": {
+        "plate_separation": 1e-06,
+        "field_strength": 1.0,
+        "coherence_length_ratio": 10000000000.0
+      },
+      "achieved_density": -Infinity,
+      "optimization_error": NaN,
+      "optimization_success": false,
+      "optimal_sourcing_result": {
+        "parameters": {
+          "plate_separation": 1e-06,
+          "field_strength": 1.0,
+          "coherence_length_ratio": 10000000000.0
+        },
+        "metamaterial_result": {
+          "phi_order_max": 12,
+          "phi_series_sum": 5.043165548862696,
+          "enhancement_metamaterial": 60517986586.35235,
+          "phi_terms": [
+            {
+              "order": 0,
+              "phi_n": 1.0,
+              "factorial_n": 1.0,
+              "term": 1.0,
+              "cumulative_sum": 1.0
+            },
+            {
+              "order": 1,
+              "phi_n": 1.618033988749895,
+              "factorial_n": 1.0,
+              "term": 1.618033988749895,
+              "cumulative_sum": 2.618033988749895
+            },
+            {
+              "order": 2,
+              "phi_n": 2.618033988749895,
+              "factorial_n": 2.0,
+              "term": 1.3090169943749475,
+              "cumulative_sum": 3.9270509831248424
+            },
+            {
+              "order": 3,
+              "phi_n": 4.23606797749979,
+              "factorial_n": 6.0,
+              "term": 0.7060113295832983,
+              "cumulative_sum": 4.633062312708141
+            },
+            {
+              "order": 4,
+              "phi_n": 6.854101966249686,
+              "factorial_n": 24.0,
+              "term": 0.28558758192707023,
+              "cumulative_sum": 4.9186498946352115
+            },
+            {
+              "order": 5,
+              "phi_n": 11.090169943749476,
+              "factorial_n": 120.0,
+              "term": 0.09241808286457896,
+              "cumulative_sum": 5.01106797749979
+            },
+            {
+              "order": 6,
+              "phi_n": 17.944271909999163,
+              "factorial_n": 720.0,
+              "term": 0.024922599874998837,
+              "cumulative_sum": 5.035990577374789
+            },
+            {
+              "order": 7,
+              "phi_n": 29.03444185374864,
+              "factorial_n": 5040.0,
+              "term": 0.005760801955108857,
+              "cumulative_sum": 5.041751379329898
+            },
+            {
+              "order": 8,
+              "phi_n": 46.978713763747805,
+              "factorial_n": 40320.0,
+              "term": 0.0011651466707278723,
+              "cumulative_sum": 5.042916526000626
+            },
+            {
+              "order": 9,
+              "phi_n": 76.01315561749645,
+              "factorial_n": 362880.0,
+              "term": 0.0002094718794573866,
+              "cumulative_sum": 5.043125997880083
+            },
+            {
+              "order": 10,
+              "phi_n": 122.99186938124426,
+              "factorial_n": 3628800.0,
+              "term": 3.389326206493724e-05,
+              "cumulative_sum": 5.043159891142149
+            },
+            {
+              "order": 11,
+              "phi_n": 199.0050249987407,
+              "factorial_n": 39916800.0,
+              "term": 4.985495455515991e-06,
+              "cumulative_sum": 5.043164876637604
+            },
+            {
+              "order": 12,
+              "phi_n": 321.996894379985,
+              "factorial_n": 479001600.0,
+              "term": 6.722250914819179e-07,
+              "cumulative_sum": 5.043165548862696
+            }
+          ],
+          "convergence_ratio": 0.1348361657291579,
+          "is_converged": false
+        },
+        "gauge_result": {
+          "field_strength": 1.0,
+          "alpha_gauge": 0.03,
+          "five_order_term": 0.03,
+          "polymer_correction": 1.0000068099894643,
+          "coherence_factor": 1.0,
+          "enhancement_gauge": 7.57598541488068
+        },
+        "casimir_result": {
+          "plate_separation": 1e-06,
+          "casimir_density_base": -0.0013001257732443657,
+          "material_factor": 1.0,
+          "enhancement_factor": 2.4,
+          "rho_exotic_casimir": -0.0031203018557864775,
+          "finite_size_correction": 1.0,
+          "rho_exotic_corrected": -0.0031203018557864775
+        },
+        "polymer_result": {
+          "coherence_length_ratio": 10000000000.0,
+          "gamma_polymer": 0.15,
+          "delta_polymer": 0.5,
+          "enhancement_polymerized": Infinity,
+          "quantum_correction": 3.3025850930040455,
+          "enhancement_total": Infinity
+        },
+        "sources": {
+          "casimir": {
+            "base_density": -0.0031203018557864775,
+            "enhancement": 60517986586.35235,
+            "contribution": -188834385.85385638
+          },
+          "gauge_fields": {
+            "base_density": -1e-50,
+            "enhancement": 7.57598541488068,
+            "contribution": -7.57598541488068e-50
+          },
+          "polymerized_fields": {
+            "base_density": -5e-48,
+            "enhancement": Infinity,
+            "contribution": -Infinity
+          }
+        },
+        "rho_exotic_unified": -Infinity,
+        "rho_exotic_final": -Infinity,
+        "enhancement_total": Infinity,
+        "precision_factor": 0.0,
+        "backreaction_coupling": 1.9443254780147017
+      }
+    }
+  ],
+  "sourcing_summary": {
+    "avg_metamaterial_enhancement": 60500155647.89707,
+    "avg_gauge_enhancement": 94.14533947788348,
+    "avg_polymer_enhancement": Infinity,
+    "backreaction_coupling": 1.9443254780147017,
+    "total_enhancement_avg": Infinity,
+    "precision_effectiveness": 0.0,
+    "status": "\u25d0 MARGINAL"
+  },
+  "timestamp": "2025-07-03T20:18:22.703377"
+}
