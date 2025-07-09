@@ -1,5 +1,15 @@
 # Negative Energy Generator
 
+## Related Repositories
+
+- [energy](https://github.com/arcticoder/energy): Central meta-repo for all energy and quantum research. This negative energy generator is a core component of the energy ecosystem.
+- [casimir-anti-stiction-metasurface-coatings](https://github.com/arcticoder/casimir-anti-stiction-metasurface-coatings): Provides Casimir effect enhancement and anti-stiction coatings for negative energy devices.
+- [warp-field-coils](https://github.com/arcticoder/warp-field-coils): Uses negative energy output for warp field generation and FTL applications.
+- [polymerized-lqg-matter-transporter](https://github.com/arcticoder/polymerized-lqg-matter-transporter): Integrates negative energy for matter transportation with 484× energy enhancement.
+- [lorentz-violation-pipeline](https://github.com/arcticoder/lorentz-violation-pipeline): Shares LIV experimental validation and theoretical frameworks.
+
+All repositories are part of the [arcticoder](https://github.com/arcticoder) ecosystem and link back to the energy framework for unified documentation and integration.
+
 A comprehensive digital-twin framework for negative energy generation with integrated real-time feedback control, Lorentz Invariance Violation (LIV) experimental validation, and **ULTIMATE cosmological constant Λ leveraging achieving perfect conservation quality (1.000) for precision warp-drive engineering**.
 
 ## 🎯 Current Status: ULTIMATE ENHANCEMENT READY ✅
