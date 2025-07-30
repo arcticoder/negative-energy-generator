@@ -28,7 +28,14 @@ try:
         run_electromagnetic_demo
     )
 except ImportError:
-    print("⚠️  electromagnetic_fdtd module not available")
+    def run_fdtd_simulation(*args, **kwargs):
+        raise ImportError("electromagnetic_fdtd not available")
+    def compute_casimir_energy_shift(*args, **kwargs):
+        raise ImportError("electromagnetic_fdtd not available")
+    def optimize_cavity_geometry(*args, **kwargs):
+        raise ImportError("electromagnetic_fdtd not available")
+    def run_electromagnetic_demo(*args, **kwargs):
+        raise ImportError("electromagnetic_fdtd not available")
 
 try:
     from .quantum_circuit_sim import (
@@ -38,7 +45,14 @@ try:
         run_quantum_demo
     )
 except ImportError:
-    print("⚠️  quantum_circuit_sim module not available")
+    def simulate_quantum_circuit(*args, **kwargs):
+        raise ImportError("quantum_circuit_sim not available")
+    def analyze_negative_energy_extraction(*args, **kwargs):
+        raise ImportError("quantum_circuit_sim not available")
+    def optimize_jpa_protocol(*args, **kwargs):
+        raise ImportError("quantum_circuit_sim not available")
+    def run_quantum_demo(*args, **kwargs):
+        raise ImportError("quantum_circuit_sim not available")
 
 try:
     from .mechanical_fem import (
@@ -48,7 +62,14 @@ try:
         run_mechanical_demo
     )
 except ImportError:
-    print("⚠️  mechanical_fem module not available")
+    def solve_plate_fem(*args, **kwargs):
+        raise ImportError("mechanical_fem not available")
+    def compute_casimir_force(*args, **kwargs):
+        raise ImportError("mechanical_fem not available")
+    def optimize_plate_geometry(*args, **kwargs):
+        raise ImportError("mechanical_fem not available")
+    def run_mechanical_demo(*args, **kwargs):
+        raise ImportError("mechanical_fem not available")
 
 try:
     from .photonic_crystal_band import (
@@ -58,7 +79,14 @@ try:
         run_photonic_band_demo
     )
 except ImportError:
-    print("⚠️  photonic_crystal_band module not available")
+    def compute_bandstructure(*args, **kwargs):
+        raise ImportError("photonic_crystal_band not available")
+    def optimize_photonic_crystal_for_negative_energy(*args, **kwargs):
+        raise ImportError("photonic_crystal_band not available")
+    def simulate_photonic_crystal_cavity(*args, **kwargs):
+        raise ImportError("photonic_crystal_band not available")
+    def run_photonic_band_demo(*args, **kwargs):
+        raise ImportError("photonic_crystal_band not available")
 
 try:
     from .surrogate_model import (
@@ -68,7 +96,15 @@ try:
         run_surrogate_demo
     )
 except ImportError:
-    print("⚠️  surrogate_model module not available")
+    class MultiPhysicsSurrogate:
+        def __init__(self, *args, **kwargs):
+            raise ImportError("surrogate_model not available")
+    def bayesian_optimization(*args, **kwargs):
+        raise ImportError("surrogate_model not available")
+    def multi_domain_optimization(*args, **kwargs):
+        raise ImportError("surrogate_model not available")
+    def run_surrogate_demo(*args, **kwargs):
+        raise ImportError("surrogate_model not available")
 
 # Module metadata
 MODULES = {

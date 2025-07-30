@@ -26,7 +26,7 @@ try:
     import mpb
     MPB_AVAILABLE = True
 except ImportError:
-    print("⚠️  MPB not available. Install from source or use mock")
+    warnings.warn("MPB not available. Install from source or use mock")
     MPB_AVAILABLE = False
 
 def compute_bands(geometry, resolution, k_points, num_bands):

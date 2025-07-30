@@ -25,7 +25,7 @@ try:
     import meep as mp
     MEEP_AVAILABLE = True
 except ImportError:
-    print("⚠️  MEEP not available. Install with: pip install meep")
+    warnings.warn("MEEP not available. Install with: pip install meep")
     MEEP_AVAILABLE = False
     
     # Fallback mock implementation

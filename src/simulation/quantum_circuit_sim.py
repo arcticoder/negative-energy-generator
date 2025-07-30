@@ -29,7 +29,7 @@ try:
     import qutip as qt
     QUTIP_AVAILABLE = True
 except ImportError:
-    print("⚠️  QuTiP not available. Install with: pip install qutip")
+    warnings.warn("QuTiP not available. Install with: pip install qutip")
     QUTIP_AVAILABLE = False
 
 # Physical constants
