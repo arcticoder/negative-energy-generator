@@ -45,6 +45,25 @@ Key deliverables:
    - Grid resolution uncertainty propagation in `local_energy_density`  
    - Detection threshold sensitivity for `find_negative`
 
+<!-- Additional prerequisite tasks from related modules -->
+- **V&V (lqg-first-principles-gravitational-constant):**
+   - Validate `GhostScalarStressTensor.kinetic_energy_density` expression (`src/stress_energy_tensor.py:30-50`)
+   - Verify `GhostScalarStressTensor.potential_energy_density` for quartic potential (`src/stress_energy_tensor.py:60-80`)
+   - Test `PolymerStressTensorCorrections.polymer_momentum_correction` limit behavior (`src/stress_energy_tensor.py:100-120`)
+
+- **V&V (warp-bubble-optimizer):**
+   - Instantiate `MetricBackreactionEvolution` with default parameters (`evolve_3plus1D_with_backreaction.py:1-20`)
+   - Validate `laplacian_3d` finite-difference implementation (`evolve_3plus1D_with_backreaction.py:40-70`)
+   - Check `stress_energy_tensor` returns expected keys and shapes (`evolve_3plus1D_with_backreaction.py:140-170`)
+   - Validate `compute_negative_energy_region` returns expected dictionary keys (`src/warp_qft/negative_energy.py:300-330`)
+   - Integration test for `compute_negative_energy_region` with classical case returns zero negative energy (`src/warp_qft/negative_energy.py:300-330`)
+
+- **V&V (lqg-ftl-metric-engineering):**
+   - Verify `EnhancedStressEnergyComponents` initializes `error_bounds` correctly and enforces finite values (`src/zero_exotic_energy_framework.py:117-130`)
+   - Test `verify_conservation` returns boolean and uncertainty for valid coordinate grid (`src/zero_exotic_energy_framework.py:140-185`)
+   - Validate `compute_negative_energy_region` returns expected dictionary keys (`src/warp_qft/negative_energy.py:300-330`)
+   - Integration test for `compute_negative_energy_region` with classical case returns zero negative energy (`src/warp_qft/negative_energy.py:300-330`)
+
 ## 2. Field-Only Parameter Sweeps (1+1D Scalar Fields)
 
 Develop custom lattice code for a real scalar field in 1+1D to explore exotic stress-energy inputs:

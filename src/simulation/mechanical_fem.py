@@ -84,49 +84,63 @@ def plate_deflection_fem(E: float,
     Returns:
         FEniCS Function containing deflection field w(x,y)
     """
-    print(f"🔬 Running FEM plate deflection analysis:")
+    print(f"🔬 Running FEM plate deflection analysis (scikit-fem):")
     print(f"   • Young's modulus: {E/1e9:.0f} GPa")
     print(f"   • Thickness: {t*1e9:.1f} nm")
     print(f"   • Load: {q_val:.2e} Pa")
     print(f"   • Plate size: {L*1e6:.1f}×{L*1e6:.1f} μm")
     print(f"   • Mesh resolution: {mesh_resolution}×{mesh_resolution}")
     
-    # Flexural rigidity
+    # Compute flexural rigidity
     D = E * t**3 / (12 * (1 - nu**2))
     print(f"   • Flexural rigidity: {D:.2e} N⋅m")
-    
-    # Create mesh
-    mesh = RectangleMesh(Point(0, 0), Point(L, L), mesh_resolution, mesh_resolution)
-    
-    # Function space (quadratic Lagrange elements for C1 continuity approximation)
-    V = FunctionSpace(mesh, 'Lagrange', degree=2)
-    
-    # Trial and test functions
-    w = TrialFunction(V)
-    v = TestFunction(V)
-    
-    # Simplified biharmonic formulation for quadratic elements
-    # Use: D∇²w ⋅ ∇²v (this is an approximation of the biharmonic)
-    a = D * inner(grad(grad(w)), grad(grad(v))) * dx
-    
-    # Load term
-    L_form = q_val * v * dx
-    
-    # Boundary conditions: clamped edges (w = 0, ∂w/∂n = 0)
-    bc = DirichletBC(V, Constant(0.0), 'on_boundary')
-    
-    # Solve system
-    w_sol = Function(V)
-    solve(a == L_form, w_sol, bc)
-    
+
+    # scikit-fem implementation (mixed Poisson formulation for biharmonic)
+    import numpy as np
+    from skfem import MeshQuad, ElementQuad, Basis, asm
+    from skfem.assembly import BilinearForm, LinearForm
+    import scipy.sparse.linalg as sla
+
+    # Create structured quadrilateral mesh
+    x = np.linspace(0, L, mesh_resolution + 1)
+    y = np.linspace(0, L, mesh_resolution + 1)
+    mesh = MeshQuad(x, y)
+    element = ElementQuad('Lagrange', degree=2)
+    basis = Basis(mesh, element)
+
+    # Mixed formulation: solve Δφ = q/D, then Δw = φ
+    @BilinearForm
+    def laplace(u, v, w):
+        return np.dot(w.grad(u), w.grad(v))
+
+    @LinearForm
+    def load(v, w):
+        return (q_val / D) * v
+
+    # Assemble and apply clamped Dirichlet BC (zero on boundary)
+    A = asm(laplace, basis)
+    boundary = basis.find_dofs()['all_boundary']
+    A = basis.complement(A, D=0.0, I=boundary)
+    b = asm(load, basis)
+
+    # Solve for φ
+    phi = sla.spsolve(A, b)
+
+    # Solve for w using same Laplace operator
+    M = basis.mass()
+    b2 = M @ phi
+    w_vec = sla.spsolve(A, b2)
+    w_sol = basis.interpolate(w_vec)
+
     # Extract solution statistics
-    deflections = w_sol.vector().get_local()
-    max_deflection = np.max(np.abs(deflections))
-    
+    vals = w_sol.coefficients
+    max_deflection = np.max(np.abs(vals))
+    rms_deflection = np.sqrt(np.mean(vals**2))
+
     print(f"   ✅ FEM solution complete")
     print(f"   • Maximum deflection: {max_deflection*1e9:.2f} nm")
-    print(f"   • RMS deflection: {np.sqrt(np.mean(deflections**2))*1e9:.2f} nm")
-    
+    print(f"   • RMS deflection: {rms_deflection*1e9:.2f} nm")
+
     return w_sol
 
 def compute_casimir_plate_force(gap: float, 
