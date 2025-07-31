@@ -38,21 +38,27 @@ Key deliverables:
 
 Develop custom lattice code for a real scalar field in 1+1D to explore exotic stress-energy inputs:
 
-1. Treat injected T_{μν}(x) as pure input, decoupled from backreaction
-2. Include automated self-tests:
-   - Energy condition checkers  
-   - Constraint monitors
-3. Leverage existing engines where possible:
-   - Sympy / NumPy for symbolic & numeric routines  
-   - QuTiP for prototype few-mode cavity tests (not scalable)
-4. Simulate standard physical sources:
-   - Classical scalar fields  
-   - Squeezed vacuum approximations  
-   - Casimir plate models
-5. Invent and inject user-defined T_{μν}(x) with arbitrary, mathematically consistent profiles
-6. Discretize the Klein–Gordon Hamiltonian
-7. Build mode operators and prepare vacuum or squeezed states
-8. Compute ⟨T_{00}⟩ numerically over the lattice
+1. Treat injected T_{μν}(x) as pure input, decoupled from backreaction  
+2. Include automated self-tests:  
+   - Energy condition checkers (`energy_condition_check`)  
+   - Constraint monitors (`constraint_monitor`)  
+3. Leverage existing engines where possible:  
+   - Sympy / NumPy for symbolic & numeric routines   
+   - Custom 1+1D real-scalar-field lattice QFT engine (scalable)  
+4. Simulate standard physical sources:  
+   - Classical scalar fields    
+   - Squeezed vacuum approximations    
+   - Casimir plate models  
+5. Invent and inject user-defined T_{μν}(x) with arbitrary, mathematically consistent profiles  
+6. Discretize the Klein–Gordon Hamiltonian in `src/simulation/lattice_qft.py`  
+7. Build mode operators and prepare vacuum or squeezed states in `src/simulation/lattice_qft.py`  
+8. Compute ⟨T_{00}⟩ numerically over the lattice and export results to HDF5 (`results/lattice_energy.h5`)
+
+**Key deliverables:**
+- `src/simulation/lattice_qft.py`: 1+1D solver (finite-difference discretization of Klein–Gordon)
+- `src/simulation/parameter_sweep.py`: orchestration of ansatz parameters and grid sweeps
+- `tests/test_lattice_energy.py`: unit tests validating ⟨T_{00}⟩ calculation
+- `docs/notebooks/lattice_sweep_demo.ipynb`: interactive exploration of sweep results
 
 ## 3. Semiclassical Backreaction in 1+1D
 

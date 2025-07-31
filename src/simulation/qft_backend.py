@@ -74,13 +74,33 @@ class PhysicsCore:
         self.X = np.meshgrid(*grid, indexing='ij')
         self.dx = dx
 
+    def build_toy_ansatz(self, params):
+        """
+        Toy parametric stress-energy ansatz: T_{μν}(x; α, β) = diag(profile,0,0,0)
+        where profile = α * exp(-β * r^2).
+        params: dict with keys 'alpha' and 'beta'.
+        Returns a 4×4×grid array.
+        """
+        alpha = params.get('alpha', 1.0)
+        beta = params.get('beta', 1.0)
+        # radial profile squared
+        R2 = np.zeros_like(self.X[0])
+        for Xi in self.X:
+            R2 += Xi**2
+        profile = alpha * np.exp(-beta * R2)
+        # assemble tensor with only T00 nonzero
+        T = np.zeros((4, 4) + profile.shape)
+        T[0, 0] = profile
+        return T
+
     def build_LQG_tensor(self, params):
         """
         params: dict with keys 'alpha','beta','mass', etc.
         """
-        lqg = LQGStressEnergyTensor(**params)
-        # Assume its compute() returns a 4×4×grid-shape array
-        return lqg.compute(self.X)
+    # Build LQG stress-energy tensor
+    lqg = LQGStressEnergyTensor(**params)
+    # Assume its compute() returns a 4×4×grid-shape array
+    return lqg.compute(self.X)
 
     def build_polymer_tensor(self, phi, pi, mu):
         """

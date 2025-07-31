@@ -373,6 +373,9 @@ This is active theoretical research with practical implementation goals. Current
 - 🔄 Radiative corrections & higher-loop analysis
 - 🔄 Quantum-interest trade-off optimization
 
+### 🛠️ Recent Updates
+- Implemented Toy QFT Physics Backend: parametric stress-energy ansatz, local energy density evaluation, and negative-energy detection (`src/simulation/qft_backend.py`).
+
 ## Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.

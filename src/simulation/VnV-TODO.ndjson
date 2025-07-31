@@ -1,0 +1,3 @@
+{"category":"V&V","task":"Validate pure T_{μν} injection routines","file":"src/simulation/parameter_sweep.py"}
+{"category":"V&V","task":"Unit test discretization accuracy for Klein–Gordon operator","file":"src/simulation/lattice_qft.py"}
+{"category":"V&V","task":"Integration test for result export to HDF5","file":"src/simulation/lattice_qft.py"}
