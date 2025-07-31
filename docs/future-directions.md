@@ -19,6 +19,21 @@ Key deliverables:
 - `PhysicsCore.local_energy_density` and `PhysicsCore.find_negative`
 - Integration with grid-based QFT modules for state evolution
 
+```python
+// filepath: C:\Users\%USERNAME%\Code\asciimath\negative-energy-generator\src\simulation\qft_backend.py#L163-L173
+# 3c) If you have an initial φ, π, evolve your QFT field
+# phi0 = np.random.randn(N)  # or load from your code
+# phi_t = core.evolve_QFT(phi0, steps=500, dt=0.01)
+
+# 3d) Hand off to your Einstein Toolkit thorn if desired
+# (write out T_lqg to HDF5, then run ETK with a custom thorn)
+
+# 3e) Or use EnhancedStressEnergyComponents for advanced UQ
+# esc = core.build_exotic_components(xs, rho, rho*0, rho*0)
+# valid, error = esc.verify_conservation(xs)
+# print("Conservation OK?", valid)
+```
+
 ## 2. Field-Only Parameter Sweeps (1+1D Scalar Fields)
 
 Develop custom lattice code for a real scalar field in 1+1D to explore exotic stress-energy inputs:
@@ -54,4 +69,4 @@ Future phases may include:
 - Automated parameter sweeps over ansatz parameters (α, β, …)  
 - Integration with higher-dimensional lattice engines for 2+1D or 3+1D models  
 - Visualization tools for negative-energy region mapping  
-- Uncertainty quantification and sensitivity analysis modules  
+- Uncertainty quantification and sensitivity analysis modules
