@@ -32,9 +32,9 @@ try:
     FENICS_AVAILABLE = True
     FunctionType = Function
 except ImportError:
-    print("⚠️  FEniCS not available. Install with: pip install fenics")
+    print("⚠️  FEniCS not available. mechanical_fem.py:35")
     FENICS_AVAILABLE = False
-    # Mock Function type for fallback
+    # Mock FunctionType for fallback
     FunctionType = type(None)
 
 def solve_plate(E, nu, t, q_val, L, res=50):

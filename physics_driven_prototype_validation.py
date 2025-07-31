@@ -53,7 +53,7 @@ try:
     print("✅ MEEP loaded successfully")
 except ImportError:
     MEEP_AVAILABLE = False
-    print("⚠️  MEEP not available - using fallback implementations")
+    print("⚠️  MEEP not available - physics_driven_prototype_validation.py:56")
 
 try:
     import qutip as qt
@@ -61,7 +61,7 @@ try:
     print("✅ QuTiP loaded successfully")
 except ImportError:
     QUTIP_AVAILABLE = False
-    print("⚠️  QuTiP not available - using fallback implementations")
+    print("⚠️  QuTiP not available - physics_driven_prototype_validation.py:64")
 
 try:
     from dolfin import *
@@ -69,7 +69,7 @@ try:
     print("✅ FEniCS loaded successfully")
 except ImportError:
     FENICS_AVAILABLE = False
-    print("⚠️  FEniCS not available - using fallback implementations")
+    print("⚠️  FEniCS not available - physics_driven_prototype_validation.py:72")
 
 try:
     import mpb
@@ -77,7 +77,7 @@ try:
     print("✅ MPB loaded successfully")
 except ImportError:
     MPB_AVAILABLE = False
-    print("⚠️  MPB not available - using fallback implementations")
+    print("⚠️  MPB not available  - physics_driven_prototype_validation.py:80")
 
 # ML optimization libraries
 try:

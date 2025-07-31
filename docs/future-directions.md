@@ -34,6 +34,17 @@ Key deliverables:
 # print("Conservation OK?", valid)
 ```
 
+### Prerequisite Validation & Uncertainty Tasks
+
+- **V&V (warp-field-coils):**
+   - Time-profile smear for 0.25 m over 5 s (`time_smear_profile`)  
+   - Sensor-field conversion calibration (`simulate_sensor_readout`)  
+   - Discretization stability of warp field solver (`step_field` over 5 s)  
+- **UQ (negative-energy-generator):**
+   - Monte Carlo sampling uncertainty in toy ansatz parameters α, β  
+   - Grid resolution uncertainty propagation in `local_energy_density`  
+   - Detection threshold sensitivity for `find_negative`
+
 ## 2. Field-Only Parameter Sweeps (1+1D Scalar Fields)
 
 Develop custom lattice code for a real scalar field in 1+1D to explore exotic stress-energy inputs:

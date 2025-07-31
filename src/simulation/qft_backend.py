@@ -1,4 +1,16 @@
 import numpy as np
+import os, sys
+
+# Ensure local lqg_first_principles_gravitational_constant package is on sys.path
+# The external repo folder is a sibling of this package under the workspace root
+lqg_pkg_path = os.path.abspath(
+    os.path.join(
+        os.path.dirname(__file__), '..', '..', '..', '..',
+        'lqg-first-principles-gravitational-constant', 'src'
+    )
+)
+if os.path.isdir(lqg_pkg_path) and lqg_pkg_path not in sys.path:
+    sys.path.insert(0, lqg_pkg_path)
 
 # -------------------------------------------------------------------
 # 1) Import your existing stress-energy implementations
