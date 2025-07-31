@@ -58,7 +58,7 @@ Develop custom lattice code for a real scalar field in 1+1D to explore exotic st
 - `src/simulation/lattice_qft.py`: 1+1D solver (finite-difference discretization of Klein–Gordon)
 - `src/simulation/parameter_sweep.py`: orchestration of ansatz parameters and grid sweeps
 - `tests/test_lattice_energy.py`: unit tests validating ⟨T_{00}⟩ calculation
-- `docs/notebooks/lattice_sweep_demo.ipynb`: interactive exploration of sweep results
+- `scripts/lattice_sweep_demo.py`: command-line demonstration of sweep results
 
 ## 3. Semiclassical Backreaction in 1+1D
 
