@@ -149,13 +149,14 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 $ export PYTHONPATH=src && /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python -m pytest --maxfail=1 --disable-warnings -q
 ...........................................          [100%]
 43 passed, 1185 warnings in 413.74s (0:06:53)
-$ gh run view 16685867640
+$ gh run view 16686236180
 
-X main CI · 16685867640
-Triggered via push about 23 minutes ago
+X main CI · 16686236180
+Triggered via push about 1 minute ago
 
 JOBS
-X build (3.10) in 9s (ID 47235041023)
+X build (3.10) in 27s (ID 47236144928)
+X build (3.12) in 26s (ID 47236144930)
   ✓ Set up job
   ✓ Run actions/checkout@v3
   ✓ Run actions/checkout@v3
@@ -168,19 +169,18 @@ X build (3.10) in 9s (ID 47235041023)
   ✓ Post Run actions/checkout@v3
   ✓ Post Run actions/checkout@v3
   ✓ Complete job
-X build (3.12) in 13s (ID 47235041024)
 
 ANNOTATIONS
-X Process completed with exit code 1.
-build (3.10): .github#43
-
 X The operation was canceled.
-build (3.12): .github#43
+build (3.10): .github#123
 
-X The strategy configuration was canceled because "build._3_10" failed
-build (3.12): .github#1
+X The strategy configuration was canceled because "build._3_12" failed
+build (3.10): .github#1
+
+X Process completed with exit code 1.
+build (3.12): .github#114
 
 
-To see what failed, try: gh run view 16685867640 --log-failed
-View this run on GitHub: https://github.com/arcticoder/negative-energy-generator/actions/runs/16685867640
+To see what failed, try: gh run view 16686236180 --log-failed
+View this run on GitHub: https://github.com/arcticoder/negative-energy-generator/actions/runs/16686236180
 ````
