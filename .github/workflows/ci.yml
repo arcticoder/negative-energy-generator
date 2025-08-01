@@ -30,8 +30,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          # Install core dependencies and test tools
+          pip install numpy scipy matplotlib pandas h5py pytest
+          # Install the project package
           pip install .
-          pip install pytest h5py
 
       - name: Run unit tests
         run: pytest --maxfail=1 --disable-warnings -q

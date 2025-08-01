@@ -19,6 +19,7 @@
 - Created command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep execution and result summaries.
 - Created discretization accuracy test in `tests/test_lattice_discretization.py` verifying discrete Laplacian against analytical solution.
 - Scaffolding GitHub Actions CI workflow in `.github/workflows/ci.yml`.
+- Added `pandas` to project dependencies and CI install step to satisfy data-frame tests.
 
 ### Next Tasks
 1. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
@@ -29,15 +30,25 @@
 6. Test and iterate on the CI workflow to ensure it runs unit tests and the CLI demo successfully.
 7. Complete and validate the dynamic field evolution against discretization tests.
 8. Add integration tests for HDF5 export result validation in `tests/test_parameter_sweep_export.py`.
+- Re-run CI to confirm fix.
+- Proceed with writing HDF5 export integration test.
+- Run `pytest` locally under the updated environment to replicate CI and collect any remaining errors.
+- Validate the CLI demo execution locally to ensure imports resolve correctly.
+- Install `pandas` locally in the venv and run `pytest` to validate all tests pass.
+- Verify CLI demo runs correctly under the updated environment.
+- Push changes and trigger CI to confirm remote workflow success.
+- Proceed with dynamic field evolution validation.
 
 ### Progress Update
 - Changed CI workflow matrix `python-version` to block sequence to resolve YAML parsing errors.
-
-### Next Tasks
-- Re-run CI to confirm fix.
-- Proceed with writing HDF5 export integration test.
+- Updated CI install step to install core dependencies (`numpy`, `scipy`, `matplotlib`, `h5py`, `pytest`) before installing the package to resolve test import errors.
+- All tests passed locally under updated environment.
+- CLI demo executed successfully, generated HDF5 output as expected.
 
 ```latest-progress
+Local tests and the CLI demo ran successfully. The `pandas` dependency resolved the test failures, and the demo generated expected output. I updated the progress log—next, I’ll push these changes so CI can verify the remote workflow, then proceed with dynamic field evolution validation. 
+```
+```progress
 I added a CI step to export `PYTHONPATH` pointing to src, which should fix import errors for the `simulation` package in both tests and the CLI demo. Updated the progress log accordingly. Next, I’ll rerun CI and address any further packaging issues.
 ```
 ```progress
@@ -91,54 +102,85 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 ```
 
 ```file-history
-~/Code/asciimath$ find . -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\)$' -exec stat -c '%Y %n' {} \; | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-01 14:48:16 ./negative-energy-generator/docs/progress_log.md
-2025-08-01 14:47:10 ./negative-energy-generator/scripts/lattice_sweep_demo.py
-2025-08-01 14:43:57 ./negative-energy-generator/.github/workflows/ci.yml
-2025-08-01 14:26:14 ./negative-energy-generator/tests/test_parameter_sweep_export.py
-2025-08-01 09:28:10 ./negative-energy-generator/tests/test_qft_backend.py
-2025-08-01 09:28:10 ./negative-energy-generator/tests/test_lattice_energy.py
-2025-08-01 09:28:10 ./negative-energy-generator/tests/test_lattice_discretization.py
-2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/qft_backend.py
-2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/photonic_crystal_band.py
-2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/parameter_sweep.py
-2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/mechanical_fem.py
-2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/lattice_qft.py
-2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/electromagnetic_fdtd.py
-2025-08-01 09:28:10 ./negative-energy-generator/physics_driven_prototype_validation.py
-2025-08-01 09:28:10 ./negative-energy-generator/docs/literature_review.md
-2025-08-01 09:28:10 ./negative-energy-generator/docs/future-directions.md
-2025-08-01 09:28:10 ./negative-energy-generator/VnV-TODO.ndjson
-2025-08-01 09:28:10 ./negative-energy-generator/UQ-TODO.ndjson
-2025-08-01 09:28:10 ./negative-energy-generator/README.md
-2025-08-01 09:28:10 ./negative-energy-generator/.github/instructions/copilot-instructions.md
-2025-08-01 09:26:11 ./energy/tools/list-branches.sh
-2025-08-01 09:08:58 ./energy/tools/traffic_stats_history.ndjson
-2025-08-01 09:08:58 ./energy/tools/traffic_slope_history.json
-2025-08-01 09:08:58 ./energy/docs/progress_log.md
-2025-08-01 08:27:21 ./energy/tools/list_committed_repos.ps1
-2025-08-01 08:27:21 ./energy/tools/check_traffic_stats.py
-2025-08-01 08:27:21 ./energy/sync_all_repos_complete.ps1
-2025-08-01 08:27:21 ./energy/sync_all_repos.ps1
-2025-08-01 08:27:21 ./energy/setup-env.sh
-2025-08-01 08:27:21 ./energy/scripts/list-recent-commits.ps1
-2025-08-01 08:27:21 ./energy/scripts/copilot-management/setup-copilot-instructions.ps1
-2025-08-01 08:27:21 ./energy/run_traffic_stats.sh
-2025-08-01 08:27:21 ./energy/run_traffic_stats.ps1
-2025-08-01 08:27:21 ./energy/environment.yml
-2025-08-01 08:27:21 ./energy/.vscode/launch.json
-2025-08-01 08:24:44 ./lqg-anec-framework/.github/instructions/copilot-instructions.md
-2025-08-01 08:23:17 ./lqg-ftl-metric-engineering/VnV-TODO.ndjson
-2025-08-01 08:23:17 ./lqg-first-principles-gravitational-constant/VnV-TODO.ndjson
-2025-08-01 08:23:01 ./enhanced-simulation-hardware-abstraction-framework/VnV-TODO.ndjson
-2025-07-31 13:22:21 ./warp-spacetime-stability-controller/validate_frameworks.py
+~/Code/asciimath$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
+2025-08-01 15:14:58 ./docs/progress_log.md
+2025-08-01 15:05:30 ./pyproject.toml
+2025-08-01 15:05:30 ./.github/workflows/ci.yml
+2025-08-01 15:04:58 ./results/demo_sweep.h5
+2025-08-01 14:59:52 ./validation_summary.json
+2025-08-01 14:58:53 ./corrected_validation_results.json
+2025-08-01 14:47:10 ./scripts/lattice_sweep_demo.py
+2025-08-01 14:26:14 ./tests/test_parameter_sweep_export.py
+2025-08-01 09:28:10 ./tests/test_qft_backend.py
+2025-08-01 09:28:10 ./tests/test_lattice_energy.py
+2025-08-01 09:28:10 ./tests/test_lattice_discretization.py
+2025-08-01 09:28:10 ./src/simulation/qft_backend.py
+2025-08-01 09:28:10 ./src/simulation/photonic_crystal_band.py
+2025-08-01 09:28:10 ./src/simulation/parameter_sweep.py
+2025-08-01 09:28:10 ./src/simulation/mechanical_fem.py
+2025-08-01 09:28:10 ./src/simulation/lattice_qft.py
+2025-08-01 09:28:10 ./src/simulation/electromagnetic_fdtd.py
+2025-08-01 09:28:10 ./physics_driven_prototype_validation.py
+2025-08-01 09:28:10 ./docs/literature_review.md
+2025-08-01 09:28:10 ./docs/future-directions.md
+2025-08-01 09:28:10 ./VnV-TODO.ndjson
+2025-08-01 09:28:10 ./UQ-TODO.ndjson
+2025-08-01 09:28:10 ./README.md
+2025-08-01 09:28:10 ./.github/instructions/copilot-instructions.md
+2025-07-31 13:22:17 ./working_validation_test.py
+2025-07-31 13:22:17 ./working_negative_energy_generator.py
+2025-07-31 13:22:17 ./verify_prototype_stack_fixed.py
+2025-07-31 13:22:17 ./verify_prototype_stack.py
+2025-07-31 13:22:17 ./unified_exotic_matter_sourcing_results.json
+2025-07-31 13:22:17 ./unified_exotic_matter_sourcing.py
+2025-07-31 13:22:17 ./two_phase_summary.py
+2025-07-31 13:22:17 ./traversal-analysis.json
+2025-07-31 13:22:17 ./theory_scan_results.json
+2025-07-31 13:22:17 ./tests/test_diagnostics.py
+2025-07-31 13:22:17 ./test_validation.py
+2025-07-31 13:22:17 ./test_progress_tracking.py
+2025-07-31 13:22:17 ./test_multilayer.py
+2025-07-31 13:22:17 ./test_mathematical_enhancements.py
+2025-07-31 13:22:17 ./test_hardware_modules.py
+2025-07-31 13:22:17 ./test_complete_integration.py
 ````
 
 ```test-history
-~/Code/asciimath/negative-energy-generator$ python ./scripts/lattice_sweep_demo.py
-Traceback (most recent call last):
-  File "/home/sherri3/Code/asciimath/negative-energy-generator/./scripts/lattice_sweep_demo.py", line 10, in <module>
-    import h5py  # type: ignore
-    ^^^^^^^^^^^
-ModuleNotFoundError: No module named 'h5py'
-```
+$ export PYTHONPATH=src && /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python -m pytest --maxfail=1 --disable-warnings -q
+...........................................          [100%]
+43 passed, 1185 warnings in 413.74s (0:06:53)
+$ gh run view 16685867640
+
+X main CI · 16685867640
+Triggered via push about 23 minutes ago
+
+JOBS
+X build (3.10) in 9s (ID 47235041023)
+  ✓ Set up job
+  ✓ Run actions/checkout@v3
+  ✓ Run actions/checkout@v3
+  ✓ Set PYTHONPATH
+  ✓ Set up Python
+  X Install dependencies
+  - Run unit tests
+  - Run CLI demo
+  - Post Set up Python
+  ✓ Post Run actions/checkout@v3
+  ✓ Post Run actions/checkout@v3
+  ✓ Complete job
+X build (3.12) in 13s (ID 47235041024)
+
+ANNOTATIONS
+X Process completed with exit code 1.
+build (3.10): .github#43
+
+X The operation was canceled.
+build (3.12): .github#43
+
+X The strategy configuration was canceled because "build._3_10" failed
+build (3.12): .github#1
+
+
+To see what failed, try: gh run view 16685867640 --log-failed
+View this run on GitHub: https://github.com/arcticoder/negative-energy-generator/actions/runs/16685867640
+````

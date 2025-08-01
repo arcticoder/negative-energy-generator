@@ -15,9 +15,10 @@ dependencies = [
   "numpy>=1.24",
   "scipy>=1.8",
   "matplotlib>=3.6",
+  "pandas>=1.5",
   "lqg_first_principles_gravitational_constant>=0.1.0"
 ]
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["negative_energy_generator*"]
+include = ["negative_energy_generator*", "simulation"]
