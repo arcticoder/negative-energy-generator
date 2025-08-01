@@ -109,10 +109,10 @@ class PhysicsCore:
         """
         params: dict with keys 'alpha','beta','mass', etc.
         """
-    # Build LQG stress-energy tensor
-    lqg = LQGStressEnergyTensor(**params)
-    # Assume its compute() returns a 4×4×grid-shape array
-    return lqg.compute(self.X)
+        # Build LQG stress-energy tensor
+        lqg = LQGStressEnergyTensor(**params)
+        # Assume its compute() returns a 4×4×grid-shape array
+        return lqg.compute(self.X)
 
     def build_polymer_tensor(self, phi, pi, mu):
         """
