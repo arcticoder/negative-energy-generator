@@ -152,6 +152,51 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 $ export PYTHONPATH=src && /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python -m pytest tests/test_time_integration_basic.py --maxfail=1 --disable-warnings -q
 .                                                      [100%]
 1 passed, 1 warning in 0.20s
+
+$ gh run watch 16686499312
+X main CI · 16686499312
+Triggered via push less than a minute ago
+
+JOBS
+X build (3.12) in 29s (ID 47236885348)
+  ✓ Set up job
+  ✓ Run actions/checkout@v3
+  ✓ Run actions/checkout@v3
+  ✓ Set PYTHONPATH
+  ✓ Set up Python
+  X Install dependencies
+  - Run unit tests
+  - Run CLI demo
+  - Post Set up Python
+  ✓ Post Run actions/checkout@v3
+  ✓ Post Run actions/checkout@v3
+  ✓ Complete job
+X build (3.10) in 27s (ID 47236885349)
+  ✓ Set up job
+  ✓ Run actions/checkout@v3
+  ✓ Run actions/checkout@v3
+  ✓ Set PYTHONPATH
+  ✓ Set up Python
+  X Install dependencies
+  - Run unit tests
+  - Run CLI demo
+  - Post Set up Python
+  ✓ Post Run actions/checkout@v3
+  ✓ Post Run actions/checkout@v3
+  ✓ Complete job
+
+ANNOTATIONS
+X Process completed with exit code 1.
+build (3.12): .github#114
+
+X The strategy configuration was canceled because "build._3_10" failed
+build (3.12): .github#1
+
+X Process completed with exit code 1.
+build (3.10): .github#123
+
+
+X Run CI (16686499312) completed with 'failure'
 ````
 
 ## 2025-08-06
