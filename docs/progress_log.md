@@ -38,6 +38,9 @@
 - Proceed with writing HDF5 export integration test.
 
 ```latest-progress
+I added a CI step to export `PYTHONPATH` pointing to src, which should fix import errors for the `simulation` package in both tests and the CLI demo. Updated the progress log accordingly. Next, I’ll rerun CI and address any further packaging issues.
+```
+```progress
 Logged the new HDF5 export test implementation in progress_log.md. Next, I'll run pytest locally, fix any import or packaging issues, and ensure the `simulation` module installs correctly so CI tests pass.
 ```
 ```progress
@@ -89,9 +92,10 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 
 ```file-history
 ~/Code/asciimath$ find . -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\)$' -exec stat -c '%Y %n' {} \; | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-01 14:26:56 ./negative-energy-generator/docs/progress_log.md
+2025-08-01 14:44:47 ./negative-energy-generator/docs/progress_log.md
+2025-08-01 14:43:57 ./negative-energy-generator/scripts/lattice_sweep_demo.py
+2025-08-01 14:43:57 ./negative-energy-generator/.github/workflows/ci.yml
 2025-08-01 14:26:14 ./negative-energy-generator/tests/test_parameter_sweep_export.py
-2025-08-01 14:26:14 ./negative-energy-generator/.github/workflows/ci.yml
 2025-08-01 09:28:10 ./negative-energy-generator/tests/test_qft_backend.py
 2025-08-01 09:28:10 ./negative-energy-generator/tests/test_lattice_energy.py
 2025-08-01 09:28:10 ./negative-energy-generator/tests/test_lattice_discretization.py
@@ -101,7 +105,6 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/mechanical_fem.py
 2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/lattice_qft.py
 2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/electromagnetic_fdtd.py
-2025-08-01 09:28:10 ./negative-energy-generator/scripts/lattice_sweep_demo.py
 2025-08-01 09:28:10 ./negative-energy-generator/physics_driven_prototype_validation.py
 2025-08-01 09:28:10 ./negative-energy-generator/docs/literature_review.md
 2025-08-01 09:28:10 ./negative-energy-generator/docs/future-directions.md
@@ -129,4 +132,4 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-08-01 08:23:17 ./lqg-first-principles-gravitational-constant/VnV-TODO.ndjson
 2025-08-01 08:23:01 ./enhanced-simulation-hardware-abstraction-framework/VnV-TODO.ndjson
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/validate_frameworks.py
-````
+```
