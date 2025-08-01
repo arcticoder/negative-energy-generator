@@ -1,4 +1,5 @@
 import numpy as np
+import h5py
 import os, sys
 
 # Ensure local lqg_first_principles_gravitational_constant package is on sys.path
@@ -192,9 +193,21 @@ if __name__ == "__main__":
     rho, mask, extra = core.detect_exotics(T_lqg)
     print(f"Fraction negative (LQG ansatz): {mask.mean():.2%}")
 
-    # 3c) If you have an initial φ, π, evolve your QFT field
-    # phi0 = np.random.randn(N)  # or load from your code
-    # phi_t = core.evolve_QFT(phi0, steps=500, dt=0.01)
+    # 3d) Hand off to Einstein Toolkit: export T_lqg to HDF5 for custom thorn
+    with h5py.File('T_lqg.h5', 'w') as hf:
+        hf.create_dataset('T_lqg', data=T_lqg)
+    print("   ✅ Saved T_lqg tensor to T_lqg.h5 for Einstein Toolkit input")
+
+    # 3c) Evolve QFT field for given initial φ configuration
+    phi0 = np.random.randn(N)  # initial field configuration
+    phi_t = core.evolve_QFT(phi0, steps=500, dt=0.01)
+    print(f"QFT evolution completed: obtained {len(phi_t)} time steps of field data")
+
+    # 3d) Integration with grid-based QFT modules for state evolution
+    # Build energy-momentum tensor from quantum field operator
+    T_q = core.build_quantum_op_tensor()
+    rho_q, mask_q, extra_q = core.detect_exotics(T_q)
+    print(f"Post-evolution negative-energy fraction: {mask_q.mean():.2%}")
 
     # 3d) Hand off to your Einstein Toolkit thorn if desired
     # (write out T_lqg to HDF5, then run ETK with a custom thorn)

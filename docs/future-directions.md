@@ -15,10 +15,10 @@ Implement a unified PhysicsCore interface in `src/simulation/qft_backend.py` tha
 4. Hands off negative-energy regions to QFT exploratory tools for further state discovery
 
 Key deliverables:
-- `PhysicsCore.build_LQG_tensor` toy implementation
-- `PhysicsCore.local_energy_density` and `PhysicsCore.find_negative`
-- `PhysicsCore.evolve_QFT` for time-evolution of QFT fields
-- Integration with grid-based QFT modules for state evolution
+- `PhysicsCore.build_LQG_tensor` toy implementation ✅
+- `PhysicsCore.local_energy_density` and `PhysicsCore.find_negative` ✅
+- `PhysicsCore.evolve_QFT` for time-evolution of QFT fields ✅
+- Integration with grid-based QFT modules for state evolution ✅
 
 ```python
 // filepath: C:\Users\%USERNAME%\Code\asciimath\negative-energy-generator\src\simulation\qft_backend.py#L163-L173
