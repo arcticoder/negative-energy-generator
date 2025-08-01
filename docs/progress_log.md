@@ -21,13 +21,13 @@
 2. Create command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep results and HDF5 export.
 3. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
 
-```latest-response
+```latest-task
 I’ve scaffolded `parameter_sweep.py` for 1+1D lattice QFT sweeps and updated the progress log to reflect that. Next up:
 
 1. Creating unit tests in `tests/test_lattice_energy.py`.
 2. Developing a CLI demo script `scripts/lattice_sweep_demo.py`.
 3. Adding corresponding V&V/UQ tasks.
 ```
-```response1
+```task
 I created a merge_wip.sh helper to install MPB via conda and merge all `wip` branches into `main` across your specified repos, then push the last one. You can run it directly to consolidate updates
 ```
