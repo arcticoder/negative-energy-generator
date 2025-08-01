@@ -13,9 +13,10 @@
 ### In Progress
 - Integration tests for stress-energy conservation (`verify_conservation`).
 - UQ experiments: Monte Carlo sampling, time-step sensitivity, grid resolution analysis for QFT outputs.
+- Implementing 1+1D lattice QFT solver in `src/simulation/lattice_qft.py` for real scalar fields (finite-difference Klein–Gordon).
 
 ### Next Tasks
-1. Design an experimental setup to measure negative energy density in laboratory-scale Casimir plate arrays.
-2. Develop a simulation module modeling macro-scale Casimir configurations (multi-plate geometries).
-3. Prototype a data acquisition and analysis pipeline for exotic matter detection using precision sensors.
-4. Update V&V and UQ trackers with tasks for experimental validation and uncertainty analysis of negative energy measurements.
+1. Develop parameter sweep orchestrator in `src/simulation/parameter_sweep.py` to automate ansatz and grid sweeps.
+2. Write unit tests (`tests/test_lattice_energy.py`) validating ⟨T_{00}⟩ calculation over the lattice.
+3. Create command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep results and HDF5 export.
+4. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
