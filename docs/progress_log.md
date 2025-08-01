@@ -14,13 +14,20 @@
 - Integration tests for stress-energy conservation (`verify_conservation`).
 - UQ experiments: Monte Carlo sampling, time-step sensitivity, grid resolution analysis for QFT outputs.
 - Implementing 1+1D lattice QFT solver in `src/simulation/lattice_qft.py` for real scalar fields (finite-difference Klein–Gordon).
+- Developed parameter sweep orchestrator in `src/simulation/parameter_sweep.py` for ansatz and grid sweeps.
 
 ### Next Tasks
-1. Develop parameter sweep orchestrator in `src/simulation/parameter_sweep.py` to automate ansatz and grid sweeps.
-2. Write unit tests (`tests/test_lattice_energy.py`) validating ⟨T_{00}⟩ calculation over the lattice.
-3. Create command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep results and HDF5 export.
-4. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
+1. Write unit tests (`tests/test_lattice_energy.py`) validating ⟨T_{00}⟩ calculation over the lattice.
+2. Create command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep results and HDF5 export.
+3. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
 
 ```latest-response
+I’ve scaffolded `parameter_sweep.py` for 1+1D lattice QFT sweeps and updated the progress log to reflect that. Next up:
+
+1. Creating unit tests in `tests/test_lattice_energy.py`.
+2. Developing a CLI demo script `scripts/lattice_sweep_demo.py`.
+3. Adding corresponding V&V/UQ tasks.
+```
+```response1
 I created a merge_wip.sh helper to install MPB via conda and merge all `wip` branches into `main` across your specified repos, then push the last one. You can run it directly to consolidate updates
 ```
