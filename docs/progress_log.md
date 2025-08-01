@@ -44,8 +44,13 @@
 - Updated CI install step to install core dependencies (`numpy`, `scipy`, `matplotlib`, `h5py`, `pytest`) before installing the package to resolve test import errors.
 - All tests passed locally under updated environment.
 - CLI demo executed successfully, generated HDF5 output as expected.
+- Modified CI install commands to use `python -m pip install` consistently, ensuring correct interpreter usage.
+- Bumped SciPy requirement to `>=1.11` to match available wheels for Python 3.12 and avoid install failures.
 
 ```latest-progress
+I updated the CI install steps to consistently use `python -m pip install`, and bumped SciPy to `>=1.11` for Python 3.12 wheel support. The progress log reflects these changes. Next, we should trigger CI to verify the remote workflow, then continue with dynamic field evolution accuracy testing.
+```
+```progress
 The basic time integration test passed locally. I updated progress_log.md. Next, I’ll refine the solver’s accuracy like comparing to analytical solution for small `dt`.
 ```
 ```progress
@@ -106,10 +111,11 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 
 ```file-history
 ~/Code/asciimath$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-01 15:33:59 ./docs/progress_log.md
+2025-08-01 16:29:26 ./docs/progress_log.md
+2025-08-01 16:28:34 ./tests/test_zero_initial_condition.py
+2025-08-01 16:28:34 ./pyproject.toml
+2025-08-01 16:28:34 ./.github/workflows/ci.yml
 2025-08-01 15:32:26 ./tests/test_time_integration_basic.py
-2025-08-01 15:05:30 ./pyproject.toml
-2025-08-01 15:05:30 ./.github/workflows/ci.yml
 2025-08-01 15:04:58 ./results/demo_sweep.h5
 2025-08-01 14:59:52 ./validation_summary.json
 2025-08-01 14:58:53 ./corrected_validation_results.json
@@ -145,58 +151,12 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-07-31 13:22:17 ./test_progress_tracking.py
 2025-07-31 13:22:17 ./test_multilayer.py
 2025-07-31 13:22:17 ./test_mathematical_enhancements.py
-2025-07-31 13:22:17 ./test_hardware_modules.py
 ````
 
 ```test-history
 $ export PYTHONPATH=src && /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python -m pytest tests/test_time_integration_basic.py --maxfail=1 --disable-warnings -q
 .                                                      [100%]
 1 passed, 1 warning in 0.20s
-
-$ gh run watch 16686499312
-X main CI · 16686499312
-Triggered via push less than a minute ago
-
-JOBS
-X build (3.12) in 29s (ID 47236885348)
-  ✓ Set up job
-  ✓ Run actions/checkout@v3
-  ✓ Run actions/checkout@v3
-  ✓ Set PYTHONPATH
-  ✓ Set up Python
-  X Install dependencies
-  - Run unit tests
-  - Run CLI demo
-  - Post Set up Python
-  ✓ Post Run actions/checkout@v3
-  ✓ Post Run actions/checkout@v3
-  ✓ Complete job
-X build (3.10) in 27s (ID 47236885349)
-  ✓ Set up job
-  ✓ Run actions/checkout@v3
-  ✓ Run actions/checkout@v3
-  ✓ Set PYTHONPATH
-  ✓ Set up Python
-  X Install dependencies
-  - Run unit tests
-  - Run CLI demo
-  - Post Set up Python
-  ✓ Post Run actions/checkout@v3
-  ✓ Post Run actions/checkout@v3
-  ✓ Complete job
-
-ANNOTATIONS
-X Process completed with exit code 1.
-build (3.12): .github#114
-
-X The strategy configuration was canceled because "build._3_10" failed
-build (3.12): .github#1
-
-X Process completed with exit code 1.
-build (3.10): .github#123
-
-
-X Run CI (16686499312) completed with 'failure'
 ````
 
 ## 2025-08-06
