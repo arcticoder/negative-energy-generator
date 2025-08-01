@@ -57,3 +57,32 @@ I’ve scaffolded `parameter_sweep.py` for 1+1D lattice QFT sweeps and updated t
 ```oldest-progress
 I created a merge_wip.sh helper to install MPB via conda and merge all `wip` branches into `main` across your specified repos, then push the last one. You can run it directly to consolidate updates
 ```
+
+```file-history
+~/Code/asciimath$ find . -type f \( -name "*.ps1" -o -name "*.py" -o -name "*.sh" \) -exec stat -c '%Y %n' {} \; | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 25
+2025-08-01 09:28:10 ./negative-energy-generator/tests/test_qft_backend.py
+2025-08-01 09:28:10 ./negative-energy-generator/tests/test_lattice_energy.py
+2025-08-01 09:28:10 ./negative-energy-generator/tests/test_lattice_discretization.py
+2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/qft_backend.py
+2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/photonic_crystal_band.py
+2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/parameter_sweep.py
+2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/mechanical_fem.py
+2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/lattice_qft.py
+2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/electromagnetic_fdtd.py
+2025-08-01 09:28:10 ./negative-energy-generator/scripts/lattice_sweep_demo.py
+2025-08-01 09:28:10 ./negative-energy-generator/physics_driven_prototype_validation.py
+2025-08-01 09:26:11 ./energy/tools/list-branches.sh
+2025-08-01 08:27:21 ./energy/tools/list_committed_repos.ps1
+2025-08-01 08:27:21 ./energy/tools/check_traffic_stats.py
+2025-08-01 08:27:21 ./energy/sync_all_repos_complete.ps1
+2025-08-01 08:27:21 ./energy/sync_all_repos.ps1
+2025-08-01 08:27:21 ./energy/setup-env.sh
+2025-08-01 08:27:21 ./energy/scripts/list-recent-commits.ps1
+2025-08-01 08:27:21 ./energy/scripts/copilot-management/setup-copilot-instructions.ps1
+2025-08-01 08:27:21 ./energy/run_traffic_stats.sh
+2025-08-01 08:27:21 ./energy/run_traffic_stats.ps1
+2025-07-31 13:22:21 ./warp-spacetime-stability-controller/validate_frameworks.py
+2025-07-31 13:22:21 ./warp-spacetime-stability-controller/uq_requirements_completion_summary.py
+2025-07-31 13:22:21 ./warp-spacetime-stability-controller/tests/test_warp_stability_controller.py
+2025-07-31 13:22:21 ./warp-spacetime-stability-controller/test_validation_frameworks.py
+```
