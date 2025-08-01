@@ -17,12 +17,19 @@
 - Developed parameter sweep orchestrator in `src/simulation/parameter_sweep.py` for ansatz and grid sweeps.
 - Created unit tests in `tests/test_lattice_energy.py` validating energy density calculations and solver output shapes.
 - Created command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep execution and result summaries.
+- Created discretization accuracy test in `tests/test_lattice_discretization.py` verifying discrete Laplacian against analytical solution.
 
 ### Next Tasks
 1. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
 2. Implement finite-difference time-integration in `solve_klein_gordon` for dynamic field evolution.
+3. Configure CI workflow (e.g., GitHub Actions) to run unit tests, integration tests, and CLI demo automatically.
+4. Implement integration test for HDF5 export result validation (`test_parameter_sweep_export.py`).
+5. Review and optimize time-integration accuracy in `solve_klein_gordon` based on discretization test outcomes.
 
 ```latest-progress
+I’ve added a discretization unit test for the Laplacian and updated the progress log. Next, I recommend setting up a CI workflow to automatically run all tests and the CLI demo—ensuring stability—and writing the HDF5 export integration test. I can scaffold a GitHub Actions config if you’d like.
+```
+```progress
 V&V and UQ trackers updated with high- and medium-priority tasks for the lattice QFT solver, HDF5 exports, and parameter sensitivities. The progress log and test/demo scripts are in place. Next, I recommend implementing the discretization unit test or refining the solver's accuracy. Let me know if you’d like to proceed with those, or I can set up a CI workflow next.
 ```
 ```progress
