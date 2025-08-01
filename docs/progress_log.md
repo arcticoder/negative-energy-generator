@@ -23,6 +23,9 @@
 2. Implement finite-difference time-integration in `solve_klein_gordon` for dynamic field evolution.
 
 ```latest-progress
+V&V and UQ trackers updated with high- and medium-priority tasks for the lattice QFT solver, HDF5 exports, and parameter sensitivities. The progress log and test/demo scripts are in place. Next, I recommend implementing the discretization unit test or refining the solver's accuracy. Let me know if you’d like to proceed with those, or I can set up a CI workflow next.
+```
+```progress
 The CLI demo `lattice_sweep_demo.py` is in place and the progress log reflects it. The remaining tasks:
 
 1. Add V&V and UQ tracker entries for lattice solver validation.
