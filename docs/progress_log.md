@@ -16,13 +16,21 @@
 - Implementing 1+1D lattice QFT solver in `src/simulation/lattice_qft.py` for real scalar fields (finite-difference Klein–Gordon).
 - Developed parameter sweep orchestrator in `src/simulation/parameter_sweep.py` for ansatz and grid sweeps.
 - Created unit tests in `tests/test_lattice_energy.py` validating energy density calculations and solver output shapes.
+- Created command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep execution and result summaries.
 
 ### Next Tasks
-1. Create command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep results and HDF5 export.
-2. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
-3. Implement finite-difference time-integration in `solve_klein_gordon` for dynamic field evolution.
+1. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
+2. Implement finite-difference time-integration in `solve_klein_gordon` for dynamic field evolution.
 
 ```latest-progress
+The CLI demo `lattice_sweep_demo.py` is in place and the progress log reflects it. The remaining tasks:
+
+1. Add V&V and UQ tracker entries for lattice solver validation.
+2. Ensure the `solve_klein_gordon` integration is fully implemented (already updated earlier).
+
+Next, I’ll update the V&V and UQ ndjson files with validation and uncertainty tasks for the lattice solver. Let me know if that aligns!
+```
+```progress
 Unit tests for the lattice QFT solver and energy density are in place, and the progress log reflects that. Next up:
 
 1. Building the CLI demo at `scripts/lattice_sweep_demo.py`.
