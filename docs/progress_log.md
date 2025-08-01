@@ -33,12 +33,17 @@
 ### Progress Update
 - Fixed CI workflow matrix to quote Python versions to avoid parsing `3.10` as `3.1`.
 - CI run on GitHub Actions now recognizes Python 3.10 and 3.12 correctly.
+- Corrected YAML indentation for `strategy` section in CI workflow.
+- CI YAML now valid; pipeline should run successfully.
 
 ### Next Tasks
-- Validate CI run after fix.
-- Continue implementing integration tests for HDF5 export.
+- Validate CI run after indentation fix.
+- Implement HDF5 export integration test in `tests/test_parameter_sweep_export.py`.
 
 ```latest-progress
+I fixed the YAML indentation for the `strategy` block under `jobs.build` so the CI syntax is valid. Updated the progress log. Next, I'll implement the HDF5 export integration test at `tests/test_parameter_sweep_export.py`.
+```
+```progress
 I’ve quoted the Python versions in the CI matrix to prevent YAML misinterpretation (3.10 became 3.1). The workflow now correctly picks up 3.10 and 3.12. I updated the progress log—next, I’ll write the HDF5 export integration test.
 ```
 ```progress
@@ -80,8 +85,9 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 ```
 
 ```file-history
-~/Code/asciimath$ find . -type f \( -name "*.ps1" -o -name "*.py" -o -name "*.sh" -o -name "*.ndjson" -o -name "*.json" -o -name "*.md" \) -exec stat -c '%Y %n' {} \; | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-01 13:56:32 ./negative-energy-generator/docs/progress_log.md
+~/Code/asciimath$ find . -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\)$' -exec stat -c '%Y %n' {} \; | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
+2025-08-01 14:02:37 ./negative-energy-generator/docs/progress_log.md
+2025-08-01 14:00:26 ./negative-energy-generator/.github/workflows/ci.yml
 2025-08-01 09:28:10 ./negative-energy-generator/tests/test_qft_backend.py
 2025-08-01 09:28:10 ./negative-energy-generator/tests/test_lattice_energy.py
 2025-08-01 09:28:10 ./negative-energy-generator/tests/test_lattice_discretization.py
@@ -112,6 +118,7 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-08-01 08:27:21 ./energy/scripts/copilot-management/setup-copilot-instructions.ps1
 2025-08-01 08:27:21 ./energy/run_traffic_stats.sh
 2025-08-01 08:27:21 ./energy/run_traffic_stats.ps1
+2025-08-01 08:27:21 ./energy/environment.yml
 2025-08-01 08:27:21 ./energy/.vscode/launch.json
 2025-08-01 08:24:44 ./lqg-anec-framework/.github/instructions/copilot-instructions.md
 2025-08-01 08:23:17 ./lqg-ftl-metric-engineering/VnV-TODO.ndjson
@@ -119,6 +126,4 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-08-01 08:23:01 ./enhanced-simulation-hardware-abstraction-framework/VnV-TODO.ndjson
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/validate_frameworks.py
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/uq_requirements_completion_summary.py
-2025-07-31 13:22:21 ./warp-spacetime-stability-controller/tests/test_warp_stability_controller.py
-2025-07-31 13:22:21 ./warp-spacetime-stability-controller/test_validation_frameworks.py
 ```
