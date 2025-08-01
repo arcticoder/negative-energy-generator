@@ -15,19 +15,27 @@
 - UQ experiments: Monte Carlo sampling, time-step sensitivity, grid resolution analysis for QFT outputs.
 - Implementing 1+1D lattice QFT solver in `src/simulation/lattice_qft.py` for real scalar fields (finite-difference Klein–Gordon).
 - Developed parameter sweep orchestrator in `src/simulation/parameter_sweep.py` for ansatz and grid sweeps.
+- Created unit tests in `tests/test_lattice_energy.py` validating energy density calculations and solver output shapes.
 
 ### Next Tasks
-1. Write unit tests (`tests/test_lattice_energy.py`) validating ⟨T_{00}⟩ calculation over the lattice.
-2. Create command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep results and HDF5 export.
-3. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
+1. Create command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep results and HDF5 export.
+2. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
+3. Implement finite-difference time-integration in `solve_klein_gordon` for dynamic field evolution.
 
 ```latest-task
+Unit tests for the lattice QFT solver and energy density are in place, and the progress log reflects that. Next up:
+
+1. Building the CLI demo at `scripts/lattice_sweep_demo.py`.
+2. Updating V&V and UQ trackers with new lattice solver tasks.
+3. Adding finite-difference time integration logic to `solve_klein_gordon`.
+```
+```task
 I’ve scaffolded `parameter_sweep.py` for 1+1D lattice QFT sweeps and updated the progress log to reflect that. Next up:
 
 1. Creating unit tests in `tests/test_lattice_energy.py`.
 2. Developing a CLI demo script `scripts/lattice_sweep_demo.py`.
 3. Adding corresponding V&V/UQ tasks.
 ```
-```task
+```oldest-task
 I created a merge_wip.sh helper to install MPB via conda and merge all `wip` branches into `main` across your specified repos, then push the last one. You can run it directly to consolidate updates
 ```
