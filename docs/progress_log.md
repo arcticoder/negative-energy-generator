@@ -27,6 +27,9 @@
 5. Review and optimize time-integration accuracy in `solve_klein_gordon` based on discretization test outcomes.
 
 ```latest-progress
+I’ll proceed to implement `solve_klein_gordon`’s time integration in lattice_qft.py. 
+```
+```progress
 I’ve added a discretization unit test for the Laplacian and updated the progress log. Next, I recommend setting up a CI workflow to automatically run all tests and the CLI demo—ensuring stability—and writing the HDF5 export integration test. I can scaffold a GitHub Actions config if you’d like.
 ```
 ```progress
@@ -85,4 +88,4 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/uq_requirements_completion_summary.py
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/tests/test_warp_stability_controller.py
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/test_validation_frameworks.py
-```
+````
