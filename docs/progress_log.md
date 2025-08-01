@@ -46,6 +46,9 @@
 - CLI demo executed successfully, generated HDF5 output as expected.
 
 ```latest-progress
+The basic time integration test passed locally. I updated progress_log.md. Next, I’ll refine the solver’s accuracy like comparing to analytical solution for small `dt`.
+```
+```progress
 Local tests and the CLI demo ran successfully. The `pandas` dependency resolved the test failures, and the demo generated expected output. I updated the progress log—next, I’ll push these changes so CI can verify the remote workflow, then proceed with dynamic field evolution validation. 
 ```
 ```progress
@@ -103,7 +106,8 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 
 ```file-history
 ~/Code/asciimath$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-01 15:14:58 ./docs/progress_log.md
+2025-08-01 15:33:59 ./docs/progress_log.md
+2025-08-01 15:32:26 ./tests/test_time_integration_basic.py
 2025-08-01 15:05:30 ./pyproject.toml
 2025-08-01 15:05:30 ./.github/workflows/ci.yml
 2025-08-01 15:04:58 ./results/demo_sweep.h5
@@ -142,45 +146,19 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-07-31 13:22:17 ./test_multilayer.py
 2025-07-31 13:22:17 ./test_mathematical_enhancements.py
 2025-07-31 13:22:17 ./test_hardware_modules.py
-2025-07-31 13:22:17 ./test_complete_integration.py
 ````
 
 ```test-history
-$ export PYTHONPATH=src && /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python -m pytest --maxfail=1 --disable-warnings -q
-...........................................          [100%]
-43 passed, 1185 warnings in 413.74s (0:06:53)
-$ gh run view 16686236180
-
-X main CI · 16686236180
-Triggered via push about 1 minute ago
-
-JOBS
-X build (3.10) in 27s (ID 47236144928)
-X build (3.12) in 26s (ID 47236144930)
-  ✓ Set up job
-  ✓ Run actions/checkout@v3
-  ✓ Run actions/checkout@v3
-  ✓ Set PYTHONPATH
-  ✓ Set up Python
-  X Install dependencies
-  - Run unit tests
-  - Run CLI demo
-  - Post Set up Python
-  ✓ Post Run actions/checkout@v3
-  ✓ Post Run actions/checkout@v3
-  ✓ Complete job
-
-ANNOTATIONS
-X The operation was canceled.
-build (3.10): .github#123
-
-X The strategy configuration was canceled because "build._3_12" failed
-build (3.10): .github#1
-
-X Process completed with exit code 1.
-build (3.12): .github#114
-
-
-To see what failed, try: gh run view 16686236180 --log-failed
-View this run on GitHub: https://github.com/arcticoder/negative-energy-generator/actions/runs/16686236180
+$ export PYTHONPATH=src && /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python -m pytest tests/test_time_integration_basic.py --maxfail=1 --disable-warnings -q
+.                                                      [100%]
+1 passed, 1 warning in 0.20s
 ````
+
+## 2025-08-06
+
+### In Progress
+- Added `test_time_integration_basic.py` to validate `solve_klein_gordon` output shapes and finite values.
+
+### Next Tasks
+- Run the new test locally and confirm CI compatibility.
+- Refine time integration accuracy by comparing against analytical solution for small dt.
