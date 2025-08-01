@@ -22,21 +22,14 @@ import numpy as np
 from typing import Dict, Tuple, Optional, Callable, List, Any
 import warnings
 
-# Real FEniCS implementation for mechanical FEM simulation (legacy dolfin)
+# FEniCSx implementation for mechanical FEM simulation
 try:
-    from dolfin import (
-        RectangleMesh, Point, FunctionSpace,
-        TrialFunction, TestFunction, Function,
-        DirichletBC, Constant, inner, grad, dx, solve
-    )
+    import dolfinx
     FENICS_AVAILABLE = True
-    FunctionType = Function
+    # Placeholder for FEniCSx FunctionType
+    FunctionType = None
 except ImportError:
-    # FEniCS (dolfin) not available; using FEniCSx if installed
-    warnings.warn("Dolfin (legacy FEniCS) not available; will use FEniCSx if present.")
-    FENICS_AVAILABLE = False
-    # Mock FunctionType for fallback
-    FunctionType = type(None)
+    raise ImportError("FEniCSx (dolfinx) not available. Please install dolfinx via conda-forge.")
 
 def solve_plate(E, nu, t, q_val, L, res=50):
     """

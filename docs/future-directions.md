@@ -21,9 +21,11 @@ Key deliverables:
 
 ```python
 // filepath: C:\Users\%USERNAME%\Code\asciimath\negative-energy-generator\src\simulation\qft_backend.py#L163-L173
-# 3c) If you have an initial φ, π, evolve your QFT field
-# phi0 = np.random.randn(N)  # or load from your code
-# phi_t = core.evolve_QFT(phi0, steps=500, dt=0.01)
+# 3c) Evolve the QFT field for given initial φ and π conditions
+phi0 = np.random.randn(N)    # initial field configuration
+# Optionally load phi0 from previous state or external source
+phi_t = core.evolve_QFT(phi0, steps=500, dt=0.01)
+assert hasattr(phi_t, '__len__'), "evolve_QFT should return a sequence of field states"
 
 # 3d) Hand off to your Einstein Toolkit thorn if desired
 # (write out T_lqg to HDF5, then run ETK with a custom thorn)

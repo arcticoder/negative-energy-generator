@@ -20,85 +20,13 @@ import numpy as np
 from typing import List, Tuple, Dict, Optional, Callable
 import warnings
 
-# Real MEEP implementation for electromagnetic FDTD simulation
+# Require MEEP for FDTD simulations
 try:
     import meep as mp
-    MEEP_AVAILABLE = True
 except ImportError:
-    warnings.warn("MEEP not available. Install with: pip install meep")
-    MEEP_AVAILABLE = False
-    
-    # Fallback mock implementation
-    class MockMEEP:
-        """Mock MEEP interface when real MEEP is not available."""
-        
-        class Vector3:
-            def __init__(self, x=0, y=0, z=0):
-                self.x, self.y, self.z = x, y, z
-        
-        class Medium:
-            def __init__(self, epsilon=1.0, mu=1.0):
-                self.epsilon = epsilon
-                self.mu = mu
-        
-        class Cylinder:
-            def __init__(self, radius, material, center=None):
-                self.radius = radius
-                self.material = material
-                self.center = center or MockMEEP.Vector3()
-        
-        class GaussianSource:
-            def __init__(self, frequency, fwidth):
-                self.frequency = frequency
-                self.fwidth = fwidth
-        
-        class Source:
-            def __init__(self, src, component, center):
-                self.src = src
-                self.component = component
-                self.center = center
-        
-        class Simulation:
-            def __init__(self, cell_size, geometry, resolution, boundary_layers=None):
-                self.cell_size = cell_size
-                self.geometry = geometry
-                self.resolution = resolution
-                self.boundary_layers = boundary_layers or []
-                self.sources = []
-            
-            def add_source(self, source):
-                self.sources.append(source)
-            
-            def run(self, until):
-                # Mock simulation run
-                pass
-            
-            def harminv(self, harminv_obj):
-                # Mock Harminv analysis - return realistic mode frequencies
-                n_modes = np.random.randint(3, 8)
-                base_freq = 200e12  # THz
-                modes = []
-                for i in range(n_modes):
-                    freq = base_freq * (1 + 0.1 * np.random.randn())
-                    Q = 1000 + np.random.exponential(5000)
-                    modes.append(MockMode(freq, Q))
-                return modes
-        
-        class Harminv:
-            def __init__(self, component, center, fcen, df):
-                self.component = component
-                self.center = center
-                self.fcen = fcen
-                self.df = df
-        
-        class PML:
-            def __init__(self, thickness):
-                self.thickness = thickness
-        
-        # Constants and field components
-        Ez = 1
-    
-    mp = MockMEEP()
+    raise ImportError(
+        "MEEP not available. Please install meep via conda-forge, e.g.: `mamba install -n physics-suite -c conda-forge meep`"
+    )
 
 # Physical constants
 hbar = 1.054571817e-34

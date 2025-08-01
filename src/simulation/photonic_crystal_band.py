@@ -21,13 +21,11 @@ import numpy as np
 from typing import List, Tuple, Dict, Optional, Union
 import warnings
 
-# Real MPB implementation for photonic band structure
+# Require MPB for photonic band structure calculations
 try:
     import mpb
-    MPB_AVAILABLE = True
 except ImportError:
-    warnings.warn("MPB not available. Install from source or use mock")
-    MPB_AVAILABLE = False
+    raise ImportError("MPB not available. Please install MPB via conda-forge (mamba install -n physics-suite -c conda-forge mpb)")
 
 def compute_bands(geometry, resolution, k_points, num_bands):
     """
@@ -36,22 +34,17 @@ def compute_bands(geometry, resolution, k_points, num_bands):
     Plane-wave expansion eigenvalue problem:
     ∇×(1/μ ∇×E) = (ω/c)² ε(r) E
     """
-    if MPB_AVAILABLE:
-        ms = mpb.ModeSolver(
-            geometry=geometry,
-            resolution=resolution,
-            k_points=k_points,
-            num_bands=num_bands
-        )
-        ms.run_tm()
-        return np.array(ms.freqs)
-    else:
-        # Fallback to existing mock implementation
-        from .photonic_crystal_band import compute_bandstructure
-        # Convert parameters to mock format
-        lattice_constant = 1.0
-        k_point_list = [(k.x, k.y, k.z) if hasattr(k, 'x') else k for k in k_points]
-        return compute_bandstructure(lattice_constant, geometry, k_point_list, num_bands)
+    """
+    Compute photonic band structure using MPB ModeSolver.
+    """
+    ms = mpb.ModeSolver(
+        geometry=geometry,
+        resolution=resolution,
+        k_points=k_points,
+        num_bands=num_bands
+    )
+    ms.run_tm()
+    return np.array(ms.freqs)
 
 # Example usage:
 # kpath = [mpb.Vector3(0,0,0), mpb.Vector3(0.5,0,0), mpb.Vector3(0.5,0.5,0)]
