@@ -69,7 +69,8 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 ```
 
 ```file-history
-~/Code/asciimath$ find . -type f \( -name "*.ps1" -o -name "*.py" -o -name "*.sh" \) -exec stat -c '%Y %n' {} \; | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 25
+~/Code/asciimath$ find . -type f \( -name "*.ps1" -o -name "*.py" -o -name "*.sh" -o -name "*.ndjson" -o -name "*.json" -o -name "*.md" \) -exec stat -c '%Y %n' {} \; | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
+2025-08-01 13:39:37 ./negative-energy-generator/docs/progress_log.md
 2025-08-01 09:28:10 ./negative-energy-generator/tests/test_qft_backend.py
 2025-08-01 09:28:10 ./negative-energy-generator/tests/test_lattice_energy.py
 2025-08-01 09:28:10 ./negative-energy-generator/tests/test_lattice_discretization.py
@@ -81,7 +82,16 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-08-01 09:28:10 ./negative-energy-generator/src/simulation/electromagnetic_fdtd.py
 2025-08-01 09:28:10 ./negative-energy-generator/scripts/lattice_sweep_demo.py
 2025-08-01 09:28:10 ./negative-energy-generator/physics_driven_prototype_validation.py
+2025-08-01 09:28:10 ./negative-energy-generator/docs/literature_review.md
+2025-08-01 09:28:10 ./negative-energy-generator/docs/future-directions.md
+2025-08-01 09:28:10 ./negative-energy-generator/VnV-TODO.ndjson
+2025-08-01 09:28:10 ./negative-energy-generator/UQ-TODO.ndjson
+2025-08-01 09:28:10 ./negative-energy-generator/README.md
+2025-08-01 09:28:10 ./negative-energy-generator/.github/instructions/copilot-instructions.md
 2025-08-01 09:26:11 ./energy/tools/list-branches.sh
+2025-08-01 09:08:58 ./energy/tools/traffic_stats_history.ndjson
+2025-08-01 09:08:58 ./energy/tools/traffic_slope_history.json
+2025-08-01 09:08:58 ./energy/docs/progress_log.md
 2025-08-01 08:27:21 ./energy/tools/list_committed_repos.ps1
 2025-08-01 08:27:21 ./energy/tools/check_traffic_stats.py
 2025-08-01 08:27:21 ./energy/sync_all_repos_complete.ps1
@@ -91,6 +101,11 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-08-01 08:27:21 ./energy/scripts/copilot-management/setup-copilot-instructions.ps1
 2025-08-01 08:27:21 ./energy/run_traffic_stats.sh
 2025-08-01 08:27:21 ./energy/run_traffic_stats.ps1
+2025-08-01 08:27:21 ./energy/.vscode/launch.json
+2025-08-01 08:24:44 ./lqg-anec-framework/.github/instructions/copilot-instructions.md
+2025-08-01 08:23:17 ./lqg-ftl-metric-engineering/VnV-TODO.ndjson
+2025-08-01 08:23:17 ./lqg-first-principles-gravitational-constant/VnV-TODO.ndjson
+2025-08-01 08:23:01 ./enhanced-simulation-hardware-abstraction-framework/VnV-TODO.ndjson
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/validate_frameworks.py
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/uq_requirements_completion_summary.py
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/tests/test_warp_stability_controller.py
