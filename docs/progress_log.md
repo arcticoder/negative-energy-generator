@@ -20,3 +20,7 @@
 2. Write unit tests (`tests/test_lattice_energy.py`) validating ⟨T_{00}⟩ calculation over the lattice.
 3. Create command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep results and HDF5 export.
 4. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
+
+```latest-response
+I created a merge_wip.sh helper to install MPB via conda and merge all `wip` branches into `main` across your specified repos, then push the last one. You can run it directly to consolidate updates
+```
