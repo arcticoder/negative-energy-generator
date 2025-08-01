@@ -18,6 +18,7 @@
 - Created unit tests in `tests/test_lattice_energy.py` validating energy density calculations and solver output shapes.
 - Created command-line demo `scripts/lattice_sweep_demo.py` showcasing sweep execution and result summaries.
 - Created discretization accuracy test in `tests/test_lattice_discretization.py` verifying discrete Laplacian against analytical solution.
+- Scaffolding GitHub Actions CI workflow in `.github/workflows/ci.yml`.
 
 ### Next Tasks
 1. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
@@ -25,8 +26,14 @@
 3. Configure CI workflow (e.g., GitHub Actions) to run unit tests, integration tests, and CLI demo automatically.
 4. Implement integration test for HDF5 export result validation (`test_parameter_sweep_export.py`).
 5. Review and optimize time-integration accuracy in `solve_klein_gordon` based on discretization test outcomes.
+6. Test and iterate on the CI workflow to ensure it runs unit tests and the CLI demo successfully.
+7. Complete and validate the dynamic field evolution against discretization tests.
+8. Add integration tests for HDF5 export result validation in `tests/test_parameter_sweep_export.py`.
 
 ```latest-progress
+I’ve scaffolded the GitHub Actions CI workflow at ci.yml to install dependencies, run unit tests, and execute the CLI demo. The progress_log.md is updated accordingly. Next up, I’ll implement finite-difference time integration validation against discretization tests and write the HDF5 export integration test.
+```
+```progress
 I’ll proceed to implement `solve_klein_gordon`’s time integration in lattice_qft.py. 
 ```
 ```progress
@@ -88,4 +95,4 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/uq_requirements_completion_summary.py
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/tests/test_warp_stability_controller.py
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/test_validation_frameworks.py
-````
+```
