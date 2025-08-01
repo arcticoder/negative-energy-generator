@@ -22,7 +22,7 @@ import numpy as np
 from typing import Dict, Tuple, Optional, Callable, List, Any
 import warnings
 
-# Real FEniCS implementation for mechanical FEM simulation
+# Real FEniCS implementation for mechanical FEM simulation (legacy dolfin)
 try:
     from dolfin import (
         RectangleMesh, Point, FunctionSpace,
@@ -32,7 +32,8 @@ try:
     FENICS_AVAILABLE = True
     FunctionType = Function
 except ImportError:
-    print("⚠️  FEniCS not available. mechanical_fem.py:35")
+    # FEniCS (dolfin) not available; using FEniCSx if installed
+    warnings.warn("Dolfin (legacy FEniCS) not available; will use FEniCSx if present.")
     FENICS_AVAILABLE = False
     # Mock FunctionType for fallback
     FunctionType = type(None)

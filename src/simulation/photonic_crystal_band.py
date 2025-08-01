@@ -126,8 +126,9 @@ class MockMPB:
             
             self.freqs = freqs
 
-# Use mock MPB for demonstration (replace with: import mpb)
-mpb = MockMPB()
+# Use mock MPB for demonstration when real MPB is unavailable
+if not MPB_AVAILABLE:
+    mpb = MockMPB()
 
 def compute_bandstructure(lattice_constant: float,
                          geometry_lattice: List,

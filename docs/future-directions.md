@@ -36,14 +36,21 @@ Key deliverables:
 
 ### Prerequisite Validation & Uncertainty Tasks
 
-- **V&V (warp-field-coils):**
    - Time-profile smear for 0.25 m over 5 s (`time_smear_profile`)  
    - Sensor-field conversion calibration (`simulate_sensor_readout`)  
    - Discretization stability of warp field solver (`step_field` over 5 s)  
-- **UQ (negative-energy-generator):**
    - Monte Carlo sampling uncertainty in toy ansatz parameters α, β  
    - Grid resolution uncertainty propagation in `local_energy_density`  
    - Detection threshold sensitivity for `find_negative`
+ **V&V (negative-energy-generator):**
+    - Verify `PhysicsCore.build_toy_ansatz` produces correct tensor shape and values (`src/simulation/qft_backend.py:75-90`)
+    - Test `local_energy_density` and `find_negative` mask generation (`src/simulation/qft_backend.py:100-115`)
+    - Validate `evolve_QFT` handles 1D field input/output (`src/simulation/qft_backend.py:130-145`)
+ 
+ **UQ (negative-energy-generator):**
+    - Monte Carlo sampling uncertainty in toy ansatz parameters α, β  
+    - Grid resolution uncertainty propagation in `local_energy_density`  
+    - Detection threshold sensitivity for `find_negative`
 
 <!-- Additional prerequisite tasks from related modules -->
 - **V&V (lqg-first-principles-gravitational-constant):**
