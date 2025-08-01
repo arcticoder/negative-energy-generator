@@ -22,20 +22,20 @@
 2. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
 3. Implement finite-difference time-integration in `solve_klein_gordon` for dynamic field evolution.
 
-```latest-task
+```latest-progress
 Unit tests for the lattice QFT solver and energy density are in place, and the progress log reflects that. Next up:
 
 1. Building the CLI demo at `scripts/lattice_sweep_demo.py`.
 2. Updating V&V and UQ trackers with new lattice solver tasks.
 3. Adding finite-difference time integration logic to `solve_klein_gordon`.
 ```
-```task
+```progress
 I’ve scaffolded `parameter_sweep.py` for 1+1D lattice QFT sweeps and updated the progress log to reflect that. Next up:
 
 1. Creating unit tests in `tests/test_lattice_energy.py`.
 2. Developing a CLI demo script `scripts/lattice_sweep_demo.py`.
 3. Adding corresponding V&V/UQ tasks.
 ```
-```oldest-task
+```oldest-progress
 I created a merge_wip.sh helper to install MPB via conda and merge all `wip` branches into `main` across your specified repos, then push the last one. You can run it directly to consolidate updates
 ```
