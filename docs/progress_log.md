@@ -46,8 +46,12 @@
 - CLI demo executed successfully, generated HDF5 output as expected.
 - Modified CI install commands to use `python -m pip install` consistently, ensuring correct interpreter usage.
 - Bumped SciPy requirement to `>=1.11` to match available wheels for Python 3.12 and avoid install failures.
+- Added `pytest.ini` to configure test discovery under `tests/` and set `pythonpath = src`, simplifying local and CI runs.
 
 ```latest-progress
+I added a pytest.ini to target tests under tests and automatically include src in `PYTHONPATH`, streamlining test discovery and import resolution. Updated the progress log. Next, I'll rerun both local and CI tests to confirm everything passes, then start on dynamic field evolution accuracy comparisons.
+```
+```progress
 I updated the CI install steps to consistently use `python -m pip install`, and bumped SciPy to `>=1.11` for Python 3.12 wheel support. The progress log reflects these changes. Next, we should trigger CI to verify the remote workflow, then continue with dynamic field evolution accuracy testing.
 ```
 ```progress
@@ -98,20 +102,18 @@ Unit tests for the lattice QFT solver and energy density are in place, and the p
 2. Updating V&V and UQ trackers with new lattice solver tasks.
 3. Adding finite-difference time integration logic to `solve_klein_gordon`.
 ```
-```progress
+```oldest-progress
 I’ve scaffolded `parameter_sweep.py` for 1+1D lattice QFT sweeps and updated the progress log to reflect that. Next up:
 
 1. Creating unit tests in `tests/test_lattice_energy.py`.
 2. Developing a CLI demo script `scripts/lattice_sweep_demo.py`.
 3. Adding corresponding V&V/UQ tasks.
 ```
-```oldest-progress
-I created a merge_wip.sh helper to install MPB via conda and merge all `wip` branches into `main` across your specified repos, then push the last one. You can run it directly to consolidate updates
-```
 
 ```file-history
-~/Code/asciimath$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-01 16:29:26 ./docs/progress_log.md
+~/Code/asciimath$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
+2025-08-01 16:36:35 ./docs/progress_log.md
+2025-08-01 16:34:11 ./pytest.ini
 2025-08-01 16:28:34 ./tests/test_zero_initial_condition.py
 2025-08-01 16:28:34 ./pyproject.toml
 2025-08-01 16:28:34 ./.github/workflows/ci.yml
@@ -150,58 +152,12 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-07-31 13:22:17 ./test_validation.py
 2025-07-31 13:22:17 ./test_progress_tracking.py
 2025-07-31 13:22:17 ./test_multilayer.py
-2025-07-31 13:22:17 ./test_mathematical_enhancements.py
 ````
 
 ```test-history
 $ export PYTHONPATH=src && /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python -m pytest tests/test_time_integration_basic.py --maxfail=1 --disable-warnings -q
 .                                                      [100%]
-1 passed, 1 warning in 0.20s
-
-$ gh run watch 16687187836
-X main CI · 16687187836
-Triggered via push less than a minute ago
-
-JOBS
-X build (3.10) in 27s (ID 47238796881)
-  ✓ Set up job
-  ✓ Run actions/checkout@v3
-  ✓ Run actions/checkout@v3
-  ✓ Set PYTHONPATH
-  ✓ Set up Python
-  X Install dependencies
-  - Run unit tests
-  - Run CLI demo
-  - Post Set up Python
-  ✓ Post Run actions/checkout@v3
-  ✓ Post Run actions/checkout@v3
-  ✓ Complete job
-X build (3.12) in 29s (ID 47238796892)
-  ✓ Set up job
-  ✓ Run actions/checkout@v3
-  ✓ Run actions/checkout@v3
-  ✓ Set PYTHONPATH
-  ✓ Set up Python
-  X Install dependencies
-  - Run unit tests
-  - Run CLI demo
-  - Post Set up Python
-  ✓ Post Run actions/checkout@v3
-  ✓ Post Run actions/checkout@v3
-  ✓ Complete job
-
-ANNOTATIONS
-X Process completed with exit code 1.
-build (3.10): .github#123
-
-X The operation was canceled.
-build (3.12): .github#114
-
-X The strategy configuration was canceled because "build._3_10" failed
-build (3.12): .github#1
-
-
-X Run CI (16687187836) completed with 'failure'
+1 passed, 1 warning in 0.28s
 ````
 
 ## 2025-08-06
@@ -212,3 +168,10 @@ X Run CI (16687187836) completed with 'failure'
 ### Next Tasks
 - Run the new test locally and confirm CI compatibility.
 - Refine time integration accuracy by comparing against analytical solution for small dt.
+
+### Progress Update
+- Added `pytest.ini` to configure test discovery under `tests/` and set `pythonpath = src`, simplifying local and CI runs.
+
+### Next Tasks
+- Rerun CI and local tests to confirm configuration resolves any remaining import or discovery issues.
+- Begin dynamic field evolution accuracy comparisons with analytical solutions.
