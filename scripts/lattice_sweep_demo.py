@@ -5,11 +5,10 @@ Command-line demo showcasing lattice QFT parameter sweep and result inspection.
 import os
 import sys
 import pathlib
-import h5py
-from simulation.parameter_sweep import parameter_sweep
-
 # Ensure the 'src' directory is on the path for imports
 sys.path.insert(0, str(pathlib.Path(__file__).parent.parent / "src"))
+import h5py  # type: ignore
+from simulation.parameter_sweep import parameter_sweep  # type: ignore
 
 
 def main():

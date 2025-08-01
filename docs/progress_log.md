@@ -92,8 +92,8 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 
 ```file-history
 ~/Code/asciimath$ find . -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\)$' -exec stat -c '%Y %n' {} \; | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-01 14:44:47 ./negative-energy-generator/docs/progress_log.md
-2025-08-01 14:43:57 ./negative-energy-generator/scripts/lattice_sweep_demo.py
+2025-08-01 14:48:16 ./negative-energy-generator/docs/progress_log.md
+2025-08-01 14:47:10 ./negative-energy-generator/scripts/lattice_sweep_demo.py
 2025-08-01 14:43:57 ./negative-energy-generator/.github/workflows/ci.yml
 2025-08-01 14:26:14 ./negative-energy-generator/tests/test_parameter_sweep_export.py
 2025-08-01 09:28:10 ./negative-energy-generator/tests/test_qft_backend.py
@@ -132,4 +132,13 @@ I created a merge_wip.sh helper to install MPB via conda and merge all `wip` bra
 2025-08-01 08:23:17 ./lqg-first-principles-gravitational-constant/VnV-TODO.ndjson
 2025-08-01 08:23:01 ./enhanced-simulation-hardware-abstraction-framework/VnV-TODO.ndjson
 2025-07-31 13:22:21 ./warp-spacetime-stability-controller/validate_frameworks.py
+````
+
+```test-history
+~/Code/asciimath/negative-energy-generator$ python ./scripts/lattice_sweep_demo.py
+Traceback (most recent call last):
+  File "/home/sherri3/Code/asciimath/negative-energy-generator/./scripts/lattice_sweep_demo.py", line 10, in <module>
+    import h5py  # type: ignore
+    ^^^^^^^^^^^
+ModuleNotFoundError: No module named 'h5py'
 ```
