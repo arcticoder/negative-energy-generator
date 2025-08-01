@@ -17,6 +17,7 @@ Implement a unified PhysicsCore interface in `src/simulation/qft_backend.py` tha
 Key deliverables:
 - `PhysicsCore.build_LQG_tensor` toy implementation
 - `PhysicsCore.local_energy_density` and `PhysicsCore.find_negative`
+- `PhysicsCore.evolve_QFT` for time-evolution of QFT fields
 - Integration with grid-based QFT modules for state evolution
 
 ```python
