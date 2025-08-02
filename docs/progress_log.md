@@ -77,6 +77,9 @@
 - Begin writing documentation for solver API and usage examples.
 
 ```latest-progress
+Survey script fixed and rerun successfully, and CI updated to execute the backreaction demo. I've updated the progress log with those changes. Now, I'll analyze external_survey.json to identify candidate modules to integrate. 
+```
+```progress
 I’ve added a `survey_repos.py` script to catalog functions in the target repos, and updated the progress log with tasks to run the survey, identify useful modules, and integrate them into our project. Next step: run the survey, review the results, and begin importing relevant functions.
 ```
 ```progress
@@ -120,16 +123,16 @@ I fixed the YAML indentation for the `strategy` block under `jobs.build` so the 
 ```progress
 I’ve quoted the Python versions in the CI matrix to prevent YAML misinterpretation (3.10 became 3.1). The workflow now correctly picks up 3.10 and 3.12. I updated the progress log—next, I’ll write the HDF5 export integration test.
 ```
-```progress
-I’ve scaffolded the GitHub Actions CI workflow at ci.yml to install dependencies, run unit tests, and execute the CLI demo. The progress_log.md is updated accordingly. Next up, I’ll implement finite-difference time integration validation against discretization tests and write the HDF5 export integration test.
-```
 ```oldest-progress
-I’ll proceed to implement `solve_klein_gordon`’s time integration in lattice_qft.py. 
+I’ve scaffolded the GitHub Actions CI workflow at ci.yml to install dependencies, run unit tests, and execute the CLI demo. The progress_log.md is updated accordingly. Next up, I’ll implement finite-difference time integration validation against discretization tests and write the HDF5 export integration test.
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-01 21:17:10 ./docs/progress_log.md
+2025-08-01 21:41:44 ./docs/progress_log.md
+2025-08-01 21:40:13 ./scripts/survey_repos.py
+2025-08-01 21:40:13 ./.github/workflows/ci.yml
+2025-08-01 21:39:38 ./results/external_survey.json
 2025-08-01 21:10:40 ./tests/test_backreaction_export.py
 2025-08-01 21:10:40 ./scripts/backreaction_demo.py
 2025-08-01 20:56:42 ./tests/test_backreaction.py
@@ -159,7 +162,6 @@ I’ll proceed to implement `solve_klein_gordon`’s time integration in lattice
 2025-08-01 20:30:15 ./docs/future-directions.md
 2025-08-01 20:30:15 ./corrected_validation_results.json
 2025-08-01 20:30:15 ./README.md
-2025-08-01 20:30:15 ./.github/workflows/ci.yml
 2025-08-01 20:30:15 ./.github/instructions/copilot-instructions.md
 2025-07-31 19:25:44 ./working_validation_test.py
 2025-07-31 19:25:44 ./working_negative_energy_generator.py
@@ -167,11 +169,36 @@ I’ll proceed to implement `solve_klein_gordon`’s time integration in lattice
 2025-07-31 19:25:44 ./verify_prototype_stack.py
 2025-07-31 19:25:44 ./validation_summary.json
 2025-07-31 19:25:44 ./unified_exotic_matter_sourcing_results.json
-2025-07-31 19:25:44 ./unified_exotic_matter_sourcing.py
-2025-07-31 19:25:44 ./two_phase_summary.py
 ````
 
 ```test-history
-~/Code/asciimath/negative-energy-generator$ /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python -m pytest --maxfail=1
-bash: /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python: No such file or directory
+~/Code/asciimath/negative-energy-generator~/Code/asciimath/negative-energy-generator$ python -m pytest --maxfail=1
+=============================================== test session starts ================================================
+platform linux -- Python 3.13.2, pytest-8.4.1, pluggy-1.6.0
+rootdir: /home/echo_/Code/asciimath/negative-energy-generator
+configfile: pytest.ini
+testpaths: tests
+collected 2 items / 1 error                                                                                        
+
+====================================================== ERRORS ======================================================
+________________________________ ERROR collecting tests/test_backreaction_export.py ________________________________
+ImportError while importing test module '/home/echo_/Code/asciimath/negative-energy-generator/tests/test_backreaction_export.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../miniconda3/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_backreaction_export.py:5: in <module>
+    import h5py
+E   ModuleNotFoundError: No module named 'h5py'
+================================================= warnings summary =================================================
+src/simulation/quantum_circuit_sim.py:32
+  /home/echo_/Code/asciimath/negative-energy-generator/src/simulation/quantum_circuit_sim.py:32: UserWarning: QuTiP not available. Install with: pip install qutip
+    warnings.warn("QuTiP not available. Install with: pip install qutip")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============================================= short test summary info ==============================================
+ERROR tests/test_backreaction_export.py
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+=========================================== 1 warning, 1 error in 0.12s ============================================
 ```

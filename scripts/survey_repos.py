@@ -30,8 +30,9 @@ def survey_repos():
                     try:
                         with open(file_path, 'r') as f:
                             content = f.read()
-                        for match in re.finditer(r'^def\s+(\w+)\s*\(', content, re.MULTILINE):
-                            survey[repo].append({'file': os.path.relpath(file_path, repo_path), 'function': match.group(1)})
+                            # Match function definitions even if indented
+                            for match in re.finditer(r'^\s*def\s+(\w+)\s*\(', content, re.MULTILINE):
+                                survey[repo].append({'file': os.path.relpath(file_path, repo_path), 'function': match.group(1)})
                     except Exception:
                         continue
     # Write output

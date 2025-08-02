@@ -40,3 +40,5 @@ jobs:
 
       - name: Run CLI demo
         run: python scripts/lattice_sweep_demo.py
+      - name: Run backreaction demo
+        run: python scripts/backreaction_demo.py
