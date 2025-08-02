@@ -88,6 +88,11 @@
 - Begin writing documentation for solver API and usage examples.
 
 ```latest-progress
+The semiclassical backreaction API and numerical approach are now documented, including equations, code examples, and test coverage. The technical docs reflect solver usage and future enhancements. 
+
+Next, I'll integrate the backreaction steps into CI, refine any packaging, or begin adapting external ANEC modules into the core.
+```
+```progress
 Next, I'll integrate this stability check into CI, update V&V tasks for spatial backreaction, and start documenting the backreaction API in technical-documentation.md.
 ```
 ```progress
@@ -131,23 +136,21 @@ I added a CI step to export `PYTHONPATH` pointing to src, which should fix impor
 ```progress
 Logged the new HDF5 export test implementation in progress_log.md. Next, I'll run pytest locally, fix any import or packaging issues, and ensure the `simulation` module installs correctly so CI tests pass.
 ```
-```progress
-I switched the Python version matrix to a block sequence format to ensure YAML validity. Updated the progress log. Next up is rerunning CI to confirm the fix, then implementing the HDF5 export integration test.
-```
 ```oldest-progress
-I fixed the YAML indentation for the `strategy` block under `jobs.build` so the CI syntax is valid. Updated the progress log. Next, I'll implement the HDF5 export integration test at `tests/test_parameter_sweep_export.py`.
+I switched the Python version matrix to a block sequence format to ensure YAML validity. Updated the progress log. Next up is rerunning CI to confirm the fix, then implementing the HDF5 export integration test.
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-01 22:20:45 ./docs/progress_log.md
+2025-08-01 22:31:03 ./docs/technical-documentation.md
+2025-08-01 22:29:32 ./docs/progress_log.md
+2025-08-01 22:27:53 ./.github/workflows/ci.yml
 2025-08-01 22:16:31 ./tests/test_backreaction_wave.py
 2025-08-01 22:16:31 ./tests/test_backreaction_stability.py
 2025-08-01 22:16:31 ./src/simulation/backreaction.py
 2025-08-01 22:16:31 ./VnV-TODO.ndjson
 2025-08-01 21:57:00 ./pyproject.toml
 2025-08-01 21:40:13 ./scripts/survey_repos.py
-2025-08-01 21:40:13 ./.github/workflows/ci.yml
 2025-08-01 21:39:38 ./results/external_survey.json
 2025-08-01 21:10:40 ./tests/test_backreaction_export.py
 2025-08-01 21:10:40 ./scripts/backreaction_demo.py
@@ -179,7 +182,6 @@ I fixed the YAML indentation for the `strategy` block under `jobs.build` so the 
 2025-07-31 19:25:44 ./working_validation_test.py
 2025-07-31 19:25:44 ./working_negative_energy_generator.py
 2025-07-31 19:25:44 ./verify_prototype_stack_fixed.py
-2025-07-31 19:25:44 ./verify_prototype_stack.py
 ````
 
 ```test-history

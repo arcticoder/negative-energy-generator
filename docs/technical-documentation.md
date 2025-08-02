@@ -56,6 +56,53 @@ The negative energy generator framework is built on a multi-layered architecture
 - **Multi-Observatory**: Fermi-LAT, H.E.S.S., CTA, HAWC data integration
 - **Cross-Validation**: Consistency checks across quantum to cosmological scales
 
+#### 5. Semiclassical Backreaction Module
+
+This component implements a toy model of 1+1D semiclassical gravity, evolving a metric perturbation h(t,x) under a prescribed stress-energy source T_{00}(x).
+
+##### 5.1 Governing Equation
+We solve the discretized wave-like equation:
+```
+∂²_t h(t,x) = ∂²_x h(t,x) + 8πG T_{00}(x)
+```
+with periodic boundary conditions on x.
+
+##### 5.2 Numerical Integration
+We use a leapfrog scheme:
+```
+h_next = 2 h - h_prev + dt² [Δ_x h + 8π G T00]
+```
+where Δ_x h is the discrete Laplacian:
+```
+( h_{i+1} - 2 h_i + h_{i-1} ) / dx²
+```
+
+##### 5.3 API Usage
+```python
+from simulation.backreaction import solve_semiclassical_metric
+
+# Define spatial grid and source
+x = np.linspace(0, L, N)
+T00 = compute_energy_density(phi, phi_dt)
+
+# Run solver
+dt = 0.001
+steps = 100
+h_final, history = solve_semiclassical_metric(x, T00, dt=dt, steps=steps, G=1.0)
+
+# history has shape (steps+1, N), with history[0] = 0 and history[-1] = h_final
+```
+
+##### 5.4 Test Coverage
+- `tests/test_backreaction.py`: Basic shape and initial-step validation.
+- `tests/test_backreaction_export.py`: CLI demo export verification.
+- `tests/test_backreaction_wave.py`: Zero-source and propagation tests.
+- `tests/test_backreaction_stability.py`: First-step source growth validation.
+
+##### 5.5 Future Enhancements
+- Include spatial curvature contributions and variable grid spacing.
+- Extend to 2+1D backreaction models with dynamic T_{μν} feedback.
+
 ## Mathematical Framework
 
 ### Negative Energy Density Calculation
