@@ -23,6 +23,7 @@
 - Created semiclassical backreaction module in `src/simulation/backreaction.py`.
 - Developed backreaction CLI demo `scripts/backreaction_demo.py` with HDF5 export.
 - Added integration tests in `tests/test_backreaction.py` and `tests/test_backreaction_export.py`.
+- Created `scripts/survey_repos.py` to scan external repositories for functions and modules of interest.
 
 ### Next Tasks
 1. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
@@ -35,14 +36,17 @@
 8. Add integration tests for HDF5 export result validation in `tests/test_parameter_sweep_export.py`.
 9. Extend CI workflow to include backreaction demo execution and export validation.
 10. Refine documentation for backreaction API and usage examples in `docs/future-directions.md`.
-11. Analyze numerical stability of metric evolution and adjust solver parameters.
-12. Integrate backreaction UQ sensitivity tasks into automated analysis pipeline.
-13. Review overall CI to ensure all demos (lattice_sweep and backreaction) run successfully.
-14. Survey `lorentz-violation-pipeline` for stress-energy violation models to inform negative energy generation algorithms.
-15. Review `lqg-anec-framework` for averaged null energy condition (ANEC) checks and integrate relevant inequality constraints.
-16. Harvest vacuum energy prediction modules in `unified-lqg` and `unified-lqg-qft` to model macroscopic exotic state production.
-17. Integrate exotic matter density routines from `warp-bubble-exotic-matter-density` into lattice QFT and backreaction demos for realistic density profiles.
-18. Adapt advanced QFT toolchains from `warp-bubble-qft` to extend `evolve_QFT` and `detect_exotics` capabilities for larger-scale scenarios.
+11. Run `scripts/survey_repos.py` and analyze `results/external_survey.json` for candidates.
+12. Identify and import functions (e.g., ANEC checks, vacuum energy models) from external repos into our modules.
+13. Update documentation with mappings of external modules to our negative-energy-generator framework.
+14. Analyze numerical stability of metric evolution and adjust solver parameters.
+15. Integrate backreaction UQ sensitivity tasks into automated analysis pipeline.
+16. Review overall CI to ensure all demos (lattice_sweep and backreaction) run successfully.
+17. Survey `lorentz-violation-pipeline` for stress-energy violation models to inform negative energy generation algorithms.
+18. Review `lqg-anec-framework` for averaged null energy condition (ANEC) checks and integrate relevant inequality constraints.
+19. Harvest vacuum energy prediction modules in `unified-lqg` and `unified-lqg-qft` to model macroscopic exotic state production.
+20. Integrate exotic matter density routines from `warp-bubble-exotic-matter-density` into lattice QFT and backreaction demos for realistic density profiles.
+21. Adapt advanced QFT toolchains from `warp-bubble-qft` to extend `evolve_QFT` and `detect_exotics` capabilities for larger-scale scenarios.
 
 ### Progress Update
 - Changed CI workflow matrix `python-version` to block sequence to resolve YAML parsing errors.
@@ -73,6 +77,9 @@
 - Begin writing documentation for solver API and usage examples.
 
 ```latest-progress
+I’ve added a `survey_repos.py` script to catalog functions in the target repos, and updated the progress log with tasks to run the survey, identify useful modules, and integrate them into our project. Next step: run the survey, review the results, and begin importing relevant functions.
+```
+```progress
 I’ve added tasks to survey and integrate relevant modules from the listed repos (Lorentz violation, ANEC, unified LQG, and warp-bubble QFT/density) into our macroscopic negative energy framework. Next, I can begin exploration in each repo and propose specific code imports or adaptations...
 ```
 ```progress
@@ -83,7 +90,6 @@ I’ve added V&V tests for the `solve_semiclassical_metric` function and a UQ ta
 
 Next, I’ll set up the CI workflow file adjustments if needed, or begin writing the HDF5 export integration test.
 ```
-```progress
 ```progress
 Gradient normalization was added to `compute_energy_density`, and the energy conservation test now passes. The analytical solution inversion is confirmed. I updated the progress log. Next, we can refine solver parameters to improve accuracy, integrate these benchmarks into CI, or start writing solver API documentation. 
 ```
@@ -117,14 +123,8 @@ I’ve quoted the Python versions in the CI matrix to prevent YAML misinterpreta
 ```progress
 I’ve scaffolded the GitHub Actions CI workflow at ci.yml to install dependencies, run unit tests, and execute the CLI demo. The progress_log.md is updated accordingly. Next up, I’ll implement finite-difference time integration validation against discretization tests and write the HDF5 export integration test.
 ```
-```progress
-I’ll proceed to implement `solve_klein_gordon`’s time integration in lattice_qft.py. 
-```
-```progress
-I’ve added a discretization unit test for the Laplacian and updated the progress log. Next, I recommend setting up a CI workflow to automatically run all tests and the CLI demo—ensuring stability—and writing the HDF5 export integration test. I can scaffold a GitHub Actions config if you’d like.
-```
 ```oldest-progress
-V&V and UQ trackers updated with high- and medium-priority tasks for the lattice QFT solver, HDF5 exports, and parameter sensitivities. The progress log and test/demo scripts are in place. Next, I recommend implementing the discretization unit test or refining the solver's accuracy. Let me know if you’d like to proceed with those, or I can set up a CI workflow next.
+I’ll proceed to implement `solve_klein_gordon`’s time integration in lattice_qft.py. 
 ```
 
 ```file-history
