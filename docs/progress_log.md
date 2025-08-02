@@ -38,14 +38,11 @@
 11. Analyze numerical stability of metric evolution and adjust solver parameters.
 12. Integrate backreaction UQ sensitivity tasks into automated analysis pipeline.
 13. Review overall CI to ensure all demos (lattice_sweep and backreaction) run successfully.
-- Re-run CI to confirm fix.
-- Proceed with writing HDF5 export integration test.
-- Run `pytest` locally under the updated environment to replicate CI and collect any remaining errors.
-- Validate the CLI demo execution locally to ensure imports resolve correctly.
-- Install `pandas` locally in the venv and run `pytest` to validate all tests pass.
-- Verify CLI demo runs correctly under the updated environment.
-- Push changes and trigger CI to confirm remote workflow success.
-- Proceed with dynamic field evolution validation.
+14. Survey `lorentz-violation-pipeline` for stress-energy violation models to inform negative energy generation algorithms.
+15. Review `lqg-anec-framework` for averaged null energy condition (ANEC) checks and integrate relevant inequality constraints.
+16. Harvest vacuum energy prediction modules in `unified-lqg` and `unified-lqg-qft` to model macroscopic exotic state production.
+17. Integrate exotic matter density routines from `warp-bubble-exotic-matter-density` into lattice QFT and backreaction demos for realistic density profiles.
+18. Adapt advanced QFT toolchains from `warp-bubble-qft` to extend `evolve_QFT` and `detect_exotics` capabilities for larger-scale scenarios.
 
 ### Progress Update
 - Changed CI workflow matrix `python-version` to block sequence to resolve YAML parsing errors.
@@ -76,6 +73,9 @@
 - Begin writing documentation for solver API and usage examples.
 
 ```latest-progress
+I’ve added tasks to survey and integrate relevant modules from the listed repos (Lorentz violation, ANEC, unified LQG, and warp-bubble QFT/density) into our macroscopic negative energy framework. Next, I can begin exploration in each repo and propose specific code imports or adaptations...
+```
+```progress
 I’ve implemented the semiclassical backreaction module and demo, added export tests, and updated the progress log. Next I’ll integrate the backreaction demo into CI, enhance backreaction documentation, and refine solver stability. 
 ```
 ```progress
@@ -83,6 +83,7 @@ I’ve added V&V tests for the `solve_semiclassical_metric` function and a UQ ta
 
 Next, I’ll set up the CI workflow file adjustments if needed, or begin writing the HDF5 export integration test.
 ```
+```progress
 ```progress
 Gradient normalization was added to `compute_energy_density`, and the energy conservation test now passes. The analytical solution inversion is confirmed. I updated the progress log. Next, we can refine solver parameters to improve accuracy, integrate these benchmarks into CI, or start writing solver API documentation. 
 ```
@@ -173,129 +174,4 @@ V&V and UQ trackers updated with high- and medium-priority tasks for the lattice
 ```test-history
 ~/Code/asciimath/negative-energy-generator$ /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python -m pytest --maxfail=1
 bash: /home/sherri3/Code/asciimath/negative-energy-generator/.venv/bin/python: No such file or directory
-
-gh run view 16689808072 --log-failed
-build (3.10)    Install dependencies    ﻿2025-08-02T04:19:28.6299480Z ##[group]Run python -m pip install --upgrade pip
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6300842Z python -m pip install --upgrade pip
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6302126Z # Install core dependencies and test tools
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6303730Z python -m pip install numpy scipy matplotlib pandas h5py pytest
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6305268Z # Install the project package
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6306354Z python -m pip install .
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6401154Z shell: /usr/bin/bash -e {0}
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6402080Z env:
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6403490Z   PYTHONPATH: /home/runner/work/negative-energy-generator/negative-energy-generator/src
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6405492Z   pythonLocation: /opt/hostedtoolcache/Python/3.10.18/x64
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6407175Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.10.18/x64/lib/pkgconfig
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6408935Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.18/x64
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6410452Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.18/x64
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6411953Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.10.18/x64
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6413432Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.10.18/x64/lib
-build (3.10)    Install dependencies    2025-08-02T04:19:28.6414660Z ##[endgroup]
-build (3.10)    Install dependencies    2025-08-02T04:19:30.9314285Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages (25.1.1)
-build (3.10)    Install dependencies    2025-08-02T04:19:31.0126879Z Collecting pip
-build (3.10)    Install dependencies    2025-08-02T04:19:31.0571500Z   Downloading pip-25.2-py3-none-any.whl.metadata (4.7 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:31.0655008Z Downloading pip-25.2-py3-none-any.whl (1.8 MB)
-build (3.10)    Install dependencies    2025-08-02T04:19:31.1050018Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 63.0 MB/s eta 0:00:00
-build (3.10)    Install dependencies    2025-08-02T04:19:31.1413809Z Installing collected packages: pip
-build (3.10)    Install dependencies    2025-08-02T04:19:31.1415697Z   Attempting uninstall: pip
-build (3.10)    Install dependencies    2025-08-02T04:19:31.1421071Z     Found existing installation: pip 25.1.1
-build (3.10)    Install dependencies    2025-08-02T04:19:31.1902560Z     Uninstalling pip-25.1.1:
-build (3.10)    Install dependencies    2025-08-02T04:19:31.1964280Z       Successfully uninstalled pip-25.1.1
-build (3.10)    Install dependencies    2025-08-02T04:19:31.9557658Z Successfully installed pip-25.2
-build (3.10)    Install dependencies    2025-08-02T04:19:32.6777117Z Collecting numpy
-build (3.10)    Install dependencies    2025-08-02T04:19:32.7101272Z   Downloading numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:32.8538417Z Collecting scipy
-build (3.10)    Install dependencies    2025-08-02T04:19:32.8581087Z   Downloading scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.0170132Z Collecting matplotlib
-build (3.10)    Install dependencies    2025-08-02T04:19:33.0210792Z   Downloading matplotlib-3.10.5-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (11 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.1619350Z Collecting pandas
-build (3.10)    Install dependencies    2025-08-02T04:19:33.1660592Z   Downloading pandas-2.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (91 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.2452608Z Collecting h5py
-build (3.10)    Install dependencies    2025-08-02T04:19:33.2491912Z   Downloading h5py-3.14.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.7 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.2904288Z Collecting pytest
-build (3.10)    Install dependencies    2025-08-02T04:19:33.2946097Z   Downloading pytest-8.4.1-py3-none-any.whl.metadata (7.7 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.3838637Z Collecting contourpy>=1.0.1 (from matplotlib)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.4044909Z   Downloading contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.5 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.4178103Z Collecting cycler>=0.10 (from matplotlib)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.4214092Z   Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.5860581Z Collecting fonttools>=4.22.0 (from matplotlib)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.5905293Z   Downloading fonttools-4.59.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (107 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.6637448Z Collecting kiwisolver>=1.3.1 (from matplotlib)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.6674661Z   Downloading kiwisolver-1.4.8-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata (6.2 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.6950233Z Collecting packaging>=20.0 (from matplotlib)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.6987970Z   Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.9446616Z Collecting pillow>=8 (from matplotlib)
-build (3.10)    Install dependencies    2025-08-02T04:19:33.9488569Z   Downloading pillow-11.3.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.0378518Z Collecting pyparsing>=2.3.1 (from matplotlib)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.0415292Z   Downloading pyparsing-3.2.3-py3-none-any.whl.metadata (5.0 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.3304268Z Collecting python-dateutil>=2.7 (from matplotlib)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.3344647Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.3889957Z Collecting pytz>=2020.1 (from pandas)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.3927398Z   Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.4098580Z Collecting tzdata>=2022.7 (from pandas)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.4135533Z   Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.4402535Z Collecting exceptiongroup>=1 (from pytest)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.4439816Z   Downloading exceptiongroup-1.3.0-py3-none-any.whl.metadata (6.7 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.4547495Z Collecting iniconfig>=1 (from pytest)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.4584777Z   Downloading iniconfig-2.1.0-py3-none-any.whl.metadata (2.7 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.4723387Z Collecting pluggy<2,>=1.5 (from pytest)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.4761015Z   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.4979771Z Collecting pygments>=2.7.2 (from pytest)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.5016896Z   Downloading pygments-2.19.2-py3-none-any.whl.metadata (2.5 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.5182341Z Collecting tomli>=1 (from pytest)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.5218611Z   Downloading tomli-2.2.1-py3-none-any.whl.metadata (10 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.5437440Z Collecting typing-extensions>=4.6.0 (from exceptiongroup>=1->pytest)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.5474518Z   Downloading typing_extensions-4.14.1-py3-none-any.whl.metadata (3.0 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.5674304Z Collecting six>=1.5 (from python-dateutil>=2.7->matplotlib)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.5710163Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.5822281Z Downloading numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.8 MB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.7064305Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.8/16.8 MB 141.4 MB/s  0:00:00
-build (3.10)    Install dependencies    2025-08-02T04:19:34.7103814Z Downloading scipy-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37.7 MB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.8658756Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 37.7/37.7 MB 244.8 MB/s  0:00:00
-build (3.10)    Install dependencies    2025-08-02T04:19:34.8698829Z Downloading matplotlib-3.10.5-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (8.7 MB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.9136788Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.7/8.7 MB 204.3 MB/s  0:00:00
-build (3.10)    Install dependencies    2025-08-02T04:19:34.9174746Z Downloading pandas-2.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)
-build (3.10)    Install dependencies    2025-08-02T04:19:34.9768844Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 212.2 MB/s  0:00:00
-build (3.10)    Install dependencies    2025-08-02T04:19:34.9808792Z Downloading h5py-3.14.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.6 MB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0065600Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 188.6 MB/s  0:00:00
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0103886Z Downloading pytest-8.4.1-py3-none-any.whl (365 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0177524Z Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0237639Z Downloading contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (325 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0309529Z Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0366688Z Downloading exceptiongroup-1.3.0-py3-none-any.whl (16 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0424527Z Downloading fonttools-4.59.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.8 MB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0697491Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 182.7 MB/s  0:00:00
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0734105Z Downloading iniconfig-2.1.0-py3-none-any.whl (6.0 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0795725Z Downloading kiwisolver-1.4.8-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0912160Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 155.4 MB/s  0:00:00
-build (3.10)    Install dependencies    2025-08-02T04:19:35.0949606Z Downloading packaging-25.0-py3-none-any.whl (66 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.1013082Z Downloading pillow-11.3.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.6 MB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.1332449Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 218.4 MB/s  0:00:00
-build (3.10)    Install dependencies    2025-08-02T04:19:35.1372646Z Downloading pygments-2.19.2-py3-none-any.whl (1.2 MB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.1458461Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 163.7 MB/s  0:00:00
-build (3.10)    Install dependencies    2025-08-02T04:19:35.1496052Z Downloading pyparsing-3.2.3-py3-none-any.whl (111 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.1698859Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.1765785Z Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.1844925Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.1901674Z Downloading tomli-2.2.1-py3-none-any.whl (14 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.1958237Z Downloading typing_extensions-4.14.1-py3-none-any.whl (43 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.2021278Z Downloading tzdata-2025.2-py2.py3-none-any.whl (347 kB)
-build (3.10)    Install dependencies    2025-08-02T04:19:35.4692301Z Installing collected packages: pytz, tzdata, typing-extensions, tomli, six, pyparsing, pygments, pluggy, pillow, packaging, numpy, kiwisolver, iniconfig, fonttools, cycler, scipy, python-dateutil, h5py, exceptiongroup, contourpy, pytest, pandas, matplotlib
-build (3.10)    Install dependencies    2025-08-02T04:19:48.3341378Z
-build (3.10)    Install dependencies    2025-08-02T04:19:48.3394637Z Successfully installed contourpy-1.3.2 cycler-0.12.1 exceptiongroup-1.3.0 fonttools-4.59.0 h5py-3.14.0 iniconfig-2.1.0 kiwisolver-1.4.8 matplotlib-3.10.5 numpy-2.2.6 packaging-25.0 pandas-2.3.1 pillow-11.3.0 pluggy-1.6.0 pygments-2.19.2 pyparsing-3.2.3 pytest-8.4.1 python-dateutil-2.9.0.post0 pytz-2025.2 scipy-1.15.3 six-1.17.0 tomli-2.2.1 typing-extensions-4.14.1 tzdata-2025.2
-build (3.10)    Install dependencies    2025-08-02T04:19:48.8493979Z Processing /home/runner/work/negative-energy-generator/negative-energy-generator
-build (3.10)    Install dependencies    2025-08-02T04:19:48.8520286Z   Installing build dependencies: started
-build (3.10)    Install dependencies    2025-08-02T04:19:49.8023419Z   Installing build dependencies: finished with status 'done'
-build (3.10)    Install dependencies    2025-08-02T04:19:49.8030351Z   Getting requirements to build wheel: started
-build (3.10)    Install dependencies    2025-08-02T04:19:50.3874230Z   Getting requirements to build wheel: finished with status 'done'
-build (3.10)    Install dependencies    2025-08-02T04:19:50.3884292Z   Preparing metadata (pyproject.toml): started
-build (3.10)    Install dependencies    2025-08-02T04:19:50.5671190Z   Preparing metadata (pyproject.toml): finished with status 'done'
-build (3.10)    Install dependencies    2025-08-02T04:19:50.5708393Z Requirement already satisfied: numpy>=1.24 in /opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages (from negative_energy_generator==0.1.0) (2.2.6)
-build (3.10)    Install dependencies    2025-08-02T04:19:50.5715858Z Requirement already satisfied: scipy>=1.11 in /opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages (from negative_energy_generator==0.1.0) (1.15.3)
-build (3.10)    Install dependencies    2025-08-02T04:19:50.5722301Z Requirement already satisfied: matplotlib>=3.6 in /opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages (from negative_energy_generator==0.1.0) (3.10.5)
-build (3.10)    Install dependencies    2025-08-02T04:19:50.5727958Z Requirement already satisfied: pandas>=1.5 in /opt/hostedtoolcache/Python/3.10.18/x64/lib/python3.10/site-packages (from negative_energy_generator==0.1.0) (2.3.1)
-build (3.10)    Install dependencies    2025-08-02T04:19:50.6730624Z INFO: pip is looking at multiple versions of negative-energy-generator to determine which version is compatible with other requirements. This could take a while.
-build (3.10)    Install dependencies    2025-08-02T04:19:50.6734968Z ERROR: Could not find a version that satisfies the requirement lqg_first_principles_gravitational_constant>=0.1.0 (from negative-energy-generator) (from versions: none)
-build (3.10)    Install dependencies    2025-08-02T04:19:50.6744612Z ERROR: No matching distribution found for lqg_first_principles_gravitational_constant>=0.1.0
-build (3.10)    Install dependencies    2025-08-02T04:19:50.7282835Z ##[error]Process completed with exit code 1.
 ```
