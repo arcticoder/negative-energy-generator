@@ -16,6 +16,7 @@ dependencies = [
   "scipy>=1.11",
   "matplotlib>=3.6",
   "pandas>=1.5",
+  "h5py>=3.6.0",
   "lqg_first_principles_gravitational_constant>=0.1.0"
 ]
 
