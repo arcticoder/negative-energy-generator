@@ -35,10 +35,13 @@ def solve_semiclassical_metric(lattice_x, T00, dt=0.01, steps=100, G=G_CONST):
 
     # Precompute source term
     source = 8 * np.pi * G * T00
+    # Determine spatial step size from lattice
+    dx = lattice_x[1] - lattice_x[0] if lattice_x.size > 1 else 1.0
     for n in range(1, steps + 1):
-        # No spatial derivative in this toy model
-        # Leapfrog integration: h_next = 2*h - h_prev + dt^2 * source
-        h_next = 2 * h - h_prev + dt**2 * source
+        # Compute spatial Laplacian for wave-like propagation
+        laplacian = (np.roll(h, -1) - 2 * h + np.roll(h, 1)) / (dx**2)
+        # Leapfrog integration including source and spatial term
+        h_next = 2 * h - h_prev + dt**2 * (laplacian + source)
 
         # Update prev and current
         h_prev, h = h, h_next
