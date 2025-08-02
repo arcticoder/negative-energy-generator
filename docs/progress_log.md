@@ -93,6 +93,11 @@ The semiclassical backreaction API and numerical approach are now documented, in
 Next, I'll integrate the backreaction steps into CI, refine any packaging, or begin adapting external ANEC modules into the core.
 ```
 ```progress
+The semiclassical backreaction API and numerical approach are now documented, including equations, code examples, and test coverage. The technical docs reflect solver usage and future enhancements. 
+
+Next, I'll integrate the backreaction steps into CI, refine any packaging, or begin adapting external ANEC modules into the core.
+```
+```progress
 Next, I'll integrate this stability check into CI, update V&V tasks for spatial backreaction, and start documenting the backreaction API in technical-documentation.md.
 ```
 ```progress
@@ -133,17 +138,14 @@ Local tests and the CLI demo ran successfully. The `pandas` dependency resolved 
 ```progress
 I added a CI step to export `PYTHONPATH` pointing to src, which should fix import errors for the `simulation` package in both tests and the CLI demo. Updated the progress log accordingly. Next, I’ll rerun CI and address any further packaging issues.
 ```
-```progress
-Logged the new HDF5 export test implementation in progress_log.md. Next, I'll run pytest locally, fix any import or packaging issues, and ensure the `simulation` module installs correctly so CI tests pass.
-```
 ```oldest-progress
-I switched the Python version matrix to a block sequence format to ensure YAML validity. Updated the progress log. Next up is rerunning CI to confirm the fix, then implementing the HDF5 export integration test.
+Logged the new HDF5 export test implementation in progress_log.md. Next, I'll run pytest locally, fix any import or packaging issues, and ensure the `simulation` module installs correctly so CI tests pass.
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
+2025-08-02 08:38:57 ./docs/progress_log.md
 2025-08-01 22:31:03 ./docs/technical-documentation.md
-2025-08-01 22:29:32 ./docs/progress_log.md
 2025-08-01 22:27:53 ./.github/workflows/ci.yml
 2025-08-01 22:16:31 ./tests/test_backreaction_wave.py
 2025-08-01 22:16:31 ./tests/test_backreaction_stability.py
@@ -185,38 +187,28 @@ I switched the Python version matrix to a block sequence format to ensure YAML v
 ````
 
 ```test-history
-~/Code/asciimath/negative-energy-generator$ pytest --maxfail=1
-======================== test session starts =========================
+(base) ~/Code/asciimath/negative-energy-generator$ source .venv/bin/activate
+(.venv) ~/Code/asciimath/negative-energy-generator$ python -m pytest --maxfail=1
+==================================================================== test session starts ====================================================================
 platform linux -- Python 3.13.2, pytest-8.4.1, pluggy-1.6.0
-rootdir: /home/echo_/Code/asciimath/negative-energy-generator
+rootdir: ~/Code/asciimath/negative-energy-generator
 configfile: pytest.ini
 testpaths: tests
-collected 34 items                                                   
+collected 34 items
 
-tests/test_analytical_solution.py .                            [  2%]
-tests/test_backreaction.py .                                   [  5%]
-tests/test_backreaction_export.py .                            [  8%]
-tests/test_backreaction_stability.py .                         [ 11%]
-tests/test_backreaction_wave.py .                              [ 14%]
-tests/test_diagnostics.py .....................                [ 76%]
-tests/test_energy_conservation.py .                            [ 79%]
-tests/test_lattice_discretization.py .                         [ 82%]
-tests/test_lattice_energy.py ..                                [ 88%]
-tests/test_parameter_sweep_export.py .                         [ 91%]
-tests/test_qft_backend.py .                                    [ 94%]
-tests/test_time_integration_basic.py .                         [ 97%]
-tests/test_zero_initial_condition.py .                         [100%]
-========================= 34 passed in 2.03s ========================
+tests/test_analytical_solution.py .                                                                                                                   [  2%]
+tests/test_backreaction.py .                                                                                                                          [  5%]
+tests/test_backreaction_export.py .                                                                                                                   [  8%]
+tests/test_backreaction_stability.py .                                                                                                                [ 11%]
+tests/test_backreaction_wave.py .                                                                                                                     [ 14%]
+tests/test_diagnostics.py .....................                                                                                                       [ 76%]
+tests/test_energy_conservation.py .                                                                                                                   [ 79%]
+tests/test_lattice_discretization.py .                                                                                                                [ 82%]
+tests/test_lattice_energy.py ..                                                                                                                       [ 88%]
+tests/test_parameter_sweep_export.py .                                                                                                                [ 91%]
+tests/test_qft_backend.py .                                                                                                                           [ 94%]
+tests/test_time_integration_basic.py .                                                                                                                [ 97%]
+tests/test_zero_initial_condition.py .                                                                                                                [100%]
 
-$ gh run view 16690333773
-
-✓ main CI · 16690333773
-Triggered via push about 1 minute ago
-
-JOBS
-✓ build (3.12) in 31s (ID 47247168784)
-✓ build (3.10) in 31s (ID 47247168787)
-
-For more information about a job, try: gh run view --job=<job-id>
-View this run on GitHub: https://github.com/arcticoder/negative-energy-generator/actions/runs/16690333773
+==================================================================== 34 passed in 1.96s =====================================================================
 ```
