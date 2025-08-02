@@ -204,6 +204,17 @@ tests/test_parameter_sweep_export.py .                         [ 91%]
 tests/test_qft_backend.py .                                    [ 94%]
 tests/test_time_integration_basic.py .                         [ 97%]
 tests/test_zero_initial_condition.py .                         [100%]
-
 ========================= 34 passed in 2.03s ========================
+
+$ gh run view 16690333773
+
+✓ main CI · 16690333773
+Triggered via push about 1 minute ago
+
+JOBS
+✓ build (3.12) in 31s (ID 47247168784)
+✓ build (3.10) in 31s (ID 47247168787)
+
+For more information about a job, try: gh run view --job=<job-id>
+View this run on GitHub: https://github.com/arcticoder/negative-energy-generator/actions/runs/16690333773
 ```
