@@ -99,7 +99,19 @@
 - Create unit tests in `tests/test_dynamic_evolution.py` for energy conservation over dynamic evolution.
 - Update CI workflow to include dynamic evolution tests and a demo script.
 
+### Progress Update
+- Extended `solve_klein_gordon` to support recording full time-series of φ and φ̇ when `record_states=True`.
+- Implemented solver enhancement with state recording; next, author dynamic evolution tests and integrate into CI.
+
+### Next Tasks
+- Implement unit tests in `tests/test_dynamic_evolution.py` to verify energy conservation over dynamic evolution.
+- Update CI workflow to include new dynamic evolution tests.
+- Develop a demo script showcasing dynamic evolution and energy tracking.
+
 ```latest-progress
+I've updated `solve_klein_gordon` to record time-series data and logged the change. Next, I'll create unit tests for dynamic evolution energy conservation.
+```
+```progress
 I've logged the new work for August 3rd: updating V&V and UQ trackers, and planned enhancements to `solve_klein_gordon`. Next, I'll modify the solver to capture time series data.
 ```
 ```progress
@@ -142,21 +154,20 @@ Gradient normalization was added to `compute_energy_density`, and the energy con
 I added a pytest.ini to target tests under tests and automatically include src in `PYTHONPATH`, streamlining test discovery and import resolution. Updated the progress log. Next, I'll rerun both local and CI tests to confirm everything passes, then start on dynamic field evolution accuracy comparisons.
 ```
 ```progress
-I updated the CI install steps to consistently use `python -m pip install`, and bumped SciPy to `>=1.11` for Python 3.12 wheel support. The progress log reflects these changes. Next, we should trigger CI to verify the remote workflow, then continue with dynamic field evolution accuracy testing.
+I updated the CI install steps to consistently use `python -m pip install`, and bumped SciPy to `>=1.11` for Python 3.12 wheel support. The progress log reflects these changes. Next, we should trigger CI to verify the remote workflow, then continue with dynamic field evolution validation.
 ```
 ```progress
 The basic time integration test passed locally. I updated progress_log.md. Next, I’ll refine the solver’s accuracy like comparing to analytical solution for small `dt`.
 ```
-```progress
-Local tests and the CLI demo ran successfully. The `pandas` dependency resolved the test failures, and the demo generated expected output. I updated the progress log—next, I’ll push these changes so CI can verify the remote workflow, then proceed with dynamic field evolution validation. 
-```
 ```oldest-progress
-I added a CI step to export `PYTHONPATH` pointing to src, which should fix import errors for the `simulation` package in both tests and the CLI demo. Updated the progress log accordingly. Next, I’ll rerun CI and address any further packaging issues.
+Local tests and the CLI demo ran successfully. The `pandas` dependency resolved the test failures, and the demo generated expected output. I updated the progress log—next, I’ll push these changes so CI can verify the remote workflow, then proceed with dynamic field evolution validation. 
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-02 08:38:57 ./docs/progress_log.md
+2025-08-03 08:17:02 ./docs/progress_log.md
+2025-08-03 08:12:14 ./src/simulation/lattice_qft.py
+2025-08-03 08:04:31 ./docs/future-directions.md
 2025-08-01 22:31:03 ./docs/technical-documentation.md
 2025-08-01 22:27:53 ./.github/workflows/ci.yml
 2025-08-01 22:16:31 ./tests/test_backreaction_wave.py
@@ -182,14 +193,12 @@ I added a CI step to export `PYTHONPATH` pointing to src, which should fix impor
 2025-08-01 20:30:15 ./src/simulation/photonic_crystal_band.py
 2025-08-01 20:30:15 ./src/simulation/parameter_sweep.py
 2025-08-01 20:30:15 ./src/simulation/mechanical_fem.py
-2025-08-01 20:30:15 ./src/simulation/lattice_qft.py
 2025-08-01 20:30:15 ./src/simulation/electromagnetic_fdtd.py
 2025-08-01 20:30:15 ./scripts/lattice_sweep_demo.py
 2025-08-01 20:30:15 ./results/demo_sweep.h5
 2025-08-01 20:30:15 ./pytest.ini
 2025-08-01 20:30:15 ./physics_driven_prototype_validation.py
 2025-08-01 20:30:15 ./docs/literature_review.md
-2025-08-01 20:30:15 ./docs/future-directions.md
 2025-08-01 20:30:15 ./corrected_validation_results.json
 2025-08-01 20:30:15 ./README.md
 2025-08-01 20:30:15 ./.github/instructions/copilot-instructions.md
@@ -203,7 +212,7 @@ I added a CI step to export `PYTHONPATH` pointing to src, which should fix impor
 (.venv) ~/Code/asciimath/negative-energy-generator$ python -m pytest --maxfail=1
 ==================================================================== test session starts ====================================================================
 platform linux -- Python 3.13.2, pytest-8.4.1, pluggy-1.6.0
-rootdir: ~/Code/asciimath/negative-energy-generator
+rootdir: /home/echo_/Code/asciimath/negative-energy-generator
 configfile: pytest.ini
 testpaths: tests
 collected 34 items
@@ -222,5 +231,5 @@ tests/test_qft_backend.py .                                                     
 tests/test_time_integration_basic.py .                                                                                                                [ 97%]
 tests/test_zero_initial_condition.py .                                                                                                                [100%]
 
-==================================================================== 34 passed in 1.96s =====================================================================
+==================================================================== 34 passed in 2.15s =====================================================================
 ```

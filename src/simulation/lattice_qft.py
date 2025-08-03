@@ -3,7 +3,7 @@
 """
 import numpy as np
 
-def solve_klein_gordon(N, dx, dt, steps, alpha, beta, phi_init=None, phi_dt_init=None):
+def solve_klein_gordon(N, dx, dt, steps, alpha, beta, phi_init=None, phi_dt_init=None, record_states=False):
     """
     Solve the Klein-Gordon equation on a 1D lattice with periodic boundaries.
     Optional initial conditions phi_init and phi_dt_init can be provided.
@@ -21,8 +21,20 @@ def solve_klein_gordon(N, dx, dt, steps, alpha, beta, phi_init=None, phi_dt_init
     else:
         phi_prev = np.zeros(N)
 
+    # Initialize recording if requested
+    if record_states:
+        phi_history = [phi.copy()]
+        # initial time derivative
+        if phi_dt_init is not None:
+            phi_dt_history = [phi_dt_init.copy()]
+        else:
+            phi_dt_history = [np.zeros(N)]
+
     if steps == 0:
-        # Return initial derivative or zeros
+        # Return initial state and history if recording
+        if record_states:
+            return phi, (phi_dt_init.copy() if phi_dt_init is not None else np.zeros(N)), phi_history, phi_dt_history
+        # Otherwise, return initial derivative or zeros
         return phi, (phi_dt_init.copy() if phi_dt_init is not None else np.zeros(N))
 
     # Precompute coefficient
@@ -39,7 +51,18 @@ def solve_klein_gordon(N, dx, dt, steps, alpha, beta, phi_init=None, phi_dt_init
             phi_next -= beta * dt * (phi - phi_prev)
         # Step forward
         phi_prev, phi = phi, phi_next
+        # Record intermediate states if requested
+        if record_states:
+            phi_history.append(phi.copy())
+            # approximate time derivative at current step
+            phi_dt_curr = (phi - phi_prev) / dt
+            phi_dt_history.append(phi_dt_curr)
 
+    # Final output
+    if record_states:
+        # return last values along with full histories
+        phi_dt = phi_dt_history[-1]
+        return phi, phi_dt, phi_history, phi_dt_history
     # Compute time derivative (phi_t ≈ (phi - phi_prev) / dt)
     phi_dt = (phi - phi_prev) / dt
     return phi, phi_dt
