@@ -109,6 +109,9 @@
 - Develop a demo script showcasing dynamic evolution and energy tracking.
 
 ```latest-progress
+I've added the dynamic evolution demo script and test, updated the CI to run both the dynamic demo and its tests, and logged progress. Next, I'll run the dynamic demo locally and ensure its output is valid.
+```
+```progress
 I've updated `solve_klein_gordon` to record time-series data and logged the change. Next, I'll create unit tests for dynamic evolution energy conservation.
 ```
 ```progress
@@ -156,20 +159,19 @@ I added a pytest.ini to target tests under tests and automatically include src i
 ```progress
 I updated the CI install steps to consistently use `python -m pip install`, and bumped SciPy to `>=1.11` for Python 3.12 wheel support. The progress log reflects these changes. Next, we should trigger CI to verify the remote workflow, then continue with dynamic field evolution validation.
 ```
-```progress
-The basic time integration test passed locally. I updated progress_log.md. Next, I’ll refine the solver’s accuracy like comparing to analytical solution for small `dt`.
-```
 ```oldest-progress
-Local tests and the CLI demo ran successfully. The `pandas` dependency resolved the test failures, and the demo generated expected output. I updated the progress log—next, I’ll push these changes so CI can verify the remote workflow, then proceed with dynamic field evolution validation. 
+The basic time integration test passed locally. I updated progress_log.md. Next, I’ll refine the solver’s accuracy like comparing to analytical solution for small `dt`.
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-03 08:17:02 ./docs/progress_log.md
+2025-08-03 08:32:57 ./docs/progress_log.md
+2025-08-03 08:31:36 ./tests/test_dynamic_evolution.py
+2025-08-03 08:31:36 ./scripts/dynamic_evolution_demo.py
+2025-08-03 08:31:36 ./.github/workflows/ci.yml
 2025-08-03 08:12:14 ./src/simulation/lattice_qft.py
 2025-08-03 08:04:31 ./docs/future-directions.md
 2025-08-01 22:31:03 ./docs/technical-documentation.md
-2025-08-01 22:27:53 ./.github/workflows/ci.yml
 2025-08-01 22:16:31 ./tests/test_backreaction_wave.py
 2025-08-01 22:16:31 ./tests/test_backreaction_stability.py
 2025-08-01 22:16:31 ./src/simulation/backreaction.py
@@ -203,33 +205,88 @@ Local tests and the CLI demo ran successfully. The `pandas` dependency resolved 
 2025-08-01 20:30:15 ./README.md
 2025-08-01 20:30:15 ./.github/instructions/copilot-instructions.md
 2025-07-31 19:25:44 ./working_validation_test.py
-2025-07-31 19:25:44 ./working_negative_energy_generator.py
-2025-07-31 19:25:44 ./verify_prototype_stack_fixed.py
+
+~/Code/asciimath/negative-energy-generator$ ls .. -lt | awk '{print $1, $2, $5, $6, $7, $8, $9}'
+total 252
+drwxrwxrwx 14 12288 Aug 1 21:43 negative-energy-generator
+drwxrwxrwx 8 4096 Aug 1 20:49 casimir-nanopositioning-platform
+drwxrwxrwx 22 4096 Aug 1 20:49 enhanced-simulation-hardware-abstraction-framework
+drwxrwxrwx 9 4096 Aug 1 20:49 lqg-first-principles-fine-structure-constant
+drwxrwxrwx 9 4096 Aug 1 20:49 lqg-positive-matter-assembler
+drwxrwxrwx 9 4096 Aug 1 20:49 warp-spacetime-stability-controller
+drwxrwxrwx 28 12288 Aug 1 20:28 warp-bubble-optimizer
+drwxrwxrwx 23 4096 Jul 31 22:38 lqg-ftl-metric-engineering
+drwxrwxrwx 17 4096 Jul 31 22:19 energy
+drwxrwxrwx 7 4096 Jul 31 22:03 lqg-first-principles-gravitational-constant
+drwxrwxrwx 7 4096 Jul 31 19:25 warp-solver-equations
+drwxrwxrwx 5 4096 Jul 31 19:25 warp-signature-workflow
+drwxrwxrwx 9 4096 Jul 31 19:25 warp-sensitivity-analysis
+drwxrwxrwx 5 4096 Jul 31 19:25 warp-mock-data-generator
+drwxrwxrwx 9 4096 Jul 31 19:25 warp-lqg-midisuperspace
+drwxrwxrwx 16 4096 Jul 31 19:25 warp-field-coils
+drwxrwxrwx 7 4096 Jul 31 19:25 warp-discretization
+drwxrwxrwx 5 4096 Jul 31 19:25 warp-curvature-analysis
+drwxrwxrwx 6 4096 Jul 31 19:25 warp-convergence-analysis
+drwxrwxrwx 7 4096 Jul 31 19:25 warp-bubble-shape-catalog
+drwxrwxrwx 11 4096 Jul 31 19:25 warp-bubble-qft
+drwxrwxrwx 5 4096 Jul 31 19:25 warp-bubble-parameter-constraints
+drwxrwxrwx 5 4096 Jul 31 19:25 warp-bubble-mvp-simulator
+drwxrwxrwx 6 4096 Jul 31 19:25 warp-bubble-metric-ansatz
+drwxrwxrwx 5 4096 Jul 31 19:25 warp-bubble-exotic-matter-density
+drwxrwxrwx 5 4096 Jul 31 19:25 warp-bubble-einstein-equations
+drwxrwxrwx 9 4096 Jul 31 19:25 warp-bubble-coordinate-spec
+drwxrwxrwx 5 4096 Jul 31 19:25 warp-bubble-connection-curvature
+drwxrwxrwx 5 4096 Jul 31 19:25 warp-bubble-assemble-expressions
+drwxrwxrwx 37 12288 Jul 31 19:25 unified-lqg
+drwxrwxrwx 8 12288 Jul 31 19:25 unified-lqg-qft
+drwxrwxrwx 10 4096 Jul 31 19:25 unified-gut-polymerization
+drwxrwxrwx 8 4096 Jul 31 19:25 su2-node-matrix-elements
+drwxrwxrwx 11 4096 Jul 31 19:25 su2-3nj-uniform-closed-form
+drwxrwxrwx 4 4096 Jul 31 19:25 su2-3nj-recurrences
+drwxrwxrwx 10 4096 Jul 31 19:25 su2-3nj-generating-functional
+drwxrwxrwx 8 4096 Jul 31 19:25 su2-3nj-closedform
+drwxrwxrwx 8 4096 Jul 31 19:25 polymerized-lqg-replicator-recycler
+drwxrwxrwx 8 4096 Jul 31 19:25 polymerized-lqg-matter-transporter
+drwxrwxrwx 6 4096 Jul 31 19:25 polymer-fusion-framework
+drwxrwxrwx 9 4096 Jul 31 19:25 medical-tractor-array
+drwxrwxrwx 10 4096 Jul 31 19:25 lqg-volume-quantization-controller
+drwxrwxrwx 9 4096 Jul 31 19:25 lqg-volume-kernel-catalog
+drwxrwxrwx 10 4096 Jul 31 19:25 lqg-polymer-field-generator
+drwxrwxrwx 5 4096 Jul 31 19:25 lqg-cosmological-constant-predictor
+drwxrwxrwx 15 12288 Jul 31 19:25 lqg-anec-framework
+drwxrwxrwx 12 4096 Jul 31 19:25 lorentz-violation-pipeline
+drwxrwxrwx 12 4096 Jul 31 19:25 elemental-transmutator
+drwxrwxrwx 6 4096 Jul 31 19:25 casimir-ultra-smooth-fabrication-platform
+drwxrwxrwx 7 4096 Jul 31 19:25 casimir-tunable-permittivity-stacks
+drwxrwxrwx 7 4096 Jul 31 19:25 casimir-environmental-enclosure-platform
+drwxrwxrwx 8 4096 Jul 31 19:25 casimir-anti-stiction-metasurface-coatings
+drwxrwxrwx 7 4096 Jul 31 19:25 artificial-gravity-field-generator
 ````
 
 ```test-history
 (base) ~/Code/asciimath/negative-energy-generator$ source .venv/bin/activate
 (.venv) ~/Code/asciimath/negative-energy-generator$ python -m pytest --maxfail=1
-==================================================================== test session starts ====================================================================
+=========================================================== test session starts ============================================================
 platform linux -- Python 3.13.2, pytest-8.4.1, pluggy-1.6.0
 rootdir: /home/echo_/Code/asciimath/negative-energy-generator
 configfile: pytest.ini
 testpaths: tests
-collected 34 items
+collected 35 items                                                                                                                         
 
-tests/test_analytical_solution.py .                                                                                                                   [  2%]
-tests/test_backreaction.py .                                                                                                                          [  5%]
-tests/test_backreaction_export.py .                                                                                                                   [  8%]
-tests/test_backreaction_stability.py .                                                                                                                [ 11%]
-tests/test_backreaction_wave.py .                                                                                                                     [ 14%]
-tests/test_diagnostics.py .....................                                                                                                       [ 76%]
-tests/test_energy_conservation.py .                                                                                                                   [ 79%]
-tests/test_lattice_discretization.py .                                                                                                                [ 82%]
-tests/test_lattice_energy.py ..                                                                                                                       [ 88%]
-tests/test_parameter_sweep_export.py .                                                                                                                [ 91%]
-tests/test_qft_backend.py .                                                                                                                           [ 94%]
-tests/test_time_integration_basic.py .                                                                                                                [ 97%]
-tests/test_zero_initial_condition.py .                                                                                                                [100%]
+tests/test_analytical_solution.py .                                                                                                  [  2%]
+tests/test_backreaction.py .                                                                                                         [  5%]
+tests/test_backreaction_export.py .                                                                                                  [  8%]
+tests/test_backreaction_stability.py .                                                                                               [ 11%]
+tests/test_backreaction_wave.py .                                                                                                    [ 14%]
+tests/test_diagnostics.py .....................                                                                                      [ 74%]
+tests/test_dynamic_evolution.py .                                                                                                    [ 77%]
+tests/test_energy_conservation.py .                                                                                                  [ 80%]
+tests/test_lattice_discretization.py .                                                                                               [ 82%]
+tests/test_lattice_energy.py ..                                                                                                      [ 88%]
+tests/test_parameter_sweep_export.py .                                                                                               [ 91%]
+tests/test_qft_backend.py .                                                                                                          [ 94%]
+tests/test_time_integration_basic.py .                                                                                               [ 97%]
+tests/test_zero_initial_condition.py .                                                                                               [100%]
 
-==================================================================== 34 passed in 2.15s =====================================================================
+============================================================ 35 passed in 2.29s ============================================================
 ```
