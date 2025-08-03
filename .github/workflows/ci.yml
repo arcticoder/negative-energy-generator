@@ -58,3 +58,7 @@ jobs:
         run: |
           cd negative-energy-generator
           python scripts/backreaction_demo.py
+      - name: Run dynamic evolution demo
+        run: |
+          cd negative-energy-generator
+          python scripts/dynamic_evolution_demo.py
