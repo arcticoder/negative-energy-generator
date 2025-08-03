@@ -154,4 +154,8 @@ To scaffold exploration and clearly separate concerns, we may create dedicated G
 - `dark-fluid-workflow`: end-to-end pipeline for generating, backreacting, and analyzing dark fluid configurations.
 - `warp-fluid-coils`: analogues to `warp-field-coils` for containing and directing dark fluid flows.
 
+## 5. CI Workflow Enhancements
+
+- Configure CI triggers in `.github/workflows/ci.yml` to only run on changes to relevant code and test files (`src/**`, `tests/**`, `scripts/**`, `.github/workflows/**`), avoiding runs on unrelated files.
+
 ---

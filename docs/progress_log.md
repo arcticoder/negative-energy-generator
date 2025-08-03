@@ -125,6 +125,15 @@
 - Document the dynamic evolution demo in `docs/future-directions.md` and `docs/technical-documentation.md` (usage, parameters, output format).
 - Integrate dynamic evolution energy history analysis into UQ pipeline (e.g., add uncertainty tasks for time-series data).
 
+### Progress Update
+- Updated CI workflow triggers to only run on changes to code, tests, scripts, and CI configuration files.
+- CI triggers restricted to relevant paths; next is to test triggers and document in future directions.
+
+### Next Tasks
+- Test CI trigger changes by committing to a non-matching file and observing no CI run, then to a matching file and ensuring CI triggers.
+- Document trigger paths in `docs/future-directions.md`.
+- Continue integrating dynamic evolution results into UQ pipeline.
+
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN
 I've logged the dynamic evolution demo results and set the next tasks to document it and integrate the time-series into UQ workflows. Let me know if you'd like me to proceed with adding docs or UQ tasks!
