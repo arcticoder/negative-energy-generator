@@ -176,9 +176,7 @@ I’ve added V&V tests for the `solve_semiclassical_metric` function and a UQ ta
 Next, I’ll set up the CI workflow file adjustments if needed, or begin writing the HDF5 export integration test.
 ```
 ```progress
-## SECOND-OLDEST-PROGRESS-BEGIN
 Gradient normalization was added to `compute_energy_density`, and the energy conservation test now passes. The analytical solution inversion is confirmed. I updated the progress log. Next, we can refine solver parameters to improve accuracy, integrate these benchmarks into CI, or start writing solver API documentation. 
-## SECOND-OLDEST-PROGRESS-END
 ```
 ```oldest-progress
 ## OLDEST-PROGRESS-BEGIN
