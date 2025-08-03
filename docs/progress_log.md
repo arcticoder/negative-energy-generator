@@ -127,12 +127,14 @@
 
 ### Progress Update
 - Updated CI workflow triggers to only run on changes to code, tests, scripts, and CI configuration files.
-- CI triggers restricted to relevant paths; next is to test triggers and document in future directions.
+- CI triggers restricted to relevant paths; next is to test triggers and document in future directions.- Enabled verbose pytest output by adding `addopts = -v` to `pytest.ini` and updated future-directions.md accordingly.
 
 ### Next Tasks
 - Test CI trigger changes by committing to a non-matching file and observing no CI run, then to a matching file and ensuring CI triggers.
 - Document trigger paths in `docs/future-directions.md`.
-- Continue integrating dynamic evolution results into UQ pipeline.
+- Continue integrating dynamic evolution results into UQ pipeline.- Run pytest to confirm verbose output is applied.
+- Update CI workflow command to include `-v` or rely on pytest.ini settings.
+- Review test suite outputs and refine test descriptions where needed.
 
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN

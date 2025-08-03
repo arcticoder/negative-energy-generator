@@ -4,6 +4,7 @@ import h5py
 import numpy as np
 import pathlib
 import pytest
+import sys
 
 
 def test_dynamic_evolution_demo_export(tmp_path, monkeypatch):
@@ -21,7 +22,7 @@ def test_dynamic_evolution_demo_export(tmp_path, monkeypatch):
             f.unlink()
     
     # Run the demo script
-    cmd = ['python', 'scripts/dynamic_evolution_demo.py']
+    cmd = [sys.executable, 'scripts/dynamic_evolution_demo.py']
     subprocess.run(cmd, check=True)
 
     # Verify output file

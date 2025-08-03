@@ -113,6 +113,7 @@ Develop custom lattice code for a real scalar field in 1+1D to explore exotic st
 - `src/simulation/parameter_sweep.py`: orchestration of ansatz parameters and grid sweeps
 - `tests/test_lattice_energy.py`: unit tests validating ⟨T_{00}⟩ calculation
 - `scripts/lattice_sweep_demo.py`: command-line demonstration of sweep results
+- `scripts/dynamic_evolution_demo.py`: command-line demonstration of dynamic Klein–Gordon evolution and energy tracking
 
 ## 3. Semiclassical Backreaction in 1+1D
 
@@ -157,5 +158,8 @@ To scaffold exploration and clearly separate concerns, we may create dedicated G
 ## 5. CI Workflow Enhancements
 
 - Configure CI triggers in `.github/workflows/ci.yml` to only run on changes to relevant code and test files (`src/**`, `tests/**`, `scripts/**`, `.github/workflows/**`), avoiding runs on unrelated files.
+- Enhance pytest output verbosity:
+  - Add `addopts = -v` in `pytest.ini` to display test names and statuses during runs.
+  - Update CI test command to respect verbosity settings or include `-v` flag.
 
 ---
