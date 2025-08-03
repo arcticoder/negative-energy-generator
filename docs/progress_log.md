@@ -136,6 +136,17 @@
 - Update CI workflow command to include `-v` or rely on pytest.ini settings.
 - Review test suite outputs and refine test descriptions where needed.
 
+### Progress Update
+- Added UQ task for dynamic evolution energy series in `UQ-TODO.ndjson`.
+- Documented dynamic evolution demo in `docs/technical-documentation.md` and referenced it in `docs/future-directions.md`.
+- Updated CI test step to run pytest with verbose output.
+
+### Next Tasks
+- Run CI pipeline to verify documentation and UQ tasks are reflected.
+- Begin scripting the actual UQ analysis of dynamic evolution data in a notebook or script.
+- Update `docs/future-directions.md` with placeholder link to UQ analysis notebook.
+- UQ tasks and documentation for dynamic evolution demo completed; next, script UQ analysis workflows.
+
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN
 I've updated pytest verbosity and fixed the dynamic demo test subprocess to use the correct Python interpreter. Tests all pass now. I also documented the dynamic evolution demo in both docs. Next, I can start integrating this demo's results into the UQ pipeline as tasks.

@@ -61,7 +61,7 @@ jobs:
       - name: Run unit tests
         run: |
           cd negative-energy-generator
-          pytest --maxfail=1 --disable-warnings -q
+          pytest --maxfail=1 
 
       - name: Run CLI demo
         run: |

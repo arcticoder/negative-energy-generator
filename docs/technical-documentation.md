@@ -225,6 +225,32 @@ The Lambda leveraging framework directly enhances negative energy production thr
 
 This represents the culmination of cosmological constant research with practical application to sustainable negative energy generation at unprecedented efficiency levels.
 
+## Dynamic Evolution Demo
+
+Demonstrates the 1+1D Klein–Gordon field dynamic evolution with energy tracking over time. This showcases the time-series recording capability of `solve_klein_gordon` and energy density analysis.
+
+### Usage
+```bash
+cd negative-energy-generator
+python scripts/dynamic_evolution_demo.py
+```
+
+### Output
+- `results/dynamic_evolution.h5`: HDF5 file with dataset `energies`, an array of total energy values at each time step.
+- Console prints initial and final energy values to assess energy conservation.
+
+### Integrating into Analysis
+- Use the UQ pipeline to load `results/dynamic_evolution.h5`, compute statistical metrics (mean, std, max drift) across the time-series, and incorporate into uncertainty reports.
+
+```bash
+import h5py, numpy as np
+with h5py.File('results/dynamic_evolution.h5','r') as f:
+    energies = f['energies'][:]
+    print('Mean drift:', np.abs(energies - energies[0]).mean())
+```
+
+**Note**: Ensure `h5py` is installed in the environment before running this demo.
+
 ## Development Status
 
 ### ✅ Completed Components
