@@ -87,7 +87,22 @@
 - Integrate dynamic evolution accuracy benchmarks into CI as additional pytest jobs.
 - Begin writing documentation for solver API and usage examples.
 
+## 2025-08-03
+
+### In Progress
+- Updated V&V (VnV-TODO.ndjson) with tasks for lattice solver validation.
+- Updated UQ (UQ-TODO.ndjson) with time-step and grid resolution uncertainty tasks for lattice energy densities.
+- Planning enhancements to `solve_klein_gordon` to return time series of φ and φ̇ for dynamic evolution analysis.
+
+### Next Tasks
+- Extend `solve_klein_gordon` to optionally record intermediate states and compute energy density over time.
+- Create unit tests in `tests/test_dynamic_evolution.py` for energy conservation over dynamic evolution.
+- Update CI workflow to include dynamic evolution tests and a demo script.
+
 ```latest-progress
+I've logged the new work for August 3rd: updating V&V and UQ trackers, and planned enhancements to `solve_klein_gordon`. Next, I'll modify the solver to capture time series data.
+```
+```progress
 The semiclassical backreaction API and numerical approach are now documented, including equations, code examples, and test coverage. The technical docs reflect solver usage and future enhancements. 
 
 Next, I'll integrate the backreaction steps into CI, refine any packaging, or begin adapting external ANEC modules into the core.
@@ -135,11 +150,8 @@ The basic time integration test passed locally. I updated progress_log.md. Next,
 ```progress
 Local tests and the CLI demo ran successfully. The `pandas` dependency resolved the test failures, and the demo generated expected output. I updated the progress log—next, I’ll push these changes so CI can verify the remote workflow, then proceed with dynamic field evolution validation. 
 ```
-```progress
-I added a CI step to export `PYTHONPATH` pointing to src, which should fix import errors for the `simulation` package in both tests and the CLI demo. Updated the progress log accordingly. Next, I’ll rerun CI and address any further packaging issues.
-```
 ```oldest-progress
-Logged the new HDF5 export test implementation in progress_log.md. Next, I'll run pytest locally, fix any import or packaging issues, and ensure the `simulation` module installs correctly so CI tests pass.
+I added a CI step to export `PYTHONPATH` pointing to src, which should fix import errors for the `simulation` package in both tests and the CLI demo. Updated the progress log accordingly. Next, I’ll rerun CI and address any further packaging issues.
 ```
 
 ```file-history
