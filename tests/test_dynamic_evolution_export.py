@@ -7,7 +7,6 @@ import pytest
 
 
 def test_dynamic_evolution_demo_export(tmp_path, monkeypatch):
-    pytest.importorskip('h5py')
     """
     Integration test: run dynamic_evolution_demo and ensure HDF5 export contains energies dataset
     """

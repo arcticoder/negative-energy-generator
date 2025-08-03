@@ -117,7 +117,18 @@
 - Begin integrating dynamic evolution results into uncertainty quantification pipeline.
 - Test suite passed; proceeding to run dynamic evolution demo, inspect output, and update documentation.
 
+### Progress Update
+- Ran `scripts/dynamic_evolution_demo.py` locally; verified `results/dynamic_evolution.h5` contains energy history with <0.2% drift.
+- Dynamic evolution demo executed successfully; proceeding to document its usage and integrate into UQ workflows.
+
+### Next Tasks
+- Document the dynamic evolution demo in `docs/future-directions.md` and `docs/technical-documentation.md` (usage, parameters, output format).
+- Integrate dynamic evolution energy history analysis into UQ pipeline (e.g., add uncertainty tasks for time-series data).
+
 ```latest-progress
+I've logged the dynamic evolution demo results and set the next tasks to document it and integrate the time-series into UQ workflows. Let me know if you'd like me to proceed with adding docs or UQ tasks!
+```
+```progress
 I've updated the progress log with test results and queued up running the dynamic demo, documenting it, and integrating its data into UQ workflows. 
 ```
 ```progress
@@ -165,18 +176,15 @@ Next, I’ll set up the CI workflow file adjustments if needed, or begin writing
 ```progress
 Gradient normalization was added to `compute_energy_density`, and the energy conservation test now passes. The analytical solution inversion is confirmed. I updated the progress log. Next, we can refine solver parameters to improve accuracy, integrate these benchmarks into CI, or start writing solver API documentation. 
 ```
-```progress
-I added a pytest.ini to target tests under tests and automatically include src in `PYTHONPATH`, streamlining test discovery and import resolution. Updated the progress log. Next, I'll rerun both local and CI tests to confirm everything passes, then start on dynamic field evolution accuracy comparisons.
-```
 ```oldest-progress
-I updated the CI install steps to consistently use `python -m pip install`, and bumped SciPy to `>=1.11` for Python 3.12 wheel support. The progress log reflects these changes. Next, we should trigger CI to verify the remote workflow, then continue with dynamic field evolution validation.
+I added a pytest.ini to target tests under tests and automatically include src in `PYTHONPATH`, streamlining test discovery and import resolution. Updated the progress log. Next, I'll rerun both local and CI tests to confirm everything passes, then start on dynamic field evolution accuracy comparisons.
 ```
 
 ```file-history
-~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-03 08:45:53 ./docs/progress_log.md
-2025-08-03 08:44:52 ./results/dynamic_evolution.h5
-2025-08-03 08:40:08 ./tests/test_dynamic_evolution_export.py
+~/Code/asciimath/negative-energy-generator$  find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
+2025-08-03 10:30:01 ./docs/progress_log.md
+2025-08-03 08:58:10 ./results/dynamic_evolution.h5
+2025-08-03 08:55:39 ./tests/test_dynamic_evolution_export.py
 2025-08-03 08:31:36 ./tests/test_dynamic_evolution.py
 2025-08-03 08:31:36 ./scripts/dynamic_evolution_demo.py
 2025-08-03 08:31:36 ./.github/workflows/ci.yml
@@ -298,5 +306,9 @@ tests/test_qft_backend.py .                                                     
 tests/test_time_integration_basic.py .                                                                                                                [ 97%]
 tests/test_zero_initial_condition.py .                                                                                                                [100%]
 
-==================================================================== 36 passed in 2.35s =====================================================================
+==================================================================== 36 passed in 2.39s =====================================================================
+
+# Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
+~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
+0
 ```
