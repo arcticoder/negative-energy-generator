@@ -149,11 +149,11 @@
 
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN
-I've updated pytest verbosity and fixed the dynamic demo test subprocess to use the correct Python interpreter. Tests all pass now. I also documented the dynamic evolution demo in both docs. Next, I can start integrating this demo's results into the UQ pipeline as tasks.
+I've added the UQ task, updated documentation for the dynamic evolution demo, and adjusted CI to run verbose tests. All changes are logged in the progress log. Next, I'll start scripting the UQ analysis for dynamic evolution results.
 ## NEWEST-PROGRESS-END
 ```
 ```progress
-I've added the CI trigger restrictions in the workflow file, logged the change, and outlined next tasks to test and document the new triggers. Let me know if you'd like me to proceed with testing the CI or updating docs!
+I've updated pytest verbosity and fixed the dynamic demo test subprocess to use the correct Python interpreter. Tests all pass now. I also documented the dynamic evolution demo in both docs. Next, I can start integrating this demo's results into the UQ pipeline as tasks.
 ```
 ```progress
 I've added the dynamic evolution demo script and test, updated the CI to run both the dynamic demo and its tests, and logged progress. Next, I'll run the dynamic demo locally and ensure its output is valid.
@@ -189,33 +189,30 @@ I’ve added a `survey_repos.py` script to catalog functions in the target repos
 ```progress
 I’ve added tasks to survey and integrate relevant modules from the listed repos (Lorentz violation, ANEC, unified LQG, and warp-bubble QFT/density) into our macroscopic negative energy framework. Next, I can begin exploration in each repo and propose specific code imports or adaptations...
 ```
-```progress
-I’ve implemented the semiclassical backreaction module and demo, added export tests, and updated the progress log. Next I’ll integrate the backreaction demo into CI, enhance backreaction documentation, and refine solver stability. 
-```
+
 
 
 ```oldest-progress
 ## OLDEST-PROGRESS-BEGIN
-I’ve added V&V tests for the `solve_semiclassical_metric` function and a UQ task for T00 sensitivity in backreaction. The roadmap is expanding through all three future-direction stages. 
-
-Next, I’ll set up the CI workflow file adjustments if needed, or begin writing the HDF5 export integration test.
+I’ve implemented the semiclassical backreaction module and demo, added export tests, and updated the progress log. Next I’ll integrate the backreaction demo into CI, enhance backreaction documentation, and refine solver stability.
 ## OLDEST-PROGRESS-END
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
-2025-08-03 12:48:16 ./docs/progress_log.md
+2025-08-03 13:29:43 ./docs/progress_log.md
+2025-08-03 13:26:41 ./.github/workflows/ci.yml
+2025-08-03 13:26:05 ./docs/technical-documentation.md
+2025-08-03 13:26:05 ./UQ-TODO.ndjson
+2025-08-03 13:00:28 ./results/dynamic_evolution.h5
 2025-08-03 12:46:57 ./tests/test_dynamic_evolution_export.py
 2025-08-03 12:46:57 ./pytest.ini
 2025-08-03 12:46:57 ./docs/future-directions.md
-2025-08-03 12:46:13 ./results/dynamic_evolution.h5
 2025-08-03 12:41:28 ./tools/progress_log_processor.py
-2025-08-03 11:09:03 ./.github/workflows/ci.yml
 2025-08-03 08:31:36 ./tests/test_dynamic_evolution.py
 2025-08-03 08:31:36 ./scripts/dynamic_evolution_demo.py
 2025-08-03 08:12:14 ./src/simulation/lattice_qft.py
-2025-08-01 22:31:03 ./docs/technical-documentation.md
 2025-08-01 22:16:31 ./tests/test_backreaction_wave.py
 2025-08-01 22:16:31 ./tests/test_backreaction_stability.py
 2025-08-01 22:16:31 ./src/simulation/backreaction.py
@@ -225,7 +222,6 @@ Next, I’ll set up the CI workflow file adjustments if needed, or begin writing
 2025-08-01 21:10:40 ./tests/test_backreaction_export.py
 2025-08-01 21:10:40 ./scripts/backreaction_demo.py
 2025-08-01 20:56:42 ./tests/test_backreaction.py
-2025-08-01 20:56:42 ./UQ-TODO.ndjson
 2025-08-01 20:30:15 ./tests/test_zero_initial_condition.py
 2025-08-01 20:30:15 ./tests/test_time_integration_basic.py
 2025-08-01 20:30:15 ./tests/test_qft_backend.py
@@ -355,7 +351,7 @@ tests/test_qft_backend.py::test_qft_backend_smoke PASSED                 [ 94%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 97%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-============================== 36 passed in 2.89s ==============================
+============================== 36 passed in 3.35s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
