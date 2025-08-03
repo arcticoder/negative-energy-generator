@@ -147,6 +147,15 @@
 - Update `docs/future-directions.md` with placeholder link to UQ analysis notebook.
 - UQ tasks and documentation for dynamic evolution demo completed; next, script UQ analysis workflows.
 
+### Progress Update
+- Created `scripts/dynamic_evolution_analysis.py` to compute JSON metrics (mean, max, std drift) from dynamic evolution energy time-series.
+- Dynamic evolution analysis script added; next, test its output and integrate into CI.
+
+### Next Tasks
+- Run `scripts/dynamic_evolution_analysis.py` locally and validate `results/dynamic_evolution_metrics.json` contents.
+- Write an integration test `tests/test_dynamic_evolution_analysis.py` to verify generated metrics match expected tolerances.
+- Add CI workflow step to execute the analysis script and check metrics file presence.
+
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN
 I've added the UQ task, updated documentation for the dynamic evolution demo, and adjusted CI to run verbose tests. All changes are logged in the progress log. Next, I'll start scripting the UQ analysis for dynamic evolution results.
