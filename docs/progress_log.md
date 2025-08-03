@@ -108,7 +108,19 @@
 - Update CI workflow to include new dynamic evolution tests.
 - Develop a demo script showcasing dynamic evolution and energy tracking.
 
+### Progress Update
+- Ran pytest: 35 tests passed locally (dynamic evolution export test skipped if h5py unavailable).
+
+### Next Tasks
+- Run `scripts/dynamic_evolution_demo.py` locally, verify `results/dynamic_evolution.h5` is created and contains valid energy data.
+- Document the dynamic evolution demo in `docs/future-directions.md` and `docs/technical-documentation.md`.
+- Begin integrating dynamic evolution results into uncertainty quantification pipeline.
+- Test suite passed; proceeding to run dynamic evolution demo, inspect output, and update documentation.
+
 ```latest-progress
+I've updated the progress log with test results and queued up running the dynamic demo, documenting it, and integrating its data into UQ workflows. 
+```
+```progress
 I've added the dynamic evolution demo script and test, updated the CI to run both the dynamic demo and its tests, and logged progress. Next, I'll run the dynamic demo locally and ensure its output is valid.
 ```
 ```progress
@@ -156,16 +168,15 @@ Gradient normalization was added to `compute_energy_density`, and the energy con
 ```progress
 I added a pytest.ini to target tests under tests and automatically include src in `PYTHONPATH`, streamlining test discovery and import resolution. Updated the progress log. Next, I'll rerun both local and CI tests to confirm everything passes, then start on dynamic field evolution accuracy comparisons.
 ```
-```progress
-I updated the CI install steps to consistently use `python -m pip install`, and bumped SciPy to `>=1.11` for Python 3.12 wheel support. The progress log reflects these changes. Next, we should trigger CI to verify the remote workflow, then continue with dynamic field evolution validation.
-```
 ```oldest-progress
-The basic time integration test passed locally. I updated progress_log.md. Next, I’ll refine the solver’s accuracy like comparing to analytical solution for small `dt`.
+I updated the CI install steps to consistently use `python -m pip install`, and bumped SciPy to `>=1.11` for Python 3.12 wheel support. The progress log reflects these changes. Next, we should trigger CI to verify the remote workflow, then continue with dynamic field evolution validation.
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
-2025-08-03 08:32:57 ./docs/progress_log.md
+2025-08-03 08:45:53 ./docs/progress_log.md
+2025-08-03 08:44:52 ./results/dynamic_evolution.h5
+2025-08-03 08:40:08 ./tests/test_dynamic_evolution_export.py
 2025-08-03 08:31:36 ./tests/test_dynamic_evolution.py
 2025-08-03 08:31:36 ./scripts/dynamic_evolution_demo.py
 2025-08-03 08:31:36 ./.github/workflows/ci.yml
@@ -178,7 +189,6 @@ The basic time integration test passed locally. I updated progress_log.md. Next,
 2025-08-01 22:16:31 ./VnV-TODO.ndjson
 2025-08-01 21:57:00 ./pyproject.toml
 2025-08-01 21:40:13 ./scripts/survey_repos.py
-2025-08-01 21:39:38 ./results/external_survey.json
 2025-08-01 21:10:40 ./tests/test_backreaction_export.py
 2025-08-01 21:10:40 ./scripts/backreaction_demo.py
 2025-08-01 20:56:42 ./tests/test_backreaction.py
@@ -197,7 +207,6 @@ The basic time integration test passed locally. I updated progress_log.md. Next,
 2025-08-01 20:30:15 ./src/simulation/mechanical_fem.py
 2025-08-01 20:30:15 ./src/simulation/electromagnetic_fdtd.py
 2025-08-01 20:30:15 ./scripts/lattice_sweep_demo.py
-2025-08-01 20:30:15 ./results/demo_sweep.h5
 2025-08-01 20:30:15 ./pytest.ini
 2025-08-01 20:30:15 ./physics_driven_prototype_validation.py
 2025-08-01 20:30:15 ./docs/literature_review.md
@@ -266,27 +275,28 @@ drwxrwxrwx 7 4096 Jul 31 19:25 artificial-gravity-field-generator
 ```test-history
 (base) ~/Code/asciimath/negative-energy-generator$ source .venv/bin/activate
 (.venv) ~/Code/asciimath/negative-energy-generator$ python -m pytest --maxfail=1
-=========================================================== test session starts ============================================================
+==================================================================== test session starts ====================================================================
 platform linux -- Python 3.13.2, pytest-8.4.1, pluggy-1.6.0
 rootdir: /home/echo_/Code/asciimath/negative-energy-generator
 configfile: pytest.ini
 testpaths: tests
-collected 35 items                                                                                                                         
+collected 36 items
 
-tests/test_analytical_solution.py .                                                                                                  [  2%]
-tests/test_backreaction.py .                                                                                                         [  5%]
-tests/test_backreaction_export.py .                                                                                                  [  8%]
-tests/test_backreaction_stability.py .                                                                                               [ 11%]
-tests/test_backreaction_wave.py .                                                                                                    [ 14%]
-tests/test_diagnostics.py .....................                                                                                      [ 74%]
-tests/test_dynamic_evolution.py .                                                                                                    [ 77%]
-tests/test_energy_conservation.py .                                                                                                  [ 80%]
-tests/test_lattice_discretization.py .                                                                                               [ 82%]
-tests/test_lattice_energy.py ..                                                                                                      [ 88%]
-tests/test_parameter_sweep_export.py .                                                                                               [ 91%]
-tests/test_qft_backend.py .                                                                                                          [ 94%]
-tests/test_time_integration_basic.py .                                                                                               [ 97%]
-tests/test_zero_initial_condition.py .                                                                                               [100%]
+tests/test_analytical_solution.py .                                                                                                                   [  2%]
+tests/test_backreaction.py .                                                                                                                          [  5%]
+tests/test_backreaction_export.py .                                                                                                                   [  8%]
+tests/test_backreaction_stability.py .                                                                                                                [ 11%]
+tests/test_backreaction_wave.py .                                                                                                                     [ 13%]
+tests/test_diagnostics.py .....................                                                                                                       [ 72%]
+tests/test_dynamic_evolution.py .                                                                                                                     [ 75%]
+tests/test_dynamic_evolution_export.py .                                                                                                              [ 77%]
+tests/test_energy_conservation.py .                                                                                                                   [ 80%]
+tests/test_lattice_discretization.py .                                                                                                                [ 83%]
+tests/test_lattice_energy.py ..                                                                                                                       [ 88%]
+tests/test_parameter_sweep_export.py .                                                                                                                [ 91%]
+tests/test_qft_backend.py .                                                                                                                           [ 94%]
+tests/test_time_integration_basic.py .                                                                                                                [ 97%]
+tests/test_zero_initial_condition.py .                                                                                                                [100%]
 
-============================================================ 35 passed in 2.29s ============================================================
+==================================================================== 36 passed in 2.35s =====================================================================
 ```
