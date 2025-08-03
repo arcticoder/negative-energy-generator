@@ -2,6 +2,20 @@
 
 This document outlines the planned enhancements and exploratory objectives for the Negative Energy Generator framework.
 
+## 0. Exploratory Matter Model Framework
+
+We establish a flexible, imagination-driven pipeline for generating and testing negative-energy configurations by prescribing arbitrary stress-energy tensors:
+
+- Define parameterized ansatz for $T_{μν}(x; α, β, …)$ representing both standard and made-up exotic fields.
+- Use symbolic modeling (SymPy) and numerical engines (NumPy/SciPy, custom lattice QFT, or QuTiP) to compute local energy densities and expectation values $⟨T_{μν}⟩$.
+- Perform automated energy-condition checks: compute $T_{μν}u^μu^ν$ for key observers (static and co-moving) and flag negative regions, guarding against numerical artifacts.
+- Keep matter injection decoupled: treat $T_{μν}$ as pure input, then hand off to backreaction or GR solvers (semiclassical 1+1D or full Einstein Toolkit) in later phases.
+- Maintain modular self-tests (energy condition checkers, constraint monitors) to ensure correctness and avoid bias.
+
+This strategy keeps each stage—field-only sweeps, semiclassical backreaction, and full GR injection—modular, testable, and driven by creative ansatz exploration.
+
+---
+
 ## 1. Toy QFT Physics Backend
 
 Implement a unified PhysicsCore interface in `src/simulation/qft_backend.py` that:
