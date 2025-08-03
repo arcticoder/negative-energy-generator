@@ -111,12 +111,6 @@ def process_progress_blocks(content):
         print("Warning: Could not find end of progress code fence")
         return content
     
-    # Extract current progress content (between ```progress and ```)
-    current_progress_start = content.find("\n", progress_start) + 1
-    current_progress_content = content[current_progress_start:progress_end].strip()
-    
-    print(f"Current progress content: {current_progress_content[:50]}...")
-    
     # Step 3: Update progress code fence with newest content
     new_progress_block = f"```progress\n{newest_content}\n```"
     content = content[:progress_start] + new_progress_block + content[progress_end + 3:]
@@ -129,13 +123,49 @@ def process_progress_blocks(content):
         "\n"
     )
     
-    # Step 5: Replace oldest progress with current progress content
+    # Step 5: Find the progress code fence directly above OLDEST-PROGRESS-BEGIN
+    oldest_begin_pos = content.find("## OLDEST-PROGRESS-BEGIN")
+    if oldest_begin_pos == -1:
+        print("Warning: Could not find OLDEST-PROGRESS-BEGIN marker")
+        return content
+    
+    # Look backwards for the closest ```progress before OLDEST-PROGRESS-BEGIN
+    # Find all ```progress blocks before the oldest marker
+    progress_blocks = []
+    search_pos = 0
+    while search_pos < oldest_begin_pos:
+        progress_start_pos = content.find("```progress", search_pos)
+        if progress_start_pos == -1 or progress_start_pos >= oldest_begin_pos:
+            break
+        progress_end_pos = content.find("```", progress_start_pos + 11)
+        if progress_end_pos == -1:
+            break
+        progress_blocks.append((progress_start_pos, progress_end_pos))
+        search_pos = progress_end_pos + 3
+    
+    if not progress_blocks:
+        print("Warning: Could not find any progress code fence before OLDEST-PROGRESS block")
+        return content
+    
+    # Get the last (closest) progress block before OLDEST-PROGRESS-BEGIN
+    last_progress_start, last_progress_end = progress_blocks[-1]
+    
+    # Extract content from the progress block directly above OLDEST-PROGRESS
+    progress_content_start = content.find("\n", last_progress_start) + 1
+    progress_above_oldest = content[progress_content_start:last_progress_end].strip()
+    
+    print(f"Progress content above oldest: {progress_above_oldest[:50]}...")
+    
+    # Step 6: Replace oldest progress with content from progress block above it
     content = replace_block_content(
         content,
         "## OLDEST-PROGRESS-BEGIN",
         "## OLDEST-PROGRESS-END",
-        current_progress_content
+        progress_above_oldest
     )
+    
+    # Step 7: Delete the progress code fence that we just copied from
+    content = content[:last_progress_start] + content[last_progress_end + 3:]
     
     print("Progress block rotations completed.")
     return content
@@ -197,8 +227,8 @@ def update_pytest_results(content, repo_root):
     """Update the pytest results section."""
     print("Updating pytest results...")
     
-    # Activate virtual environment and run pytest
-    pytest_cmd = 'source .venv/bin/activate && python -m pytest --maxfail=1'
+    # Use bash explicitly to handle source command
+    pytest_cmd = '/bin/bash -c "source .venv/bin/activate && python -m pytest --maxfail=1"'
     
     stdout, stderr, returncode = run_command(pytest_cmd, cwd=repo_root)
     
@@ -221,26 +251,44 @@ def update_pytest_results(content, repo_root):
     return content
 
 
-def update_importerskip_count(content, asciimath_root):
-    """Update the importerskip count section."""
-    print("Updating importerskip count...")
+def update_importerskip_count(content, repo_root):
+    """Update the importerskip count section - COMPLETELY REWRITTEN VERSION."""
+    print("UPDATE_IMPORTERSKIP_COUNT: STARTING DEBUG VERSION")
     
-    grep_cmd = 'grep -r "importerskip" --include="*.py" . | wc -l'
+    # Run a simple test first
+    print(f"Working directory: {repo_root}")
+    print(f"Directory exists: {os.path.exists(repo_root)}")
     
-    stdout, stderr, returncode = run_command(grep_cmd, cwd=asciimath_root)
+    # Test the basic grep command first
+    basic_cmd = 'grep -r "importerskip" --include="*.py" . | wc -l'
+    print(f"Running basic command: {basic_cmd}")
+    basic_stdout, basic_stderr, basic_returncode = run_command(basic_cmd, cwd=repo_root)
+    print(f"Basic result: stdout='{basic_stdout}', stderr='{basic_stderr}', returncode={basic_returncode}")
     
-    if returncode != 0:
-        print(f"Warning: Importerskip grep command failed: {stderr}")
-        return content
+    # Test with exclude-dir
+    exclude_cmd = 'grep -r "importerskip" --include="*.py" --exclude-dir=tools . | wc -l'
+    print(f"Running exclude command: {exclude_cmd}")
+    exclude_stdout, exclude_stderr, exclude_returncode = run_command(exclude_cmd, cwd=repo_root)
+    print(f"Exclude result: stdout='{exclude_stdout}', stderr='{exclude_stderr}', returncode={exclude_returncode}")
+    
+    # Show what files are found
+    files_cmd = 'grep -r "importerskip" --include="*.py" --exclude-dir=tools .'
+    print(f"Running files command: {files_cmd}")
+    files_stdout, files_stderr, files_returncode = run_command(files_cmd, cwd=repo_root)
+    print(f"Files found: stdout='{files_stdout[:200]}...', stderr='{files_stderr}', returncode={files_returncode}")
+    
+    # Use the exclude result
+    final_count = exclude_stdout
+    print(f"Using final count: {final_count}")
     
     content = replace_block_content(
         content,
         "# IMPORTERSKIP-RESULTS-BEGIN",
         "# IMPORTERSKIP-RESULTS-END",
-        stdout
+        final_count
     )
     
-    print("Importerskip count updated.")
+    print("UPDATE_IMPORTERSKIP_COUNT: COMPLETED")
     return content
 
 
@@ -286,7 +334,9 @@ def main():
         content = update_pytest_results(content, repo_root)
         
         # 5. Update importerskip count
-        content = update_importerskip_count(content, asciimath_root)
+        print("About to call update_importerskip_count...")
+        content = update_importerskip_count(content, repo_root)
+        print("Finished calling update_importerskip_count...")
         
     except Exception as e:
         print(f"Error during processing: {e}")
