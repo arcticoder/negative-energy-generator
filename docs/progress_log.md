@@ -158,11 +158,11 @@
 
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN
-I've added the UQ task, updated documentation for the dynamic evolution demo, and adjusted CI to run verbose tests. All changes are logged in the progress log. Next, I'll start scripting the UQ analysis for dynamic evolution results.
+I've scaffolded a dynamic evolution analysis script to compute drift metrics and logged progress. Next, I'll implement tests to validate the metrics and update CI to run this analysis.
 ## NEWEST-PROGRESS-END
 ```
 ```progress
-I've updated pytest verbosity and fixed the dynamic demo test subprocess to use the correct Python interpreter. Tests all pass now. I also documented the dynamic evolution demo in both docs. Next, I can start integrating this demo's results into the UQ pipeline as tasks.
+I've added the UQ task, updated documentation for the dynamic evolution demo, and adjusted CI to run verbose tests. All changes are logged in the progress log. Next, I'll start scripting the UQ analysis for dynamic evolution results.
 ```
 ```progress
 I've added the dynamic evolution demo script and test, updated the CI to run both the dynamic demo and its tests, and logged progress. Next, I'll run the dynamic demo locally and ensure its output is valid.
@@ -195,26 +195,21 @@ Survey script fixed and rerun successfully, and CI updated to execute the backre
 ```progress
 I’ve added a `survey_repos.py` script to catalog functions in the target repos, and updated the progress log with tasks to run the survey, identify useful modules, and integrate them into our project. Next step: run the survey, review the results, and begin importing relevant functions.
 ```
-```progress
-I’ve added tasks to survey and integrate relevant modules from the listed repos (Lorentz violation, ANEC, unified LQG, and warp-bubble QFT/density) into our macroscopic negative energy framework. Next, I can begin exploration in each repo and propose specific code imports or adaptations...
-```
-
-
-
 ```oldest-progress
 ## OLDEST-PROGRESS-BEGIN
-I’ve implemented the semiclassical backreaction module and demo, added export tests, and updated the progress log. Next I’ll integrate the backreaction demo into CI, enhance backreaction documentation, and refine solver stability.
+I’ve added tasks to survey and integrate relevant modules from the listed repos (Lorentz violation, ANEC, unified LQG, and warp-bubble QFT/density) into our macroscopic negative energy framework. Next, I can begin exploration in each repo and propose specific code imports or adaptations...
 ## OLDEST-PROGRESS-END
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
-2025-08-03 13:29:43 ./docs/progress_log.md
+2025-08-03 16:50:01 ./docs/progress_log.md
+2025-08-03 13:48:52 ./scripts/dynamic_evolution_analysis.py
+2025-08-03 13:30:56 ./results/dynamic_evolution.h5
 2025-08-03 13:26:41 ./.github/workflows/ci.yml
 2025-08-03 13:26:05 ./docs/technical-documentation.md
 2025-08-03 13:26:05 ./UQ-TODO.ndjson
-2025-08-03 13:00:28 ./results/dynamic_evolution.h5
 2025-08-03 12:46:57 ./tests/test_dynamic_evolution_export.py
 2025-08-03 12:46:57 ./pytest.ini
 2025-08-03 12:46:57 ./docs/future-directions.md
@@ -249,7 +244,6 @@ I’ve implemented the semiclassical backreaction module and demo, added export 
 2025-08-01 20:30:15 ./docs/literature_review.md
 2025-08-01 20:30:15 ./corrected_validation_results.json
 2025-08-01 20:30:15 ./README.md
-2025-08-01 20:30:15 ./.github/instructions/copilot-instructions.md
 # LATEST-FILES-LIST-END
 
 ~/Code/asciimath/negative-energy-generator$ ls .. -lt | awk '{print $1, $2, $5, $6, $7, $8, $9}'
@@ -360,7 +354,7 @@ tests/test_qft_backend.py::test_qft_backend_smoke PASSED                 [ 94%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 97%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-============================== 36 passed in 3.35s ==============================
+============================== 36 passed in 2.94s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
