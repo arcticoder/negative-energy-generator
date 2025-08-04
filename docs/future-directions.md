@@ -164,10 +164,10 @@ To scaffold exploration and clearly separate concerns, we may create dedicated G
 
 ---
 
-## 6. UQ Analysis Notebook
+## 6. UQ Analysis CLI Tools
 
-- Create a Jupyter notebook `notebooks/dynamic_evolution_analysis.ipynb` to visualize and report the dynamic evolution metrics (initial/final energy, drift statistics).
-  - Load `results/dynamic_evolution_metrics.json` and generate plots of energy drift over time.
-  - Integrate notebook into CI via nbconvert check for execution errors.
+- Use `scripts/dynamic_evolution_analysis.py` to compute JSON metrics (initial/final energy, drift stats) from `results/dynamic_evolution.h5`.
+- Create `scripts/dynamic_evolution_report.py` to load `results/dynamic_evolution_metrics.json` and print formatted summary or generate plots via Matplotlib where available.
+- Integrate CLI tools into CI workflow as standalone steps, ensuring they exit with zero status.
 
 ---

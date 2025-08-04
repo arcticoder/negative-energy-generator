@@ -1,3 +1,4 @@
+{"date":"2025-08-03","event":"Migrated dynamic evolution tasks to NDJSON","status":"completed"}
 {"date":"2025-08-03","event":"Migrate progress tracking to ndjson format","status":"completed"}
 {"date":"2025-08-03","event":"Created dynamic_evolution_analysis.py to compute JSON metrics from energy time-series","status":"completed"}
 {"date":"2025-08-03","event":"Added integration test for dynamic_evolution_analysis.py","status":"completed"}

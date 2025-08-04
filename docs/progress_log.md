@@ -97,19 +97,11 @@
 - Updated UQ (UQ-TODO.ndjson) with time-step and grid resolution uncertainty tasks for lattice energy densities.
 - Planning enhancements to `solve_klein_gordon` to return time series of φ and φ̇ for dynamic evolution analysis.
 
-### Next Tasks
-- Extend `solve_klein_gordon` to optionally record intermediate states and compute energy density over time.
-- Create unit tests in `tests/test_dynamic_evolution.py` for energy conservation over dynamic evolution.
-- Update CI workflow to include dynamic evolution tests and a demo script.
 
 ### Progress Update
 - Extended `solve_klein_gordon` to support recording full time-series of φ and φ̇ when `record_states=True`.
 - Implemented solver enhancement with state recording; next, author dynamic evolution tests and integrate into CI.
 
-### Next Tasks
-- Implement unit tests in `tests/test_dynamic_evolution.py` to verify energy conservation over dynamic evolution.
-- Update CI workflow to include new dynamic evolution tests.
-- Develop a demo script showcasing dynamic evolution and energy tracking.
 
 ### Progress Update
 - Ran pytest: 35 tests passed locally (dynamic evolution export test skipped if h5py unavailable).
@@ -124,9 +116,6 @@
 - Ran `scripts/dynamic_evolution_demo.py` locally; verified `results/dynamic_evolution.h5` contains energy history with <0.2% drift.
 - Dynamic evolution demo executed successfully; proceeding to document its usage and integrate into UQ workflows.
 
-### Next Tasks
-- Document the dynamic evolution demo in `docs/future-directions.md` and `docs/technical-documentation.md` (usage, parameters, output format).
-- Integrate dynamic evolution energy history analysis into UQ pipeline (e.g., add uncertainty tasks for time-series data).
 
 ### Progress Update
 - Updated CI workflow triggers to only run on changes to code, tests, scripts, and CI configuration files.
