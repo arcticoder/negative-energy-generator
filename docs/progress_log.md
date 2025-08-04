@@ -14,14 +14,14 @@
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
+2025-08-03 22:43:58 ./tests/test_simulate_sensor_readout.py
+2025-08-03 22:43:46 ./results/dynamic_evolution_metrics.json
+2025-08-03 22:43:45 ./results/dynamic_evolution.h5
+2025-08-03 22:41:08 ./docs/progress_log.md
 2025-08-03 22:40:53 ./scripts/backreaction_demo.py
 2025-08-03 22:40:53 ./docs/progress_log.ndjson
-2025-08-03 22:37:57 ./docs/progress_log.md
-2025-08-03 22:37:40 ./tests/test_simulate_sensor_readout.py
 2025-08-03 22:37:40 ./scripts/simulate_sensor_readout.py
 2025-08-03 22:37:40 ./.github/workflows/ci.yml
-2025-08-03 22:31:50 ./results/dynamic_evolution_metrics.json
-2025-08-03 22:31:49 ./results/dynamic_evolution.h5
 2025-08-03 22:31:32 ./tests/test_detection_threshold_uq.py
 2025-08-03 22:30:00 ./scripts/detection_threshold_uq.py
 2025-08-03 22:26:19 ./tests/test_local_energy_resolution_uq.py
@@ -180,46 +180,11 @@ tests/test_qft_backend_anec.py::test_compute_anec_and_check_anec_negative PASSED
 tests/test_qft_backend_vnv.py::test_build_toy_ansatz_shape_and_values PASSED [ 91%]
 tests/test_qft_backend_vnv.py::test_local_energy_density_and_find_negative PASSED [ 92%]
 tests/test_qft_toy_ansatz_uq.py::test_qft_toy_ansatz_uq_script PASSED    [ 94%]
-tests/test_simulate_sensor_readout.py::test_simulate_sensor_readout FAILED [ 96%]
+tests/test_simulate_sensor_readout.py::test_simulate_sensor_readout PASSED [ 96%]
+tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 98%]
+tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-=================================== FAILURES ===================================
-_________________________ test_simulate_sensor_readout _________________________
-
-tmp_path = PosixPath('/tmp/pytest-of-echo_/pytest-57/test_simulate_sensor_readout0')
-monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x74753c8a2b50>
-
-    def test_simulate_sensor_readout(tmp_path, monkeypatch):
-        # Create dummy HDF5 with energies dataset
-        import h5py
-        import numpy as np
-        data_file = tmp_path / 'energies.h5'
-        with h5py.File(data_file, 'w') as f:
-            f.create_dataset('energies', data=np.linspace(0,1,10))
-        # Run CLI tool
-        output_file = tmp_path / 'sensor_readout.json'
-        script = pathlib.Path(__file__).parent.parent / 'scripts' / 'simulate_sensor_readout.py'
-        cmd = [sys.executable, str(script),
-               '--data', str(data_file),
-               '--noise-std', '0.0',
-               '--gain', '2.0',
-               '--seed', '0',
-               '--output', str(output_file)]
-        subprocess.check_call(cmd)
-        data = json.loads(output_file.read_text())
-        assert data['gain'] == 2.0
-        assert data['noise_std'] == 0.0
->       assert data['mean_reading'] == pytest.approx(np.mean(np.linspace(0,1,10))*2.0)
-                                       ^^^^^^
-E       NameError: name 'pytest' is not defined
-
-tests/test_simulate_sensor_readout.py:26: NameError
------------------------------ Captured stdout call -----------------------------
-Sensor readout simulation saved to /tmp/pytest-of-echo_/pytest-57/test_simulate_sensor_readout0/sensor_readout.json
-Mean reading: 1.000000, Std: 0.638285
-=========================== short test summary info ============================
-FAILED tests/test_simulate_sensor_readout.py::test_simulate_sensor_readout - ...
-!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-======================== 1 failed, 53 passed in 10.29s =========================
+============================= 56 passed in 10.50s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
