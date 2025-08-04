@@ -169,5 +169,6 @@ To scaffold exploration and clearly separate concerns, we may create dedicated G
 - Use `scripts/dynamic_evolution_analysis.py` to compute JSON metrics (initial/final energy, drift stats) from `results/dynamic_evolution.h5`.
 - Create `scripts/dynamic_evolution_report.py` to load `results/dynamic_evolution_metrics.json` and print formatted summary or generate plots via Matplotlib where available.
 - Integrate CLI tools into CI workflow as standalone steps, ensuring they exit with zero status.
+- The `dynamic_evolution_report.py` script now saves a plot `results/dynamic_evolution_plot.png` illustrating energy drift over time.
 
 ---

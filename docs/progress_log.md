@@ -32,9 +32,7 @@
 - Extended `solve_semiclassical_metric` to include spatial Laplacian term for wave propagation in `src/simulation/backreaction.py`.
 
 ### Next Tasks
-4. Implement integration test for HDF5 export result validation (`test_parameter_sweep_export.py`).
-5. Review and optimize time-integration accuracy in `solve_klein_gordon` based on discretization test outcomes.
-6. Test and iterate on the CI workflow to ensure it runs unit tests and the CLI demo successfully.
+# (All tasks from this section have been migrated to docs/progress_log.ndjson)
 7. Complete and validate the dynamic field evolution against discretization tests.
 8. Add integration tests for HDF5 export result validation in `tests/test_parameter_sweep_export.py`.
 9. Extend CI workflow to include backreaction demo execution and export validation.

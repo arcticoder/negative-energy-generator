@@ -73,7 +73,7 @@ def compute_energy_density(phi, phi_dt, dx=1.0):
     Compute energy density ρ = ½ (φ̇² + (∇φ)²) on lattice.
     Accepts spatial step dx to normalize gradient.
     """
-    # Spatial gradient with periodic boundary (forward difference)
-    grad_phi = (np.roll(phi, -1) - phi) / dx
+    # Spatial gradient with periodic boundary (central difference)
+    grad_phi = (np.roll(phi, -1) - np.roll(phi, 1)) / (2 * dx)
     rho = 0.5 * (phi_dt**2 + grad_phi**2)
     return rho

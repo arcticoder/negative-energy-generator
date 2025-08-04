@@ -6,7 +6,7 @@
 {"date":"2025-08-03","event":"Ran dynamic_evolution_analysis.py locally and verified metrics file generation","status":"completed"}
 {"date":"2025-08-03","event":"Added placeholder for UQ analysis notebook in future-directions.md","status":"completed"}
 {"date":"2025-08-03","event":"Created dynamic_evolution_report.py CLI report generator","status":"completed"}
-{"date":"2025-08-03","event":"Next: Write integration test for dynamic_evolution_report.py CLI report","status":"pending"}
+{"date":"2025-08-03","event":"Integration test for dynamic_evolution_report CLI script","status":"completed"}
 {"date":"2025-08-03","event":"Added integration test for dynamic_evolution_report CLI script","status":"completed"}
 {"date":"2025-08-03","event":"Updated CI to run dynamic evolution report script","status":"completed"}
 {"date":"2025-08-06","event":"Ran test_time_integration_basic.py locally and confirmed CI compatibility","status":"completed"}
@@ -14,5 +14,8 @@
 {"date":"2025-08-01","event":"Updated V&V and UQ trackers with lattice solver validation tasks","status":"completed"}
 {"date":"2025-08-01","event":"Implemented finite-difference time-integration in solve_klein_gordon","status":"completed"}
 {"date":"2025-08-01","event":"Configured CI workflow to run unit tests, integration tests, and CLI demos automatically","status":"completed"}
+{"date":"2025-08-01","event":"Integration test for HDF5 export result validation implemented (test_parameter_sweep_export.py)","status":"completed"}
+{"date":"2025-08-06","event":"Time-integration accuracy in solve_klein_gordon reviewed and optimized","status":"completed"}
+{"date":"2025-08-01","event":"CI workflow tested and confirmed to run unit tests and CLI demos successfully","status":"completed"}
 {"date":"2025-08-07","event":"Enhanced dynamic_evolution_report.py to generate energy drift plot","status":"completed"}
-{"date":"2025-08-07","event":"Next: Write integration test for plot file creation in dynamic_evolution_report","status":"pending"}
+{"date":"2025-08-08","event":"Integration test for dynamic evolution plot file creation implemented","status":"completed"}
