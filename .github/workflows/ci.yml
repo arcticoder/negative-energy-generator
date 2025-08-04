@@ -96,6 +96,10 @@ jobs:
         run: |
           cd negative-energy-generator
           python scripts/detection_threshold_uq.py --alpha 1.0 --beta 1.0 --thresholds -1.0 0.0 1.0 --N 50 --L 10.0 --output results/detection_threshold_uq.json
+      - name: Run warp drive dark fluid UQ demo
+        run: |
+          cd negative-energy-generator
+          python scripts/dark_fluid_warp_drive_uq.py --rho0 -1.0 --R_values 1.0 2.0 --sigma_values 0.2 --N 50 --dx 0.1 --dt 0.05 --steps 10 --output results/dark_fluid_warp_drive_uq.json
       - name: Run sensor readout simulation demo
         run: |
           cd negative-energy-generator

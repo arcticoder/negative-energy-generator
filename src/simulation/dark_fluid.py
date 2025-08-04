@@ -112,3 +112,23 @@ def generate_phase_transition_fluid(N, dx, rho_core=-1.0, rho_env=-0.1, R_core=1
     # interpolate between env and core: core inside, env outside
     rho = rho_env + (rho_core - rho_env) * t
     return x, rho
+   
+def generate_superfluid_dark_fluid(N, dx, rho0=-1.0, k=1.0):
+    """
+    Generate a superfluid dark matter density profile as a sine wave pattern.
+
+    Args:
+        N (int): number of grid points
+        dx (float): spatial step size
+        rho0 (float): amplitude of density oscillation (default: -1.0)
+        k (float): wave number of oscillation
+
+    Returns:
+        x (np.ndarray): spatial grid points centered at zero, length N
+        rho (np.ndarray): density profile length N, values = rho0 * sin(k*x)
+    """
+    # Spatial grid centered at zero
+    x = np.linspace(- (N//2) * dx, (N//2) * dx, N)
+    # Sine-wave pattern
+    rho = rho0 * np.sin(k * x)
+    return x, rho

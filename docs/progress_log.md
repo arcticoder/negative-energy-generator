@@ -14,14 +14,23 @@
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
+2025-08-04 14:43:56 ./tests/test_dark_fluid_warp_drive_uq.py
+2025-08-04 14:43:56 ./tests/test_alcubierre_fluid.py
+2025-08-04 14:43:56 ./src/simulation/dark_fluid.py
+2025-08-04 14:43:56 ./scripts/dark_fluid_warp_drive_uq.py
+2025-08-04 14:43:56 ./docs/progress_log.ndjson
+2025-08-04 14:43:56 ./.github/workflows/ci.yml
+2025-08-04 14:30:43 ./tests/test_warp_bubble_fluid.py
+2025-08-04 14:30:43 ./tests/test_vacuum_fluctuation_fluid.py
+2025-08-04 14:30:43 ./tests/test_phase_transition_fluid.py
+2025-08-04 14:30:43 ./docs/roadmap.ndjson
+2025-08-04 14:21:03 ./tests/test_phantom_dark_fluid.py
+2025-08-03 22:44:19 ./docs/progress_log.md
+2025-08-03 22:44:16 ./results/dynamic_evolution_metrics.json
+2025-08-03 22:44:15 ./results/dynamic_evolution.h5
 2025-08-03 22:43:58 ./tests/test_simulate_sensor_readout.py
-2025-08-03 22:43:46 ./results/dynamic_evolution_metrics.json
-2025-08-03 22:43:45 ./results/dynamic_evolution.h5
-2025-08-03 22:41:08 ./docs/progress_log.md
 2025-08-03 22:40:53 ./scripts/backreaction_demo.py
-2025-08-03 22:40:53 ./docs/progress_log.ndjson
 2025-08-03 22:37:40 ./scripts/simulate_sensor_readout.py
-2025-08-03 22:37:40 ./.github/workflows/ci.yml
 2025-08-03 22:31:32 ./tests/test_detection_threshold_uq.py
 2025-08-03 22:30:00 ./scripts/detection_threshold_uq.py
 2025-08-03 22:26:19 ./tests/test_local_energy_resolution_uq.py
@@ -29,7 +38,6 @@
 2025-08-03 22:21:52 ./src/simulation/qft_backend.py
 2025-08-03 22:14:25 ./tests/test_dark_fluid_demo.py
 2025-08-03 22:14:25 ./tests/test_dark_fluid.py
-2025-08-03 22:14:25 ./src/simulation/dark_fluid.py
 2025-08-03 22:14:25 ./scripts/dark_fluid_demo.py
 2025-08-03 22:07:31 ./tests/test_backreaction_uq_report.py
 2025-08-03 22:07:31 ./scripts/backreaction_uq_report.py
@@ -46,19 +54,12 @@
 2025-08-03 18:40:04 ./src/simulation/parameter_sweep.py
 2025-08-03 18:40:04 ./scripts/qft_toy_ansatz_uq.py
 2025-08-03 18:34:04 ./tests/test_dynamic_evolution_accuracy.py
-2025-08-03 18:34:04 ./scripts/dynamic_evolution_demo.py
-2025-08-03 18:22:27 ./tests/test_dynamic_evolution_plot.py
-2025-08-03 18:22:27 ./src/simulation/lattice_qft.py
-2025-08-03 18:22:27 ./docs/future-directions.md
-2025-08-03 17:53:24 ./scripts/dynamic_evolution_report.py
-2025-08-03 17:37:59 ./tests/test_dynamic_evolution_report.py
-2025-08-03 17:12:04 ./tests/test_dynamic_evolution_analysis.py
-2025-08-03 13:48:52 ./scripts/dynamic_evolution_analysis.py
 # LATEST-FILES-LIST-END
 
 ~/Code/asciimath/negative-energy-generator$ ls .. -lt | awk '{print $1, $2, $5, $6, $7, $8, $9}'
 # REPO-LIST-BEGIN
 total 252     
+drwxrwxrwx 18 4096 Aug 4 08:15 energy
 drwxrwxrwx 15 12288 Aug 3 19:37 negative-energy-generator
 drwxrwxrwx 8 4096 Aug 1 20:49 casimir-nanopositioning-platform
 drwxrwxrwx 22 4096 Aug 1 20:49 enhanced-simulation-hardware-abstraction-framework
@@ -67,7 +68,6 @@ drwxrwxrwx 9 4096 Aug 1 20:49 lqg-positive-matter-assembler
 drwxrwxrwx 9 4096 Aug 1 20:49 warp-spacetime-stability-controller
 drwxrwxrwx 28 12288 Aug 1 20:28 warp-bubble-optimizer
 drwxrwxrwx 23 4096 Jul 31 22:38 lqg-ftl-metric-engineering
-drwxrwxrwx 17 4096 Jul 31 22:19 energy
 drwxrwxrwx 7 4096 Jul 31 22:03 lqg-first-principles-gravitational-constant
 drwxrwxrwx 7 4096 Jul 31 19:25 warp-solver-equations
 drwxrwxrwx 5 4096 Jul 31 19:25 warp-signature-workflow
@@ -125,66 +125,23 @@ cachedir: .pytest_cache
 rootdir: /home/echo_/Code/asciimath/negative-energy-generator
 configfile: pytest.ini
 testpaths: tests
-collecting ... collected 56 items
+collecting ... collected 0 items / 1 error
 
-tests/test_analytical_solution.py::test_analytical_solution_massless PASSED [  1%]
-tests/test_backreaction.py::test_solve_semiclassical_metric_shapes_and_initial_step PASSED [  3%]
-tests/test_backreaction_export.py::test_backreaction_demo_export PASSED  [  5%]
-tests/test_backreaction_stability.py::test_constant_source_growth_matches_theoretical PASSED [  7%]
-tests/test_backreaction_uq.py::test_backreaction_uq_script PASSED        [  8%]
-tests/test_backreaction_uq_report.py::test_backreaction_uq_report_script PASSED [ 10%]
-tests/test_backreaction_wave.py::test_zero_source_remains_zero PASSED    [ 12%]
-tests/test_dark_fluid.py::test_generate_negative_mass_fluid_defaults PASSED [ 14%]
-tests/test_dark_fluid.py::test_anec_negative_fluid PASSED                [ 16%]
-tests/test_dark_fluid_demo.py::test_dark_fluid_demo_script PASSED        [ 17%]
-tests/test_detection_threshold_uq.py::test_detection_threshold_uq PASSED [ 19%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_frequency_response PASSED [ 21%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_initialization PASSED [ 23%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_calculation PASSED [ 25%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_scaling PASSED [ 26%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_simulate_pulse PASSED [ 28%]
-tests/test_diagnostics.py::TestCalorimetricSensor::test_initialization PASSED [ 30%]
-tests/test_diagnostics.py::TestCalorimetricSensor::test_simulate_pulse PASSED [ 32%]
-tests/test_diagnostics.py::TestCalorimetricSensor::test_temp_rise_calculation PASSED [ 33%]
-tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_acquire PASSED [ 35%]
-tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_frequency_sweep PASSED [ 37%]
-tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_initialization PASSED [ 39%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_add_sample PASSED       [ 41%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_circular_buffer PASSED  [ 42%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_initialization PASSED   [ 44%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_reset PASSED            [ 46%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_statistics PASSED       [ 48%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_trigger_modes PASSED    [ 50%]
-tests/test_diagnostics.py::TestUtilityFunctions::test_benchmark_instrumentation_suite PASSED [ 51%]
-tests/test_diagnostics.py::TestUtilityFunctions::test_generate_T00_pulse PASSED [ 53%]
-tests/test_diagnostics.py::TestIntegration::test_complete_measurement_chain PASSED [ 55%]
-tests/test_diagnostics.py::TestIntegration::test_multi_sensor_comparison PASSED [ 57%]
-tests/test_dynamic_evolution.py::test_dynamic_energy_conservation PASSED [ 58%]
-tests/test_dynamic_evolution_accuracy.py::test_dynamic_evolution_energy_drift PASSED [ 60%]
-tests/test_dynamic_evolution_analysis.py::test_dynamic_evolution_analysis PASSED [ 62%]
-tests/test_dynamic_evolution_discretization.py::test_dynamic_evolution_discretization_accuracy PASSED [ 64%]
-tests/test_dynamic_evolution_export.py::test_dynamic_evolution_demo_export PASSED [ 66%]
-tests/test_dynamic_evolution_plot.py::test_dynamic_evolution_plot PASSED [ 67%]
-tests/test_dynamic_evolution_report.py::test_dynamic_evolution_report PASSED [ 69%]
-tests/test_energy_conservation.py::test_energy_conservation PASSED       [ 71%]
-tests/test_evolve_qft.py::test_evolve_qft_fallback_identity PASSED       [ 73%]
-tests/test_lattice_discretization.py::test_laplacian_accuracy_for_sine_wave PASSED [ 75%]
-tests/test_lattice_energy.py::test_compute_energy_density_zero_field PASSED [ 76%]
-tests/test_lattice_energy.py::test_solve_klein_gordon_basic PASSED       [ 78%]
-tests/test_lattice_sweep_demo.py::test_lattice_sweep_demo PASSED         [ 80%]
-tests/test_local_energy_resolution_uq.py::test_local_energy_resolution_uq PASSED [ 82%]
-tests/test_parameter_sweep_export.py::test_parameter_sweep_export PASSED [ 83%]
-tests/test_qft_backend.py::test_qft_backend_smoke PASSED                 [ 85%]
-tests/test_qft_backend_anec.py::test_compute_anec_and_check_anec_positive PASSED [ 87%]
-tests/test_qft_backend_anec.py::test_compute_anec_and_check_anec_negative PASSED [ 89%]
-tests/test_qft_backend_vnv.py::test_build_toy_ansatz_shape_and_values PASSED [ 91%]
-tests/test_qft_backend_vnv.py::test_local_energy_density_and_find_negative PASSED [ 92%]
-tests/test_qft_toy_ansatz_uq.py::test_qft_toy_ansatz_uq_script PASSED    [ 94%]
-tests/test_simulate_sensor_readout.py::test_simulate_sensor_readout PASSED [ 96%]
-tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 98%]
-tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
-
-============================= 56 passed in 10.50s ==============================
+==================================== ERRORS ====================================
+_______________ ERROR collecting tests/test_alcubierre_fluid.py ________________
+ImportError while importing test module '/home/echo_/Code/asciimath/negative-energy-generator/tests/test_alcubierre_fluid.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../miniconda3/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_alcubierre_fluid.py:2: in <module>
+    from simulation.dark_fluid import generate_alcubierre_fluid
+E   ImportError: cannot import name 'generate_alcubierre_fluid' from 'simulation.dark_fluid' (/home/echo_/Code/asciimath/negative-energy-generator/src/simulation/dark_fluid.py)
+=========================== short test summary info ============================
+ERROR tests/test_alcubierre_fluid.py
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 1.13s ===============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
