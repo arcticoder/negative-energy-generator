@@ -76,101 +76,6 @@ def replace_block_content(content, start_marker, end_marker, new_content):
     
     return before + new_content + after
 
-
-def process_progress_blocks(content):
-    """Process the progress block rotations."""
-    print("Processing progress block rotations...")
-    
-    # Step 1: Extract newest progress content
-    newest_content = extract_block_content(
-        content, 
-        "## NEWEST-PROGRESS-BEGIN", 
-        "## NEWEST-PROGRESS-END"
-    )
-    
-    if newest_content is None:
-        print("Warning: Could not find NEWEST-PROGRESS block")
-        return content
-    
-    print(f"Extracted newest progress: {newest_content[:50]}...")
-    
-    # Step 2: Find the progress code fence right below NEWEST-PROGRESS-END
-    newest_end_pos = content.find("## NEWEST-PROGRESS-END")
-    if newest_end_pos == -1:
-        print("Warning: Could not find NEWEST-PROGRESS-END marker")
-        return content
-    
-    # Look for ```progress after the newest end marker
-    progress_start = content.find("```progress", newest_end_pos)
-    if progress_start == -1:
-        print("Warning: Could not find progress code fence after NEWEST-PROGRESS block")
-        return content
-    
-    progress_end = content.find("```", progress_start + 11)  # +11 to skip past "```progress"
-    if progress_end == -1:
-        print("Warning: Could not find end of progress code fence")
-        return content
-    
-    # Step 3: Update progress code fence with newest content
-    new_progress_block = f"```progress\n{newest_content}\n```"
-    content = content[:progress_start] + new_progress_block + content[progress_end + 3:]
-    
-    # Step 4: Clear the newest progress block (leave empty with one blank line)
-    content = replace_block_content(
-        content,
-        "## NEWEST-PROGRESS-BEGIN",
-        "## NEWEST-PROGRESS-END", 
-        "\n"
-    )
-    
-    # Step 5: Find the progress code fence directly above OLDEST-PROGRESS-BEGIN
-    oldest_begin_pos = content.find("## OLDEST-PROGRESS-BEGIN")
-    if oldest_begin_pos == -1:
-        print("Warning: Could not find OLDEST-PROGRESS-BEGIN marker")
-        return content
-    
-    # Look backwards for the closest ```progress before OLDEST-PROGRESS-BEGIN
-    # Find all ```progress blocks before the oldest marker
-    progress_blocks = []
-    search_pos = 0
-    while search_pos < oldest_begin_pos:
-        progress_start_pos = content.find("```progress", search_pos)
-        if progress_start_pos == -1 or progress_start_pos >= oldest_begin_pos:
-            break
-        progress_end_pos = content.find("```", progress_start_pos + 11)
-        if progress_end_pos == -1:
-            break
-        progress_blocks.append((progress_start_pos, progress_end_pos))
-        search_pos = progress_end_pos + 3
-    
-    if not progress_blocks:
-        print("Warning: Could not find any progress code fence before OLDEST-PROGRESS block")
-        return content
-    
-    # Get the last (closest) progress block before OLDEST-PROGRESS-BEGIN
-    last_progress_start, last_progress_end = progress_blocks[-1]
-    
-    # Extract content from the progress block directly above OLDEST-PROGRESS
-    progress_content_start = content.find("\n", last_progress_start) + 1
-    progress_above_oldest = content[progress_content_start:last_progress_end].strip()
-    
-    print(f"Progress content above oldest: {progress_above_oldest[:50]}...")
-    
-    # Step 6: Replace oldest progress with content from progress block above it
-    content = replace_block_content(
-        content,
-        "## OLDEST-PROGRESS-BEGIN",
-        "## OLDEST-PROGRESS-END",
-        progress_above_oldest
-    )
-    
-    # Step 7: Delete the progress code fence that we just copied from
-    content = content[:last_progress_start] + content[last_progress_end + 3:]
-    
-    print("Progress block rotations completed.")
-    return content
-
-
 def update_file_listings(content, repo_root):
     """Update the file listings section."""
     print("Updating file listings...")
@@ -321,9 +226,6 @@ def main():
     
     # Process all updates
     try:
-        # 1. Process progress block rotations
-        content = process_progress_blocks(content)
-        
         # 2. Update file listings
         content = update_file_listings(content, repo_root)
         

@@ -9,26 +9,16 @@
 - Negative-energy-generator framework repository active; core QFT backend and analysis modules implemented.
 
 
-```latest-progress
-## NEWEST-PROGRESS-BEGIN
-I’ve migrated all the remaining 2025-08-01 “Next Tasks” into progress_log.ndjson as pending. The top pending objective is to “Complete and validate the dynamic field evolution against discretization tests.”
-## NEWEST-PROGRESS-END
-```
-I’ve added a discretization accuracy test against the analytic standing wave and marked the evolution validation task as completed in progress_log.ndjson. Next up: integrating backreaction CI steps
-```oldest-progress
-## OLDEST-PROGRESS-BEGIN
-I've implemented a fallback in `PhysicsCore.evolve_QFT` with accompanying V&V tests, updated `parameter_sweep` to normalize energy density properly, and added both UQ and V&V CLI tools plus CI steps. The only pending task is to validate `evolve_QFT` I/O behavior.
-## OLDEST-PROGRESS-END
-```
+
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
+2025-08-03 21:21:15 ./docs/progress_log.ndjson
+2025-08-03 21:18:58 ./docs/progress_log.md
+2025-08-03 21:18:14 ./results/dynamic_evolution_metrics.json
+2025-08-03 21:18:13 ./results/dynamic_evolution.h5
 2025-08-03 19:46:40 ./tests/test_dynamic_evolution_discretization.py
-2025-08-03 19:46:40 ./docs/progress_log.ndjson
-2025-08-03 19:45:09 ./docs/progress_log.md
-2025-08-03 19:40:06 ./results/dynamic_evolution_metrics.json
-2025-08-03 19:40:04 ./results/dynamic_evolution.h5
 2025-08-03 19:34:27 ./tests/test_lattice_sweep_demo.py
 2025-08-03 19:34:27 ./tests/test_evolve_qft.py
 2025-08-03 18:43:45 ./test_configuration.json
@@ -184,7 +174,7 @@ tests/test_qft_toy_ansatz_uq.py::test_qft_toy_ansatz_uq_script PASSED    [ 95%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 97%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-============================== 46 passed in 7.32s ==============================
+============================== 46 passed in 6.55s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
