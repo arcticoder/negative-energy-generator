@@ -13,8 +13,8 @@ def main():
     # Demo parameters
     N = 100
     dx = 1.0
-    dt = 0.1
-    steps = 50
+    dt = 0.05  # reduced time step for improved accuracy
+    steps = 100  # increased steps to maintain total evolution time
     alpha = 0.0  # massless case
     beta = 0.0   # no damping
 

@@ -19,6 +19,7 @@
 {"date":"2025-08-01","event":"CI workflow tested and confirmed to run unit tests and CLI demos successfully","status":"completed"}
 {"date":"2025-08-07","event":"Enhanced dynamic_evolution_report.py to generate energy drift plot","status":"completed"}
 {"date":"2025-08-08","event":"Integration test for dynamic evolution plot file creation implemented","status":"completed"}
-{"date":"2025-08-06","event":"Adjust solver parameters (e.g., reduce `dt`) to improve accuracy and reduce numerical dispersion","status":"pending"}
-{"date":"2025-08-06","event":"Integrate dynamic evolution accuracy benchmarks into CI as additional pytest jobs","status":"pending"}
-{"date":"2025-08-06","event":"Begin writing documentation for solver API and usage examples","status":"pending"}
+{"date":"2025-08-07","event":"Adjust solver parameters (e.g., reduce `dt`) to improve accuracy and reduce numerical dispersion","status":"completed"}
+{"date":"2025-08-06","event":"Integrate dynamic evolution accuracy benchmarks into CI as additional pytest jobs","status":"completed"}
+{"date":"2025-08-08","event":"Added integration test for dynamic evolution energy drift tolerance","status":"completed"}
+{"date":"2025-08-07","event":"Begin writing documentation for solver API and usage examples","status":"completed"}
