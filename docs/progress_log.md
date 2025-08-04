@@ -71,16 +71,12 @@
 ### In Progress
 - Added `test_time_integration_basic.py` to validate `solve_klein_gordon` output shapes and finite values.
 
-
 ### Progress Update
 - Enhanced `compute_energy_density` to accept `dx` and normalize spatial gradient; updated tests accordingly.
 - Energy conservation test passed with proper gradient normalization.
 - Analytical solution comparison test passed, confirming correct sign inversion at half period.
 
 ### Next Tasks
-- Adjust solver parameters (e.g., reduce `dt`) to improve accuracy and reduce numerical dispersion.
-- Integrate dynamic evolution accuracy benchmarks into CI as additional pytest jobs.
-- Begin writing documentation for solver API and usage examples.
 
 ## 2025-08-03
 
@@ -89,11 +85,9 @@
 - Updated UQ (UQ-TODO.ndjson) with time-step and grid resolution uncertainty tasks for lattice energy densities.
 - Planning enhancements to `solve_klein_gordon` to return time series of φ and φ̇ for dynamic evolution analysis.
 
-
 ### Progress Update
 - Extended `solve_klein_gordon` to support recording full time-series of φ and φ̇ when `record_states=True`.
 - Implemented solver enhancement with state recording; next, author dynamic evolution tests and integrate into CI.
-
 
 ### Progress Update
 - Ran pytest: 35 tests passed locally (dynamic evolution export test skipped if h5py unavailable).
@@ -107,7 +101,6 @@
 ### Progress Update
 - Ran `scripts/dynamic_evolution_demo.py` locally; verified `results/dynamic_evolution.h5` contains energy history with <0.2% drift.
 - Dynamic evolution demo executed successfully; proceeding to document its usage and integrate into UQ workflows.
-
 
 ### Progress Update
 - Updated CI workflow triggers to only run on changes to code, tests, scripts, and CI configuration files.
@@ -153,8 +146,6 @@ I've added the dynamic evolution demo script and test, updated the CI to run bot
 ```progress
 I've updated `solve_klein_gordon` to record time-series data and logged the change. Next, I'll create unit tests for dynamic evolution energy conservation.
 ```
-
-
 
 ```oldest-progress
 ## OLDEST-PROGRESS-BEGIN
@@ -325,3 +316,4 @@ tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 # IMPORTERSKIP-RESULTS-BEGIN
 0
 # IMPORTERSKIP-RESULTS-END
+```
