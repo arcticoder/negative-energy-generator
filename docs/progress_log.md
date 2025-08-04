@@ -14,12 +14,12 @@
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
+2025-08-03 22:09:58 ./docs/progress_log.ndjson
+2025-08-03 22:08:03 ./docs/progress_log.md
+2025-08-03 22:07:59 ./results/dynamic_evolution_metrics.json
+2025-08-03 22:07:58 ./results/dynamic_evolution.h5
 2025-08-03 22:07:31 ./tests/test_backreaction_uq_report.py
 2025-08-03 22:07:31 ./scripts/backreaction_uq_report.py
-2025-08-03 22:07:31 ./docs/progress_log.ndjson
-2025-08-03 22:04:00 ./docs/progress_log.md
-2025-08-03 22:03:56 ./results/dynamic_evolution_metrics.json
-2025-08-03 22:03:54 ./results/dynamic_evolution.h5
 2025-08-03 22:03:15 ./tests/test_backreaction_uq.py
 2025-08-03 22:03:15 ./scripts/backreaction_uq.py
 2025-08-03 21:59:08 ./tests/test_qft_backend_anec.py
@@ -178,7 +178,7 @@ tests/test_qft_toy_ansatz_uq.py::test_qft_toy_ansatz_uq_script PASSED    [ 96%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 98%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-============================== 50 passed in 8.23s ==============================
+============================== 50 passed in 8.14s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
