@@ -84,3 +84,7 @@ jobs:
         run: |
           cd negative-energy-generator
           python scripts/dynamic_evolution_report.py
+      - name: Run QFT toy ansatz UQ demo
+        run: |
+          cd negative-energy-generator
+          python scripts/qft_toy_ansatz_uq.py --samples 10 --grid-size 8 --dx 0.1 --output results/qft_uq_metrics.json

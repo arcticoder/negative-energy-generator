@@ -20,7 +20,7 @@ def parameter_sweep(alpha_values, beta_values, grid_sizes, dx, dt, steps, output
                     # Solve Klein-Gordon field evolution
                     phi, phi_dt = solve_klein_gordon(N, dx, dt, steps, alpha, beta)
                     # Compute energy density
-                    rho = compute_energy_density(phi, phi_dt)
+                    rho = compute_energy_density(phi, phi_dt, dx)
                     dataset_name = f"alpha_{alpha}_beta_{beta}_N_{N}"
                     f.create_dataset(dataset_name, data=rho)
 
