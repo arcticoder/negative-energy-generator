@@ -146,11 +146,11 @@
 
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN
-All tests, including the new report integration test, passed successfully. Progress has been logged in progress_log.ndjson. Next, we can update CI to generate plots or begin building the CLI report with Matplotlib.
+I’ve added plot generation to the CLI report script and logged the update. Next, I'll write an integration test to verify the plot file is created successfully.
 ## NEWEST-PROGRESS-END
 ```
 ```progress
-I've added the CLI report script and noted the next task to create its integration test.
+All tests, including the new report integration test, passed successfully. Progress has been logged in progress_log.ndjson. Next, we can update CI to generate plots or begin building the CLI report with Matplotlib.
 ```
 ```progress
 I've added the dynamic evolution demo script and test, updated the CI to run both the dynamic demo and its tests, and logged progress. Next, I'll run the dynamic demo locally and ensure its output is valid.
@@ -161,11 +161,7 @@ I've updated `solve_klein_gordon` to record time-series data and logged the chan
 ```progress
 I've logged the new work for August 3rd: updating V&V and UQ trackers, and planned enhancements to `solve_klein_gordon`. Next, I'll modify the solver to capture time series data.
 ```
-```progress
-The semiclassical backreaction API and numerical approach are now documented, including equations, code examples, and test coverage. The technical docs reflect solver usage and future enhancements. 
 
-Next, I'll integrate the backreaction steps into CI, refine any packaging, or begin adapting external ANEC modules into the core.
-```
 
 ```oldest-progress
 ## OLDEST-PROGRESS-BEGIN
@@ -178,13 +174,13 @@ Next, I'll integrate the backreaction steps into CI, refine any packaging, or be
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
+2025-08-03 17:53:24 ./scripts/dynamic_evolution_report.py
+2025-08-03 17:53:24 ./docs/progress_log.ndjson
+2025-08-03 17:42:43 ./docs/progress_log.md
+2025-08-03 17:38:53 ./results/dynamic_evolution_metrics.json
+2025-08-03 17:38:53 ./results/dynamic_evolution.h5
 2025-08-03 17:37:59 ./tests/test_dynamic_evolution_report.py
-2025-08-03 17:37:59 ./docs/progress_log.ndjson
 2025-08-03 17:37:59 ./.github/workflows/ci.yml
-2025-08-03 17:36:25 ./results/dynamic_evolution_metrics.json
-2025-08-03 17:36:25 ./results/dynamic_evolution.h5
-2025-08-03 17:33:45 ./docs/progress_log.md
-2025-08-03 17:33:00 ./scripts/dynamic_evolution_report.py
 2025-08-03 17:29:46 ./docs/future-directions.md
 2025-08-03 17:12:04 ./tests/test_dynamic_evolution_analysis.py
 2025-08-03 13:48:52 ./scripts/dynamic_evolution_analysis.py
@@ -330,7 +326,7 @@ tests/test_qft_backend.py::test_qft_backend_smoke PASSED                 [ 94%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 97%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-============================== 38 passed in 3.53s ==============================
+============================== 38 passed in 4.73s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
