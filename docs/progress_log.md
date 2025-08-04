@@ -32,9 +32,6 @@
 - Extended `solve_semiclassical_metric` to include spatial Laplacian term for wave propagation in `src/simulation/backreaction.py`.
 
 ### Next Tasks
-1. Update V&V and UQ trackers with tasks for lattice solver validation and uncertainty quantification of lattice energy densities.
-2. Implement finite-difference time-integration in `solve_klein_gordon` for dynamic field evolution.
-3. Configure CI workflow (e.g., GitHub Actions) to run unit tests, integration tests, and CLI demo automatically.
 4. Implement integration test for HDF5 export result validation (`test_parameter_sweep_export.py`).
 5. Review and optimize time-integration accuracy in `solve_klein_gordon` based on discretization test outcomes.
 6. Test and iterate on the CI workflow to ensure it runs unit tests and the CLI demo successfully.

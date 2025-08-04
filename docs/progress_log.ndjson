@@ -11,5 +11,8 @@
 {"date":"2025-08-03","event":"Updated CI to run dynamic evolution report script","status":"completed"}
 {"date":"2025-08-06","event":"Ran test_time_integration_basic.py locally and confirmed CI compatibility","status":"completed"}
 {"date":"2025-08-06","event":"Refined time integration accuracy based on analytical solution comparison","status":"completed"}
+{"date":"2025-08-01","event":"Updated V&V and UQ trackers with lattice solver validation tasks","status":"completed"}
+{"date":"2025-08-01","event":"Implemented finite-difference time-integration in solve_klein_gordon","status":"completed"}
+{"date":"2025-08-01","event":"Configured CI workflow to run unit tests, integration tests, and CLI demos automatically","status":"completed"}
 {"date":"2025-08-07","event":"Enhanced dynamic_evolution_report.py to generate energy drift plot","status":"completed"}
 {"date":"2025-08-07","event":"Next: Write integration test for plot file creation in dynamic_evolution_report","status":"pending"}
