@@ -26,3 +26,26 @@
 {"date":"2025-08-03","event":"Added V&V tests for PhysicsCore.build_toy_ansatz and local_energy_density","status":"completed"}
 {"date":"2025-08-03","event":"Created CLI UQ tool for toy ansatz parameters (`qft_toy_ansatz_uq.py`) and integration test","status":"completed"}
 {"date":"2025-08-09","event":"Validate evolve_QFT handles 1D field input/output","status":"pending"}
+{"date":"2025-08-01","event":"Complete and validate the dynamic field evolution against discretization tests","status":"pending"}
+{"date":"2025-08-01","event":"Add integration tests for HDF5 export result validation in tests/test_parameter_sweep_export.py","status":"pending"}
+{"date":"2025-08-01","event":"Extend CI workflow to include backreaction demo execution and export validation","status":"pending"}
+{"date":"2025-08-01","event":"Refine documentation for backreaction API and usage examples in docs/future-directions.md","status":"pending"}
+{"date":"2025-08-01","event":"Run scripts/survey_repos.py and analyze results/external_survey.json for candidates","status":"pending"}
+{"date":"2025-08-01","event":"Identify and import functions (e.g., ANEC checks, vacuum energy models) from external repos into our modules","status":"pending"}
+{"date":"2025-08-01","event":"Update documentation with mappings of external modules to our negative-energy-generator framework","status":"pending"}
+{"date":"2025-08-01","event":"Analyze numerical stability of metric evolution and adjust solver parameters","status":"pending"}
+{"date":"2025-08-01","event":"Integrate backreaction UQ sensitivity tasks into automated analysis pipeline","status":"pending"}
+{"date":"2025-08-01","event":"Review overall CI to ensure all demos (lattice_sweep and backreaction) run successfully","status":"pending"}
+{"date":"2025-08-01","event":"Survey lorentz-violation-pipeline for stress-energy violation models to inform negative energy generation algorithms","status":"pending"}
+{"date":"2025-08-01","event":"Review lqg-anec-framework for averaged null energy condition (ANEC) checks and integrate relevant inequality constraints","status":"pending"}
+{"date":"2025-08-01","event":"Harvest vacuum energy prediction modules in unified-lqg and unified-lqg-qft to model macroscopic exotic state production","status":"pending"}
+{"date":"2025-08-01","event":"Integrate exotic matter density routines from warp-bubble-exotic-matter-density into lattice QFT and backreaction demos for realistic density profiles","status":"pending"}
+{"date":"2025-08-01","event":"Adapt advanced QFT toolchains from warp-bubble-qft to extend evolve_QFT and detect_exotics capabilities for larger-scale scenarios","status":"pending"}
+{"date":"2025-08-01","event":"Integrate backreaction stability test into CI workflow","status":"pending"}
+{"date":"2025-08-01","event":"Refine solve_semiclassical_metric to support spatial backreaction terms (e.g., metric Laplacian) and test accordingly","status":"pending"}
+{"date":"2025-08-01","event":"Update technical documentation with backreaction API details and usage examples","status":"pending"}
+{"date":"2025-08-01","event":"Link backreaction UQ tasks from UQ-TODO.ndjson into automated analysis notebooks","status":"pending"}
+{"date":"2025-08-01","event":"Write unit test for metric wave propagation (e.g., dispersion on Gaussian pulse) in tests/test_backreaction_wave.py","status":"pending"}
+{"date":"2025-08-01","event":"Update V&V tasks in VnV-TODO.ndjson to include spatial backreaction validation","status":"pending"}
+{"date":"2025-08-01","event":"Run CI to confirm wave propagation solver and tests pass under the updated model","status":"pending"}
+{"date":"2025-08-01","event":"Document backreaction wave solver assumptions and equations in docs/technical-documentation.md","status":"pending"}
