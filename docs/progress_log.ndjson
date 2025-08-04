@@ -46,6 +46,8 @@
 {"date":"2025-08-12","event":"Created backreaction UQ CLI tool (`backreaction_uq.py`) and integration test","status":"completed"}
 {"date":"2025-08-12","event":"Created backreaction UQ report script (`backreaction_uq_report.py`) and plot test","status":"completed"}
 {"date":"2025-08-12","event":"Updated CI to run backreaction UQ report script","status":"completed"}
+{"date":"2025-08-13","event":"Created dark fluid model module (`dark_fluid.py`) and unit tests","status":"completed"}
+{"date":"2025-08-13","event":"Created dark fluid demo script (`dark_fluid_demo.py`) and integration test","status":"completed"}
 {"date":"2025-08-01","event":"Identify and import functions (e.g., ANEC checks, vacuum energy models) from external repos into our modules","status":"pending"}
 {"date":"2025-08-01","event":"Update documentation with mappings of external modules to our negative-energy-generator framework","status":"pending"}
 {"date":"2025-08-01","event":"Analyze numerical stability of metric evolution and adjust solver parameters","status":"pending"}
