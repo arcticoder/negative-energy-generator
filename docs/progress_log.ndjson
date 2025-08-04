@@ -26,7 +26,8 @@
 {"date":"2025-08-03","event":"Added V&V tests for PhysicsCore.build_toy_ansatz and local_energy_density","status":"completed"}
 {"date":"2025-08-03","event":"Created CLI UQ tool for toy ansatz parameters (`qft_toy_ansatz_uq.py`) and integration test","status":"completed"}
 {"date":"2025-08-09","event":"Validate evolve_QFT handles 1D field input/output","status":"pending"}
-{"date":"2025-08-01","event":"Complete and validate the dynamic field evolution against discretization tests","status":"pending"}
+{"date":"2025-08-01","event":"Complete and validate the dynamic field evolution against discretization tests","status":"completed"}
+{"date":"2025-08-09","event":"Added dynamic evolution discretization accuracy test against analytic standing wave","status":"completed"}
 {"date":"2025-08-01","event":"Add integration tests for HDF5 export result validation in tests/test_parameter_sweep_export.py","status":"pending"}
 {"date":"2025-08-01","event":"Extend CI workflow to include backreaction demo execution and export validation","status":"pending"}
 {"date":"2025-08-01","event":"Refine documentation for backreaction API and usage examples in docs/future-directions.md","status":"pending"}
