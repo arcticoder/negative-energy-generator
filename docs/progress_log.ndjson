@@ -39,6 +39,7 @@
 {"date":"2025-08-11","event":"Write unit test for metric wave propagation (dispersion on Gaussian pulse)","status":"completed"}
 {"date":"2025-08-11","event":"Refine solve_semiclassical_metric to support spatial backreaction Laplacian and test accordingly","status":"completed"}
 {"date":"2025-08-11","event":"Update technical documentation with backreaction API details and module mappings","status":"completed"}
+{"date":"2025-08-12","event":"Created backreaction UQ CLI tool (`backreaction_uq.py`) and integration test","status":"completed"}
 {"date":"2025-08-01","event":"Identify and import functions (e.g., ANEC checks, vacuum energy models) from external repos into our modules","status":"pending"}
 {"date":"2025-08-01","event":"Update documentation with mappings of external modules to our negative-energy-generator framework","status":"pending"}
 {"date":"2025-08-01","event":"Analyze numerical stability of metric evolution and adjust solver parameters","status":"pending"}

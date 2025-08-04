@@ -14,12 +14,14 @@
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
+2025-08-03 22:03:15 ./tests/test_backreaction_uq.py
+2025-08-03 22:03:15 ./scripts/backreaction_uq.py
+2025-08-03 22:03:15 ./docs/progress_log.ndjson
+2025-08-03 22:00:54 ./docs/progress_log.md
+2025-08-03 22:00:50 ./results/dynamic_evolution_metrics.json
+2025-08-03 22:00:48 ./results/dynamic_evolution.h5
 2025-08-03 21:59:08 ./tests/test_qft_backend_anec.py
 2025-08-03 21:59:08 ./src/simulation/qft_backend.py
-2025-08-03 21:59:08 ./docs/progress_log.ndjson
-2025-08-03 21:32:28 ./docs/progress_log.md
-2025-08-03 21:32:25 ./results/dynamic_evolution_metrics.json
-2025-08-03 21:32:24 ./results/dynamic_evolution.h5
 2025-08-03 21:25:21 ./tools/progress_log_processor.py
 2025-08-03 19:46:40 ./tests/test_dynamic_evolution_discretization.py
 2025-08-03 19:34:27 ./tests/test_lattice_sweep_demo.py
@@ -52,8 +54,6 @@
 2025-08-01 21:40:13 ./scripts/survey_repos.py
 2025-08-01 21:10:40 ./tests/test_backreaction_export.py
 2025-08-01 21:10:40 ./scripts/backreaction_demo.py
-2025-08-01 20:56:42 ./tests/test_backreaction.py
-2025-08-01 20:30:15 ./tests/test_zero_initial_condition.py
 # LATEST-FILES-LIST-END
 
 ~/Code/asciimath/negative-energy-generator$ ls .. -lt | awk '{print $1, $2, $5, $6, $7, $8, $9}'
@@ -125,43 +125,44 @@ cachedir: .pytest_cache
 rootdir: /home/echo_/Code/asciimath/negative-energy-generator
 configfile: pytest.ini
 testpaths: tests
-collecting ... collected 48 items
+collecting ... collected 49 items
 
 tests/test_analytical_solution.py::test_analytical_solution_massless PASSED [  2%]
 tests/test_backreaction.py::test_solve_semiclassical_metric_shapes_and_initial_step PASSED [  4%]
 tests/test_backreaction_export.py::test_backreaction_demo_export PASSED  [  6%]
 tests/test_backreaction_stability.py::test_constant_source_growth_matches_theoretical PASSED [  8%]
-tests/test_backreaction_wave.py::test_zero_source_remains_zero PASSED    [ 10%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_frequency_response PASSED [ 12%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_initialization PASSED [ 14%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_calculation PASSED [ 16%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_scaling PASSED [ 18%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_simulate_pulse PASSED [ 20%]
-tests/test_diagnostics.py::TestCalorimetricSensor::test_initialization PASSED [ 22%]
-tests/test_diagnostics.py::TestCalorimetricSensor::test_simulate_pulse PASSED [ 25%]
-tests/test_diagnostics.py::TestCalorimetricSensor::test_temp_rise_calculation PASSED [ 27%]
-tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_acquire PASSED [ 29%]
-tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_frequency_sweep PASSED [ 31%]
-tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_initialization PASSED [ 33%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_add_sample PASSED       [ 35%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_circular_buffer PASSED  [ 37%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_initialization PASSED   [ 39%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_reset PASSED            [ 41%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_statistics PASSED       [ 43%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_trigger_modes PASSED    [ 45%]
-tests/test_diagnostics.py::TestUtilityFunctions::test_benchmark_instrumentation_suite PASSED [ 47%]
-tests/test_diagnostics.py::TestUtilityFunctions::test_generate_T00_pulse PASSED [ 50%]
-tests/test_diagnostics.py::TestIntegration::test_complete_measurement_chain PASSED [ 52%]
-tests/test_diagnostics.py::TestIntegration::test_multi_sensor_comparison PASSED [ 54%]
-tests/test_dynamic_evolution.py::test_dynamic_energy_conservation PASSED [ 56%]
-tests/test_dynamic_evolution_accuracy.py::test_dynamic_evolution_energy_drift PASSED [ 58%]
-tests/test_dynamic_evolution_analysis.py::test_dynamic_evolution_analysis PASSED [ 60%]
-tests/test_dynamic_evolution_discretization.py::test_dynamic_evolution_discretization_accuracy PASSED [ 62%]
-tests/test_dynamic_evolution_export.py::test_dynamic_evolution_demo_export PASSED [ 64%]
-tests/test_dynamic_evolution_plot.py::test_dynamic_evolution_plot PASSED [ 66%]
-tests/test_dynamic_evolution_report.py::test_dynamic_evolution_report PASSED [ 68%]
-tests/test_energy_conservation.py::test_energy_conservation PASSED       [ 70%]
-tests/test_evolve_qft.py::test_evolve_qft_fallback_identity PASSED       [ 72%]
+tests/test_backreaction_uq.py::test_backreaction_uq_script PASSED        [ 10%]
+tests/test_backreaction_wave.py::test_zero_source_remains_zero PASSED    [ 12%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_frequency_response PASSED [ 14%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_initialization PASSED [ 16%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_calculation PASSED [ 18%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_scaling PASSED [ 20%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_simulate_pulse PASSED [ 22%]
+tests/test_diagnostics.py::TestCalorimetricSensor::test_initialization PASSED [ 24%]
+tests/test_diagnostics.py::TestCalorimetricSensor::test_simulate_pulse PASSED [ 26%]
+tests/test_diagnostics.py::TestCalorimetricSensor::test_temp_rise_calculation PASSED [ 28%]
+tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_acquire PASSED [ 30%]
+tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_frequency_sweep PASSED [ 32%]
+tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_initialization PASSED [ 34%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_add_sample PASSED       [ 36%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_circular_buffer PASSED  [ 38%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_initialization PASSED   [ 40%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_reset PASSED            [ 42%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_statistics PASSED       [ 44%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_trigger_modes PASSED    [ 46%]
+tests/test_diagnostics.py::TestUtilityFunctions::test_benchmark_instrumentation_suite PASSED [ 48%]
+tests/test_diagnostics.py::TestUtilityFunctions::test_generate_T00_pulse PASSED [ 51%]
+tests/test_diagnostics.py::TestIntegration::test_complete_measurement_chain PASSED [ 53%]
+tests/test_diagnostics.py::TestIntegration::test_multi_sensor_comparison PASSED [ 55%]
+tests/test_dynamic_evolution.py::test_dynamic_energy_conservation PASSED [ 57%]
+tests/test_dynamic_evolution_accuracy.py::test_dynamic_evolution_energy_drift PASSED [ 59%]
+tests/test_dynamic_evolution_analysis.py::test_dynamic_evolution_analysis PASSED [ 61%]
+tests/test_dynamic_evolution_discretization.py::test_dynamic_evolution_discretization_accuracy PASSED [ 63%]
+tests/test_dynamic_evolution_export.py::test_dynamic_evolution_demo_export PASSED [ 65%]
+tests/test_dynamic_evolution_plot.py::test_dynamic_evolution_plot PASSED [ 67%]
+tests/test_dynamic_evolution_report.py::test_dynamic_evolution_report PASSED [ 69%]
+tests/test_energy_conservation.py::test_energy_conservation PASSED       [ 71%]
+tests/test_evolve_qft.py::test_evolve_qft_fallback_identity PASSED       [ 73%]
 tests/test_lattice_discretization.py::test_laplacian_accuracy_for_sine_wave PASSED [ 75%]
 tests/test_lattice_energy.py::test_compute_energy_density_zero_field PASSED [ 77%]
 tests/test_lattice_energy.py::test_solve_klein_gordon_basic PASSED       [ 79%]
@@ -176,13 +177,7 @@ tests/test_qft_toy_ansatz_uq.py::test_qft_toy_ansatz_uq_script PASSED    [ 95%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 97%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-=============================== warnings summary ===============================
-src/simulation/qft_backend.py:197
-  /home/echo_/Code/asciimath/negative-energy-generator/src/simulation/qft_backend.py:197: SyntaxWarning: invalid escape sequence '\i'
-    """
-
--- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-======================== 48 passed, 1 warning in 7.27s =========================
+============================== 49 passed in 8.39s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
