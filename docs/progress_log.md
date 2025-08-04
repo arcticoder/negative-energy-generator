@@ -149,11 +149,11 @@
 
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN
-I've added the CLI report script and noted the next task to create its integration test.
+All tests, including the new report integration test, passed successfully. Progress has been logged in progress_log.ndjson. Next, we can update CI to generate plots or begin building the CLI report with Matplotlib.
 ## NEWEST-PROGRESS-END
 ```
 ```progress
-I've migrated the dynamic evolution task entries to NDJSON, removed them from the markdown log, and noted the migration event. Next, I'll implement `scripts/dynamic_evolution_report.py` to generate formatted reports.
+I've added the CLI report script and noted the next task to create its integration test.
 ```
 ```progress
 I've added the dynamic evolution demo script and test, updated the CI to run both the dynamic demo and its tests, and logged progress. Next, I'll run the dynamic demo locally and ensure its output is valid.
@@ -169,27 +169,27 @@ The semiclassical backreaction API and numerical approach are now documented, in
 
 Next, I'll integrate the backreaction steps into CI, refine any packaging, or begin adapting external ANEC modules into the core.
 ```
-```progress
+
+```oldest-progress
+## OLDEST-PROGRESS-BEGIN
 The semiclassical backreaction API and numerical approach are now documented, including equations, code examples, and test coverage. The technical docs reflect solver usage and future enhancements. 
 
 Next, I'll integrate the backreaction steps into CI, refine any packaging, or begin adapting external ANEC modules into the core.
-```
-```oldest-progress
-## OLDEST-PROGRESS-BEGIN
-Next, I'll integrate this stability check into CI, update V&V tasks for spatial backreaction, and start documenting the backreaction API in technical-documentation.md.
 ## OLDEST-PROGRESS-END
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
+2025-08-03 17:37:59 ./tests/test_dynamic_evolution_report.py
+2025-08-03 17:37:59 ./docs/progress_log.ndjson
+2025-08-03 17:37:59 ./.github/workflows/ci.yml
+2025-08-03 17:36:25 ./results/dynamic_evolution_metrics.json
+2025-08-03 17:36:25 ./results/dynamic_evolution.h5
+2025-08-03 17:33:45 ./docs/progress_log.md
 2025-08-03 17:33:00 ./scripts/dynamic_evolution_report.py
-2025-08-03 17:33:00 ./docs/progress_log.ndjson
-2025-08-03 17:31:11 ./docs/progress_log.md
-2025-08-03 17:30:53 ./results/dynamic_evolution.h5
 2025-08-03 17:29:46 ./docs/future-directions.md
 2025-08-03 17:12:04 ./tests/test_dynamic_evolution_analysis.py
-2025-08-03 17:12:04 ./.github/workflows/ci.yml
 2025-08-03 13:48:52 ./scripts/dynamic_evolution_analysis.py
 2025-08-03 13:26:05 ./docs/technical-documentation.md
 2025-08-03 13:26:05 ./UQ-TODO.ndjson
@@ -221,8 +221,6 @@ Next, I'll integrate this stability check into CI, update V&V tasks for spatial 
 2025-08-01 20:30:15 ./src/simulation/parameter_sweep.py
 2025-08-01 20:30:15 ./src/simulation/mechanical_fem.py
 2025-08-01 20:30:15 ./src/simulation/electromagnetic_fdtd.py
-2025-08-01 20:30:15 ./scripts/lattice_sweep_demo.py
-2025-08-01 20:30:15 ./physics_driven_prototype_validation.py
 # LATEST-FILES-LIST-END
 
 ~/Code/asciimath/negative-energy-generator$ ls .. -lt | awk '{print $1, $2, $5, $6, $7, $8, $9}'
@@ -294,47 +292,48 @@ cachedir: .pytest_cache
 rootdir: /home/echo_/Code/asciimath/negative-energy-generator
 configfile: pytest.ini
 testpaths: tests
-collecting ... collected 37 items
+collecting ... collected 38 items
 
 tests/test_analytical_solution.py::test_analytical_solution_massless PASSED [  2%]
 tests/test_backreaction.py::test_solve_semiclassical_metric_shapes_and_initial_step PASSED [  5%]
-tests/test_backreaction_export.py::test_backreaction_demo_export PASSED  [  8%]
+tests/test_backreaction_export.py::test_backreaction_demo_export PASSED  [  7%]
 tests/test_backreaction_stability.py::test_constant_source_growth_matches_theoretical PASSED [ 10%]
 tests/test_backreaction_wave.py::test_zero_source_remains_zero PASSED    [ 13%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_frequency_response PASSED [ 16%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_frequency_response PASSED [ 15%]
 tests/test_diagnostics.py::TestInterferometricProbe::test_initialization PASSED [ 18%]
 tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_calculation PASSED [ 21%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_scaling PASSED [ 24%]
-tests/test_diagnostics.py::TestInterferometricProbe::test_simulate_pulse PASSED [ 27%]
-tests/test_diagnostics.py::TestCalorimetricSensor::test_initialization PASSED [ 29%]
-tests/test_diagnostics.py::TestCalorimetricSensor::test_simulate_pulse PASSED [ 32%]
-tests/test_diagnostics.py::TestCalorimetricSensor::test_temp_rise_calculation PASSED [ 35%]
-tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_acquire PASSED [ 37%]
-tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_frequency_sweep PASSED [ 40%]
-tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_initialization PASSED [ 43%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_add_sample PASSED       [ 45%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_circular_buffer PASSED  [ 48%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_initialization PASSED   [ 51%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_reset PASSED            [ 54%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_statistics PASSED       [ 56%]
-tests/test_diagnostics.py::TestRealTimeDAQ::test_trigger_modes PASSED    [ 59%]
-tests/test_diagnostics.py::TestUtilityFunctions::test_benchmark_instrumentation_suite PASSED [ 62%]
-tests/test_diagnostics.py::TestUtilityFunctions::test_generate_T00_pulse PASSED [ 64%]
-tests/test_diagnostics.py::TestIntegration::test_complete_measurement_chain PASSED [ 67%]
-tests/test_diagnostics.py::TestIntegration::test_multi_sensor_comparison PASSED [ 70%]
-tests/test_dynamic_evolution.py::test_dynamic_energy_conservation PASSED [ 72%]
-tests/test_dynamic_evolution_analysis.py::test_dynamic_evolution_analysis PASSED [ 75%]
-tests/test_dynamic_evolution_export.py::test_dynamic_evolution_demo_export PASSED [ 78%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_scaling PASSED [ 23%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_simulate_pulse PASSED [ 26%]
+tests/test_diagnostics.py::TestCalorimetricSensor::test_initialization PASSED [ 28%]
+tests/test_diagnostics.py::TestCalorimetricSensor::test_simulate_pulse PASSED [ 31%]
+tests/test_diagnostics.py::TestCalorimetricSensor::test_temp_rise_calculation PASSED [ 34%]
+tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_acquire PASSED [ 36%]
+tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_frequency_sweep PASSED [ 39%]
+tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_initialization PASSED [ 42%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_add_sample PASSED       [ 44%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_circular_buffer PASSED  [ 47%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_initialization PASSED   [ 50%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_reset PASSED            [ 52%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_statistics PASSED       [ 55%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_trigger_modes PASSED    [ 57%]
+tests/test_diagnostics.py::TestUtilityFunctions::test_benchmark_instrumentation_suite PASSED [ 60%]
+tests/test_diagnostics.py::TestUtilityFunctions::test_generate_T00_pulse PASSED [ 63%]
+tests/test_diagnostics.py::TestIntegration::test_complete_measurement_chain PASSED [ 65%]
+tests/test_diagnostics.py::TestIntegration::test_multi_sensor_comparison PASSED [ 68%]
+tests/test_dynamic_evolution.py::test_dynamic_energy_conservation PASSED [ 71%]
+tests/test_dynamic_evolution_analysis.py::test_dynamic_evolution_analysis PASSED [ 73%]
+tests/test_dynamic_evolution_export.py::test_dynamic_evolution_demo_export PASSED [ 76%]
+tests/test_dynamic_evolution_report.py::test_dynamic_evolution_report PASSED [ 78%]
 tests/test_energy_conservation.py::test_energy_conservation PASSED       [ 81%]
-tests/test_lattice_discretization.py::test_laplacian_accuracy_for_sine_wave PASSED [ 83%]
+tests/test_lattice_discretization.py::test_laplacian_accuracy_for_sine_wave PASSED [ 84%]
 tests/test_lattice_energy.py::test_compute_energy_density_zero_field PASSED [ 86%]
 tests/test_lattice_energy.py::test_solve_klein_gordon_basic PASSED       [ 89%]
-tests/test_parameter_sweep_export.py::test_parameter_sweep_export PASSED [ 91%]
+tests/test_parameter_sweep_export.py::test_parameter_sweep_export PASSED [ 92%]
 tests/test_qft_backend.py::test_qft_backend_smoke PASSED                 [ 94%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 97%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-============================== 37 passed in 3.39s ==============================
+============================== 38 passed in 3.53s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
