@@ -3,6 +3,7 @@
 Command-line demo for semiclassical backreaction: couples lattice QFT output to metric evolution solver.
 """
 import os
+import argparse
 import numpy as np
 import h5py
 from simulation.lattice_qft import solve_klein_gordon, compute_energy_density

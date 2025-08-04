@@ -14,12 +14,12 @@
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
+2025-08-03 22:40:53 ./scripts/backreaction_demo.py
+2025-08-03 22:40:53 ./docs/progress_log.ndjson
+2025-08-03 22:37:57 ./docs/progress_log.md
 2025-08-03 22:37:40 ./tests/test_simulate_sensor_readout.py
 2025-08-03 22:37:40 ./scripts/simulate_sensor_readout.py
 2025-08-03 22:37:40 ./.github/workflows/ci.yml
-2025-08-03 22:34:27 ./docs/progress_log.md
-2025-08-03 22:34:16 ./scripts/backreaction_demo.py
-2025-08-03 22:34:16 ./docs/progress_log.ndjson
 2025-08-03 22:31:50 ./results/dynamic_evolution_metrics.json
 2025-08-03 22:31:49 ./results/dynamic_evolution.h5
 2025-08-03 22:31:32 ./tests/test_detection_threshold_uq.py
@@ -129,42 +129,97 @@ collecting ... collected 56 items
 
 tests/test_analytical_solution.py::test_analytical_solution_massless PASSED [  1%]
 tests/test_backreaction.py::test_solve_semiclassical_metric_shapes_and_initial_step PASSED [  3%]
-tests/test_backreaction_export.py::test_backreaction_demo_export FAILED  [  5%]
+tests/test_backreaction_export.py::test_backreaction_demo_export PASSED  [  5%]
+tests/test_backreaction_stability.py::test_constant_source_growth_matches_theoretical PASSED [  7%]
+tests/test_backreaction_uq.py::test_backreaction_uq_script PASSED        [  8%]
+tests/test_backreaction_uq_report.py::test_backreaction_uq_report_script PASSED [ 10%]
+tests/test_backreaction_wave.py::test_zero_source_remains_zero PASSED    [ 12%]
+tests/test_dark_fluid.py::test_generate_negative_mass_fluid_defaults PASSED [ 14%]
+tests/test_dark_fluid.py::test_anec_negative_fluid PASSED                [ 16%]
+tests/test_dark_fluid_demo.py::test_dark_fluid_demo_script PASSED        [ 17%]
+tests/test_detection_threshold_uq.py::test_detection_threshold_uq PASSED [ 19%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_frequency_response PASSED [ 21%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_initialization PASSED [ 23%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_calculation PASSED [ 25%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_phase_shift_scaling PASSED [ 26%]
+tests/test_diagnostics.py::TestInterferometricProbe::test_simulate_pulse PASSED [ 28%]
+tests/test_diagnostics.py::TestCalorimetricSensor::test_initialization PASSED [ 30%]
+tests/test_diagnostics.py::TestCalorimetricSensor::test_simulate_pulse PASSED [ 32%]
+tests/test_diagnostics.py::TestCalorimetricSensor::test_temp_rise_calculation PASSED [ 33%]
+tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_acquire PASSED [ 35%]
+tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_frequency_sweep PASSED [ 37%]
+tests/test_diagnostics.py::TestPhaseShiftInterferometer::test_initialization PASSED [ 39%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_add_sample PASSED       [ 41%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_circular_buffer PASSED  [ 42%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_initialization PASSED   [ 44%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_reset PASSED            [ 46%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_statistics PASSED       [ 48%]
+tests/test_diagnostics.py::TestRealTimeDAQ::test_trigger_modes PASSED    [ 50%]
+tests/test_diagnostics.py::TestUtilityFunctions::test_benchmark_instrumentation_suite PASSED [ 51%]
+tests/test_diagnostics.py::TestUtilityFunctions::test_generate_T00_pulse PASSED [ 53%]
+tests/test_diagnostics.py::TestIntegration::test_complete_measurement_chain PASSED [ 55%]
+tests/test_diagnostics.py::TestIntegration::test_multi_sensor_comparison PASSED [ 57%]
+tests/test_dynamic_evolution.py::test_dynamic_energy_conservation PASSED [ 58%]
+tests/test_dynamic_evolution_accuracy.py::test_dynamic_evolution_energy_drift PASSED [ 60%]
+tests/test_dynamic_evolution_analysis.py::test_dynamic_evolution_analysis PASSED [ 62%]
+tests/test_dynamic_evolution_discretization.py::test_dynamic_evolution_discretization_accuracy PASSED [ 64%]
+tests/test_dynamic_evolution_export.py::test_dynamic_evolution_demo_export PASSED [ 66%]
+tests/test_dynamic_evolution_plot.py::test_dynamic_evolution_plot PASSED [ 67%]
+tests/test_dynamic_evolution_report.py::test_dynamic_evolution_report PASSED [ 69%]
+tests/test_energy_conservation.py::test_energy_conservation PASSED       [ 71%]
+tests/test_evolve_qft.py::test_evolve_qft_fallback_identity PASSED       [ 73%]
+tests/test_lattice_discretization.py::test_laplacian_accuracy_for_sine_wave PASSED [ 75%]
+tests/test_lattice_energy.py::test_compute_energy_density_zero_field PASSED [ 76%]
+tests/test_lattice_energy.py::test_solve_klein_gordon_basic PASSED       [ 78%]
+tests/test_lattice_sweep_demo.py::test_lattice_sweep_demo PASSED         [ 80%]
+tests/test_local_energy_resolution_uq.py::test_local_energy_resolution_uq PASSED [ 82%]
+tests/test_parameter_sweep_export.py::test_parameter_sweep_export PASSED [ 83%]
+tests/test_qft_backend.py::test_qft_backend_smoke PASSED                 [ 85%]
+tests/test_qft_backend_anec.py::test_compute_anec_and_check_anec_positive PASSED [ 87%]
+tests/test_qft_backend_anec.py::test_compute_anec_and_check_anec_negative PASSED [ 89%]
+tests/test_qft_backend_vnv.py::test_build_toy_ansatz_shape_and_values PASSED [ 91%]
+tests/test_qft_backend_vnv.py::test_local_energy_density_and_find_negative PASSED [ 92%]
+tests/test_qft_toy_ansatz_uq.py::test_qft_toy_ansatz_uq_script PASSED    [ 94%]
+tests/test_simulate_sensor_readout.py::test_simulate_sensor_readout FAILED [ 96%]
 
 =================================== FAILURES ===================================
-________________________ test_backreaction_demo_export _________________________
+_________________________ test_simulate_sensor_readout _________________________
 
-tmp_path = PosixPath('/tmp/pytest-of-echo_/pytest-56/test_backreaction_demo_export0')
-monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a322694d0f0>
+tmp_path = PosixPath('/tmp/pytest-of-echo_/pytest-57/test_simulate_sensor_readout0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x74753c8a2b50>
 
-    def test_backreaction_demo_export(tmp_path, monkeypatch):
-        # Ensure scripts are importable
-        repo_root = pathlib.Path(__file__).parent.parent
-        # Run backreaction_demo.py with cwd set to tmp_path
-        result = subprocess.run(
-            [sys.executable, str(repo_root / 'scripts' / 'backreaction_demo.py')],
-            cwd=str(tmp_path),
-            capture_output=True,
-            text=True
-        )
->       assert result.returncode == 0, f"Script failed: {result.stderr}"
-E       AssertionError: Script failed: Traceback (most recent call last):
-E           File "/home/echo_/Code/asciimath/negative-energy-generator/scripts/backreaction_demo.py", line 54, in <module>
-E             main()
-E             ~~~~^^
-E           File "/home/echo_/Code/asciimath/negative-energy-generator/scripts/backreaction_demo.py", line 13, in main
-E             parser = argparse.ArgumentParser(description="Backreaction demo CLI")
-E                      ^^^^^^^^
-E         NameError: name 'argparse' is not defined. Did you forget to import 'argparse'?
-E         
-E       assert 1 == 0
-E        +  where 1 = CompletedProcess(args=['/home/echo_/Code/asciimath/negative-energy-generator/.venv/bin/python', '/home/echo_/Code/asciimath/negative-energy-generator/scripts/backreaction_demo.py'], returncode=1, stdout='', stderr='Traceback (most recent call last):\n  File "/home/echo_/Code/asciimath/negative-energy-generator/scripts/backreaction_demo.py", line 54, in <module>\n    main()\n    ~~~~^^\n  File "/home/echo_/Code/asciimath/negative-energy-generator/scripts/backreaction_demo.py", line 13, in main\n    parser = argparse.ArgumentParser(description="Backreaction demo CLI")\n             ^^^^^^^^\nNameError: name \'argparse\' is not defined. Did you forget to import \'argparse\'?\n').returncode
+    def test_simulate_sensor_readout(tmp_path, monkeypatch):
+        # Create dummy HDF5 with energies dataset
+        import h5py
+        import numpy as np
+        data_file = tmp_path / 'energies.h5'
+        with h5py.File(data_file, 'w') as f:
+            f.create_dataset('energies', data=np.linspace(0,1,10))
+        # Run CLI tool
+        output_file = tmp_path / 'sensor_readout.json'
+        script = pathlib.Path(__file__).parent.parent / 'scripts' / 'simulate_sensor_readout.py'
+        cmd = [sys.executable, str(script),
+               '--data', str(data_file),
+               '--noise-std', '0.0',
+               '--gain', '2.0',
+               '--seed', '0',
+               '--output', str(output_file)]
+        subprocess.check_call(cmd)
+        data = json.loads(output_file.read_text())
+        assert data['gain'] == 2.0
+        assert data['noise_std'] == 0.0
+>       assert data['mean_reading'] == pytest.approx(np.mean(np.linspace(0,1,10))*2.0)
+                                       ^^^^^^
+E       NameError: name 'pytest' is not defined
 
-tests/test_backreaction_export.py:18: AssertionError
+tests/test_simulate_sensor_readout.py:26: NameError
+----------------------------- Captured stdout call -----------------------------
+Sensor readout simulation saved to /tmp/pytest-of-echo_/pytest-57/test_simulate_sensor_readout0/sensor_readout.json
+Mean reading: 1.000000, Std: 0.638285
 =========================== short test summary info ============================
-FAILED tests/test_backreaction_export.py::test_backreaction_demo_export - Ass...
+FAILED tests/test_simulate_sensor_readout.py::test_simulate_sensor_readout - ...
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-========================= 1 failed, 2 passed in 1.68s ==========================
+======================== 1 failed, 53 passed in 10.29s =========================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
