@@ -76,9 +76,6 @@
 ### In Progress
 - Added `test_time_integration_basic.py` to validate `solve_klein_gordon` output shapes and finite values.
 
-### Next Tasks
-- Run the new test locally and confirm CI compatibility.
-- Refine time integration accuracy by comparing against analytical solution for small dt.
 
 ### Progress Update
 - Enhanced `compute_energy_density` to accept `dx` and normalize spatial gradient; updated tests accordingly.
