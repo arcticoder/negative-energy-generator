@@ -14,13 +14,15 @@
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
+2025-08-03 22:37:40 ./tests/test_simulate_sensor_readout.py
+2025-08-03 22:37:40 ./scripts/simulate_sensor_readout.py
+2025-08-03 22:37:40 ./.github/workflows/ci.yml
+2025-08-03 22:34:27 ./docs/progress_log.md
 2025-08-03 22:34:16 ./scripts/backreaction_demo.py
 2025-08-03 22:34:16 ./docs/progress_log.ndjson
-2025-08-03 22:31:53 ./docs/progress_log.md
 2025-08-03 22:31:50 ./results/dynamic_evolution_metrics.json
 2025-08-03 22:31:49 ./results/dynamic_evolution.h5
 2025-08-03 22:31:32 ./tests/test_detection_threshold_uq.py
-2025-08-03 22:31:32 ./.github/workflows/ci.yml
 2025-08-03 22:30:00 ./scripts/detection_threshold_uq.py
 2025-08-03 22:26:19 ./tests/test_local_energy_resolution_uq.py
 2025-08-03 22:26:19 ./scripts/local_energy_resolution_uq.py
@@ -52,8 +54,6 @@
 2025-08-03 17:37:59 ./tests/test_dynamic_evolution_report.py
 2025-08-03 17:12:04 ./tests/test_dynamic_evolution_analysis.py
 2025-08-03 13:48:52 ./scripts/dynamic_evolution_analysis.py
-2025-08-03 13:26:05 ./docs/technical-documentation.md
-2025-08-03 13:26:05 ./UQ-TODO.ndjson
 # LATEST-FILES-LIST-END
 
 ~/Code/asciimath/negative-energy-generator$ ls .. -lt | awk '{print $1, $2, $5, $6, $7, $8, $9}'
@@ -125,7 +125,7 @@ cachedir: .pytest_cache
 rootdir: /home/echo_/Code/asciimath/negative-energy-generator
 configfile: pytest.ini
 testpaths: tests
-collecting ... collected 55 items
+collecting ... collected 56 items
 
 tests/test_analytical_solution.py::test_analytical_solution_massless PASSED [  1%]
 tests/test_backreaction.py::test_solve_semiclassical_metric_shapes_and_initial_step PASSED [  3%]
@@ -134,8 +134,8 @@ tests/test_backreaction_export.py::test_backreaction_demo_export FAILED  [  5%]
 =================================== FAILURES ===================================
 ________________________ test_backreaction_demo_export _________________________
 
-tmp_path = PosixPath('/tmp/pytest-of-echo_/pytest-55/test_backreaction_demo_export0')
-monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7c5372cd50f0>
+tmp_path = PosixPath('/tmp/pytest-of-echo_/pytest-56/test_backreaction_demo_export0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a322694d0f0>
 
     def test_backreaction_demo_export(tmp_path, monkeypatch):
         # Ensure scripts are importable
@@ -164,7 +164,7 @@ tests/test_backreaction_export.py:18: AssertionError
 =========================== short test summary info ============================
 FAILED tests/test_backreaction_export.py::test_backreaction_demo_export - Ass...
 !!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
-========================= 1 failed, 2 passed in 1.62s ==========================
+========================= 1 failed, 2 passed in 1.68s ==========================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
