@@ -80,3 +80,7 @@ jobs:
         run: |
           cd negative-energy-generator
           python scripts/dynamic_evolution_analysis.py
+      - name: Run dynamic evolution report
+        run: |
+          cd negative-energy-generator
+          python scripts/dynamic_evolution_report.py
