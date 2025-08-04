@@ -163,3 +163,11 @@ To scaffold exploration and clearly separate concerns, we may create dedicated G
   - Update CI test command to respect verbosity settings or include `-v` flag.
 
 ---
+
+## 6. UQ Analysis Notebook
+
+- Create a Jupyter notebook `notebooks/dynamic_evolution_analysis.ipynb` to visualize and report the dynamic evolution metrics (initial/final energy, drift statistics).
+  - Load `results/dynamic_evolution_metrics.json` and generate plots of energy drift over time.
+  - Integrate notebook into CI via nbconvert check for execution errors.
+
+---
