@@ -25,6 +25,7 @@
 {"date":"2025-08-07","event":"Begin writing documentation for solver API and usage examples","status":"completed"}
 {"date":"2025-08-03","event":"Added V&V tests for PhysicsCore.build_toy_ansatz and local_energy_density","status":"completed"}
 {"date":"2025-08-03","event":"Created CLI UQ tool for toy ansatz parameters (`qft_toy_ansatz_uq.py`) and integration test","status":"completed"}
+{"date":"2025-08-03","event":"Integrated QFT toy ansatz UQ demo into CI workflow","status":"completed"}
 {"date":"2025-08-10","event":"Validate evolve_QFT handles 1D field input/output","status":"completed"}
 {"date":"2025-08-01","event":"Complete and validate the dynamic field evolution against discretization tests","status":"completed"}
 {"date":"2025-08-09","event":"Added dynamic evolution discretization accuracy test against analytic standing wave","status":"completed"}
