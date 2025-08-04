@@ -14,10 +14,12 @@
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
-2025-08-03 21:21:15 ./docs/progress_log.ndjson
-2025-08-03 21:18:58 ./docs/progress_log.md
-2025-08-03 21:18:14 ./results/dynamic_evolution_metrics.json
-2025-08-03 21:18:13 ./results/dynamic_evolution.h5
+2025-08-03 21:31:18 ./results/external_survey.json
+2025-08-03 21:27:34 ./docs/progress_log.ndjson
+2025-08-03 21:25:21 ./tools/progress_log_processor.py
+2025-08-03 21:23:36 ./docs/progress_log.md
+2025-08-03 21:22:45 ./results/dynamic_evolution_metrics.json
+2025-08-03 21:22:44 ./results/dynamic_evolution.h5
 2025-08-03 19:46:40 ./tests/test_dynamic_evolution_discretization.py
 2025-08-03 19:34:27 ./tests/test_lattice_sweep_demo.py
 2025-08-03 19:34:27 ./tests/test_evolve_qft.py
@@ -41,7 +43,6 @@
 2025-08-03 13:26:05 ./UQ-TODO.ndjson
 2025-08-03 12:46:57 ./tests/test_dynamic_evolution_export.py
 2025-08-03 12:46:57 ./pytest.ini
-2025-08-03 12:41:28 ./tools/progress_log_processor.py
 2025-08-03 08:31:36 ./tests/test_dynamic_evolution.py
 2025-08-01 22:16:31 ./tests/test_backreaction_wave.py
 2025-08-01 22:16:31 ./tests/test_backreaction_stability.py
@@ -53,7 +54,6 @@
 2025-08-01 21:10:40 ./scripts/backreaction_demo.py
 2025-08-01 20:56:42 ./tests/test_backreaction.py
 2025-08-01 20:30:15 ./tests/test_zero_initial_condition.py
-2025-08-01 20:30:15 ./tests/test_time_integration_basic.py
 # LATEST-FILES-LIST-END
 
 ~/Code/asciimath/negative-energy-generator$ ls .. -lt | awk '{print $1, $2, $5, $6, $7, $8, $9}'
@@ -174,7 +174,7 @@ tests/test_qft_toy_ansatz_uq.py::test_qft_toy_ansatz_uq_script PASSED    [ 95%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 97%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-============================== 46 passed in 6.55s ==============================
+============================== 46 passed in 7.03s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
