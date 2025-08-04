@@ -149,11 +149,11 @@
 
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN
-I've migrated the dynamic evolution task entries to NDJSON, removed them from the markdown log, and noted the migration event. Next, I'll implement `scripts/dynamic_evolution_report.py` to generate formatted reports.
+I've added the CLI report script and noted the next task to create its integration test.
 ## NEWEST-PROGRESS-END
 ```
 ```progress
-I've removed the completed Next Tasks and updated the roadmap to reflect moving from notebooks to CLI-based UQ scripts. Next, I'll implement a reporting script for dynamic evolution metrics.
+I've migrated the dynamic evolution task entries to NDJSON, removed them from the markdown log, and noted the migration event. Next, I'll implement `scripts/dynamic_evolution_report.py` to generate formatted reports.
 ```
 ```progress
 I've added the dynamic evolution demo script and test, updated the CI to run both the dynamic demo and its tests, and logged progress. Next, I'll run the dynamic demo locally and ensure its output is valid.
@@ -174,24 +174,20 @@ The semiclassical backreaction API and numerical approach are now documented, in
 
 Next, I'll integrate the backreaction steps into CI, refine any packaging, or begin adapting external ANEC modules into the core.
 ```
-```progress
-Next, I'll integrate this stability check into CI, update V&V tasks for spatial backreaction, and start documenting the backreaction API in technical-documentation.md.
-```
-
-
 ```oldest-progress
 ## OLDEST-PROGRESS-BEGIN
-I’ve added a stability test matching the theoretical growth pattern for constant T00, and updated the progress log with next tasks to integrate this into CI, extend the solver, and update docs. CI now consistently covers demos and tests.
+Next, I'll integrate this stability check into CI, update V&V tasks for spatial backreaction, and start documenting the backreaction API in technical-documentation.md.
 ## OLDEST-PROGRESS-END
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
-2025-08-03 17:29:46 ./docs/progress_log.ndjson
-2025-08-03 17:29:46 ./docs/progress_log.md
+2025-08-03 17:33:00 ./scripts/dynamic_evolution_report.py
+2025-08-03 17:33:00 ./docs/progress_log.ndjson
+2025-08-03 17:31:11 ./docs/progress_log.md
+2025-08-03 17:30:53 ./results/dynamic_evolution.h5
 2025-08-03 17:29:46 ./docs/future-directions.md
-2025-08-03 17:26:11 ./results/dynamic_evolution.h5
 2025-08-03 17:12:04 ./tests/test_dynamic_evolution_analysis.py
 2025-08-03 17:12:04 ./.github/workflows/ci.yml
 2025-08-03 13:48:52 ./scripts/dynamic_evolution_analysis.py
@@ -227,7 +223,6 @@ I’ve added a stability test matching the theoretical growth pattern for consta
 2025-08-01 20:30:15 ./src/simulation/electromagnetic_fdtd.py
 2025-08-01 20:30:15 ./scripts/lattice_sweep_demo.py
 2025-08-01 20:30:15 ./physics_driven_prototype_validation.py
-2025-08-01 20:30:15 ./docs/literature_review.md
 # LATEST-FILES-LIST-END
 
 ~/Code/asciimath/negative-energy-generator$ ls .. -lt | awk '{print $1, $2, $5, $6, $7, $8, $9}'
@@ -339,7 +334,7 @@ tests/test_qft_backend.py::test_qft_backend_smoke PASSED                 [ 94%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 97%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-============================== 37 passed in 3.29s ==============================
+============================== 37 passed in 3.39s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
