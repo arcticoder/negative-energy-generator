@@ -149,11 +149,11 @@
 
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN
-I've removed the completed Next Tasks and updated the roadmap to reflect moving from notebooks to CLI-based UQ scripts. Next, I'll implement a reporting script for dynamic evolution metrics.
+I've migrated the dynamic evolution task entries to NDJSON, removed them from the markdown log, and noted the migration event. Next, I'll implement `scripts/dynamic_evolution_report.py` to generate formatted reports.
 ## NEWEST-PROGRESS-END
 ```
 ```progress
-I've migrated to NDJSON for progress tracking, added an integration test for the analysis script, and updated CI to run the analysis. Entries are logged in progress_log.ndjson. Next, I'll execute the new test suite to ensure everything passes.
+I've removed the completed Next Tasks and updated the roadmap to reflect moving from notebooks to CLI-based UQ scripts. Next, I'll implement a reporting script for dynamic evolution metrics.
 ```
 ```progress
 I've added the dynamic evolution demo script and test, updated the CI to run both the dynamic demo and its tests, and logged progress. Next, I'll run the dynamic demo locally and ensure its output is valid.
@@ -177,23 +177,21 @@ Next, I'll integrate the backreaction steps into CI, refine any packaging, or be
 ```progress
 Next, I'll integrate this stability check into CI, update V&V tasks for spatial backreaction, and start documenting the backreaction API in technical-documentation.md.
 ```
-```progress
-I’ve added a stability test matching the theoretical growth pattern for constant T00, and updated the progress log with next tasks to integrate this into CI, extend the solver, and update docs. CI now consistently covers demos and tests.
-```
+
 
 ```oldest-progress
 ## OLDEST-PROGRESS-BEGIN
-Survey script fixed and rerun successfully, and CI updated to execute the backreaction demo. I've updated the progress log with those changes. Now, I'll analyze external_survey.json to identify candidate modules to integrate.
+I’ve added a stability test matching the theoretical growth pattern for constant T00, and updated the progress log with next tasks to integrate this into CI, extend the solver, and update docs. CI now consistently covers demos and tests.
 ## OLDEST-PROGRESS-END
 ```
 
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
-2025-08-03 17:25:05 ./docs/progress_log.md
-2025-08-03 17:21:58 ./docs/progress_log.ndjson
-2025-08-03 17:21:58 ./docs/future-directions.md
-2025-08-03 17:16:19 ./results/dynamic_evolution.h5
+2025-08-03 17:29:46 ./docs/progress_log.ndjson
+2025-08-03 17:29:46 ./docs/progress_log.md
+2025-08-03 17:29:46 ./docs/future-directions.md
+2025-08-03 17:26:11 ./results/dynamic_evolution.h5
 2025-08-03 17:12:04 ./tests/test_dynamic_evolution_analysis.py
 2025-08-03 17:12:04 ./.github/workflows/ci.yml
 2025-08-03 13:48:52 ./scripts/dynamic_evolution_analysis.py
@@ -341,7 +339,7 @@ tests/test_qft_backend.py::test_qft_backend_smoke PASSED                 [ 94%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 97%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-============================== 37 passed in 3.54s ==============================
+============================== 37 passed in 3.29s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
