@@ -14,14 +14,14 @@
 ```file-history
 ~/Code/asciimath/negative-energy-generator$ find . -path "./.venv" -prune -o -type f -regex '.*\.\(ps1\|py\|sh\|ndjson\|json\|md\|yml\|toml\|h5\|ini\)$' -print | while read file; do stat -c '%Y %n' "$file"; done | sort -nr | while read timestamp file; do echo "$(date -d @$timestamp '+%Y-%m-%d %H:%M:%S') $file"; done | head -n 40
 # LATEST-FILES-LIST-BEGIN
+2025-08-03 22:30:00 ./scripts/detection_threshold_uq.py
+2025-08-03 22:26:35 ./docs/progress_log.md
+2025-08-03 22:26:31 ./results/dynamic_evolution_metrics.json
+2025-08-03 22:26:30 ./results/dynamic_evolution.h5
 2025-08-03 22:26:19 ./tests/test_local_energy_resolution_uq.py
 2025-08-03 22:26:19 ./scripts/local_energy_resolution_uq.py
 2025-08-03 22:26:19 ./.github/workflows/ci.yml
 2025-08-03 22:21:52 ./src/simulation/qft_backend.py
-2025-08-03 22:19:44 ./results/dark_fluid_demo.json
-2025-08-03 22:14:59 ./docs/progress_log.md
-2025-08-03 22:14:56 ./results/dynamic_evolution_metrics.json
-2025-08-03 22:14:55 ./results/dynamic_evolution.h5
 2025-08-03 22:14:25 ./tests/test_dark_fluid_demo.py
 2025-08-03 22:14:25 ./tests/test_dark_fluid.py
 2025-08-03 22:14:25 ./src/simulation/dark_fluid.py
@@ -182,13 +182,7 @@ tests/test_qft_toy_ansatz_uq.py::test_qft_toy_ansatz_uq_script PASSED    [ 96%]
 tests/test_time_integration_basic.py::test_solve_klein_gordon_shapes_and_values PASSED [ 98%]
 tests/test_zero_initial_condition.py::test_zero_initial_condition PASSED [100%]
 
-=============================== warnings summary ===============================
-src/simulation/qft_backend.py:197
-  /home/echo_/Code/asciimath/negative-energy-generator/src/simulation/qft_backend.py:197: SyntaxWarning: invalid escape sequence '\i'
-    """
-
--- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-======================== 54 passed, 1 warning in 10.14s ========================
+============================== 54 passed in 9.76s ==============================
 # PYTEST-RESULTS-END
 # Never skip a test if an import isn't available. Those tests should fail and the import should be fixed. 
 ~/Code/asciimath$ grep -r "importerskip" --include="*.py" . | wc -l
