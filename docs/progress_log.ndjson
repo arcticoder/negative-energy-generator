@@ -31,8 +31,14 @@
 {"date":"2025-08-10","event":"Add integration tests for HDF5 export result validation in tests/test_parameter_sweep_export.py","status":"completed"}
 {"date":"2025-08-10","event":"Extend CI workflow to include backreaction demo execution and export validation","status":"completed"}
 {"date":"2025-08-10","event":"Refine documentation for backreaction API and usage examples in docs/future-directions.md","status":"completed"}
-{"date":"2025-08-01","event":"Refine documentation for backreaction API and usage examples in docs/future-directions.md","status":"pending"}
-{"date":"2025-08-01","event":"Run scripts/survey_repos.py and analyze results/external_survey.json for candidates","status":"pending"}
+// Removed duplicate pending entry for documentation refinement
+{"date":"2025-08-11","event":"Run scripts/survey_repos.py and analyze results/external_survey.json for candidates","status":"completed"}
+{"date":"2025-08-11","event":"Identify and import ANEC check functions into PhysicsCore","status":"completed"}
+{"date":"2025-08-11","event":"Review lqg-anec-framework for ANEC checks and integrate relevant inequality constraints","status":"completed"}
+{"date":"2025-08-11","event":"Survey lorentz-violation-pipeline for stress-energy violation models","status":"completed"}
+{"date":"2025-08-11","event":"Write unit test for metric wave propagation (dispersion on Gaussian pulse)","status":"completed"}
+{"date":"2025-08-11","event":"Refine solve_semiclassical_metric to support spatial backreaction Laplacian and test accordingly","status":"completed"}
+{"date":"2025-08-11","event":"Update technical documentation with backreaction API details and module mappings","status":"completed"}
 {"date":"2025-08-01","event":"Identify and import functions (e.g., ANEC checks, vacuum energy models) from external repos into our modules","status":"pending"}
 {"date":"2025-08-01","event":"Update documentation with mappings of external modules to our negative-energy-generator framework","status":"pending"}
 {"date":"2025-08-01","event":"Analyze numerical stability of metric evolution and adjust solver parameters","status":"pending"}

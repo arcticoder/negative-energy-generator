@@ -193,6 +193,24 @@ class PhysicsCore:
                     history.append(first)
             return history
 
+    def compute_anec(self, rho, dx=None):
+        """
+        Compute the averaged null energy condition (ANEC) integral for 1D density profile rho(x).
+        Returns the integral \int rho(x) dx.
+        """
+        # If dx not provided, use core spacing
+        if dx is None:
+            dx = self.dx
+        # Sum rho over grid multiplied by dx
+        return float(np.sum(rho) * dx)
+
+    def check_anec(self, rho, dx=None):
+        """
+        Check if ANEC is violated: returns True if integral < 0.
+        """
+        anec = self.compute_anec(rho, dx)
+        return anec < 0
+
 # -------------------------------------------------------------------
 # 3) Example “main” routine
 # -------------------------------------------------------------------
