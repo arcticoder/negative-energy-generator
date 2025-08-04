@@ -155,9 +155,8 @@
 - Dynamic evolution analysis script added; next, test its output and integrate into CI.
 
 ### Next Tasks
-- Run `scripts/dynamic_evolution_analysis.py` locally and validate `results/dynamic_evolution_metrics.json` contents.
-- Write an integration test `tests/test_dynamic_evolution_analysis.py` to verify generated metrics match expected tolerances.
-- Add CI workflow step to execute the analysis script and check metrics file presence.
+- Update `docs/future-directions.md` section on UQ Analysis to reference CLI scripts instead of Jupyter notebooks.
+- Begin implementing CLI-based visualization or reporting scripts for dynamic evolution metrics.
 
 ```latest-progress
 ## NEWEST-PROGRESS-BEGIN
