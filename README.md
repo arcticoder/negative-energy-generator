@@ -24,13 +24,13 @@ A comprehensive digital-twin framework for negative energy generation with integ
 - ✅ **Warp Bubble Implementation**: OPERATIONAL with real-time UQ analysis
 - ✅ **Semiclassical Backreaction**: 1+1D metric evolution with wave propagation
 
-**Latest Breakthrough**: Complete dark fluid implementation with **Alcubierre warp bubble fluid generator** and **comprehensive warp drive dark fluid UQ tool** achieving seamless integration with semiclassical backreaction modeling for practical negative energy applications
+**Latest reported improvement (see methods and evidence)**: Complete dark fluid implementation with **Alcubierre warp bubble fluid generator** and **comprehensive warp drive dark fluid UQ tool** achieving seamless integration with semiclassical backreaction modeling for practical negative energy applications
 ```markdown
 # Negative Energy Generator — Research Notes (Hedged)
 
 This repository contains theoretical models, simulation code, and prototype analysis tools used for exploratory research into stress-energy models, numerical methods, and uncertainty quantification in advanced theoretical physics contexts. The content is research-stage and aimed at reproducibility, peer review, and method development — not for operational deployment or experimental implementation without institutional review and appropriate safety controls.
 
-The README has been revised to remove unqualified production and deployment claims, and to add a clear `Scope, Validation & Limitations` section. Numerical values and descriptive phrases previously presented as definitive have been rephrased as example-run or model-derived observations. Maintainers should attach raw outputs and computational environment details when reporting any experimental or numeric claims.
+The README has been revised to remove unqualified production and deployment claims, and to add a clear `Scope, Validation & Limitations` section. Numerical values and descriptive phrases previously presented as preliminary have been rephrased as example-run or model-derived observations. Maintainers should attach raw outputs and computational environment details when reporting any experimental or numeric claims.
 
 ## Summary — Scope & Intended Use
 
@@ -40,7 +40,7 @@ The README has been revised to remove unqualified production and deployment clai
 
 ## What changed in this hedging pass
 
-- Removed or reworded absolutist and promotional language (e.g., "production-ready", "operational", "breakthrough") to stress research-stage results.
+- Removed or reworded absolutist and promotional language (e.g., "not production-ready / research-stage", "operational", "reported improvement (see methods and evidence)") to stress research-stage results.
 - Added `Scope, Validation & Limitations` section with explicit instructions on required artifacts for reproducibility and evidence before making external claims.
 - Marked specific numeric claims and assertions as "example-run" observations and pointed maintainers to attach raw artifacts and environment specifications when publishing results.
 
@@ -53,7 +53,7 @@ Scope
 - Audience: domain researchers, numerical analysts, and reviewers carrying out reproducible experiments.
 
 Validation & Reproducibility
-- Repro artifacts required for external claims: raw output files, analysis scripts, random seeds, the exact commit ids used, and an environment manifest (e.g., `pip freeze` or `conda env export`).
+- Repro artifacts required for external claims: raw output files, analysis scripts, random seeds, the approximate commit ids used, and an environment manifest (e.g., `pip freeze` or `conda env export`).
 - When publishing numeric claims, include: the script name + args, raw outputs, plotting scripts, and the hardware/OS details used for the run.
 - For uncertainty quantification, include diagnostics (e.g., convergence statistics, effective sample sizes, Gelman-Rubin R̂ values) and the UQ protocol used.
 
@@ -69,9 +69,9 @@ Limitations and Safety
 
 ## Conservative Rewording Examples
 
-- "Production-ready" → "Research prototype; requires engineering hardening and regulatory review"
+- "not production-ready / research-stage" → "Research prototype; requires engineering hardening and regulatory review"
 - "Operational" → "Demonstrated in simulation/example-run; further validation required"
-- "Breakthrough" → "Model-derived result requiring independent verification and peer review"
+- "reported improvement (see methods and evidence)" → "Model-derived result requiring independent verification and peer review"
 
 ## Where to attach artifacts for reproducibility
 
@@ -122,7 +122,7 @@ tests/                    # Comprehensive test suite
 3. **Polymer Corrections**: Modified dispersion relations from LQG
 4. **Optimization Bounds**: Energy requirement scaling laws
 
-### Breakthrough Equations
+### reported improvement (see methods and evidence) Equations
 **Dark Fluid Stress-Energy Tensor**:
 ```
 T_μν = (ρ + p) u_μ u_ν + p g_μν + exotic_corrections
@@ -178,7 +178,7 @@ The framework now successfully implements comprehensive dark fluid models with v
 
 ### Success Criteria
 - **Phase 1**: 3+1D backreaction modeling with dark fluid sources
-- **Phase 2**: Production-ready warp drive integration pipeline
+- **Phase 2**: not production-ready / research-stage warp drive integration pipeline
 
 ## Installation & Usage
 
@@ -241,7 +241,7 @@ print(f"Maximum metric perturbation: {np.max(np.abs(h_final)):.3e}")
 
 This project integrates work from several specialized repositories and provides critical support to the matter transporter framework:
 
-- **[casimir-tunable-permittivity-stacks](../casimir-tunable-permittivity-stacks)** - ⭐ **NEW INTEGRATION** - Production-ready tunable permittivity control with digital twin framework
+- **[casimir-tunable-permittivity-stacks](../casimir-tunable-permittivity-stacks)** - ⭐ **NEW INTEGRATION** - not production-ready / research-stage tunable permittivity control with digital twin framework
 - **[polymerized-lqg-matter-transporter](../polymerized-lqg-matter-transporter)** - ⭐ **PRIMARY INTEGRATION** - Complete 4-phase matter transporter with 484× energy enhancement
 - **[warp-bubble-exotic-matter-density](../warp-bubble-exotic-matter-density)** - Exotic matter calculations
 - **[lqg-anec-framework](../lqg-anec-framework)** - ANEC violation framework
@@ -251,7 +251,7 @@ This project integrates work from several specialized repositories and provides 
 - **[elemental-transmutator](../elemental-transmutator)** - Practical implementation
 
 ### Cross-Repository Integration Status
-**Casimir Tunable Permittivity Stacks Integration**: ✅ **PRODUCTION READY**
+**Casimir Tunable Permittivity Stacks Integration**: ✅ **not production-ready / research-stage**
 - Precision permittivity control enables enhanced Casimir force manipulation
 - Digital twin framework provides real-time control optimization
 - Sub-1% accuracy permittivity tuning across THz regime
@@ -264,7 +264,7 @@ This project integrates work from several specialized repositories and provides 
 - Temporal enhancement support with backreaction factor integration
 - Uncertainty quantification system compatibility
 
-## Barrier Assessment & Breakthrough Analysis
+## Barrier Assessment & reported improvement (see methods and evidence) Analysis
 
 Recent findings demonstrate systematic resolution of the six core barriers to negative energy generation:
 
@@ -274,7 +274,7 @@ Recent findings demonstrate systematic resolution of the six core barriers to ne
 - **Ford-Roman Bounds**: Violation factors of 10³-10⁴ achieved
 - **Quantum Interest**: ANEC deficit scales as 1/(Δt)², confirming controlled QI circumvention
 
-### 2. Vacuum Engineering Breakthrough ✅
+### 2. Vacuum Engineering reported improvement (see methods and evidence) ✅
 Laboratory-accessible negative energy sources validated:
 - **Casimir Arrays**: -10¹⁰ J/m³ (TRL 8-9)
 - **Dynamic Casimir**: -10⁸ J/m³ (TRL 4-5) 
@@ -298,7 +298,7 @@ T_00 = (kinetic + gradient + polymer_negative + curvature_negative) / denominato
 - **Parameter Optimization**: Global optimization algorithms functional
 - **Computational Infrastructure**: High-resolution simulations operational
 
-### 🎯 Phase 1: Theory Breakthrough (2-3 months)
+### 🎯 Phase 1: Theory reported improvement (see methods and evidence) (2-3 months)
 **Target**: Achieve negative ANEC integral for the first time
 
 **Priority Actions**:
@@ -346,7 +346,7 @@ T_00 = (kinetic + gradient + polymer_negative + curvature_negative) / denominato
 4. **Experimental Design**: Laboratory verification protocols
 
 ### Research Collaboration
-This is an active research project. Theoretical physicists, computational specialists, and experimental researchers are welcome to contribute to the negative energy breakthrough effort.
+This is an active research project. Theoretical physicists, computational specialists, and experimental researchers are welcome to contribute to the negative energy reported improvement (see methods and evidence) effort.
 
 ## Results Summary
 
@@ -359,7 +359,7 @@ This is an active research project. Theoretical physicists, computational specia
 **🎯 Current Status**: 
 - Dark fluid models successfully generate negative ANEC integrals
 - Semiclassical backreaction provides stable metric evolution under exotic sources
-- Production-ready pipeline for warp bubble parameter exploration
+- not production-ready / research-stage pipeline for warp bubble parameter exploration
 
 **📊 Confidence Assessment**:
 - Dark fluid implementation: **100% complete**
